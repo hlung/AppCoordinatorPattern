@@ -18,7 +18,6 @@
 		013D26D8271C4CDC0067B44E /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		013D26DA271C4D330067B44E /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D9271C4D330067B44E /* PurchaseViewController.swift */; };
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
-		013D26DE271C4D490067B44E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DD271C4D490067B44E /* SignUpViewController.swift */; };
 		013D26E0271C4F040067B44E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DF271C4F040067B44E /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +56,6 @@
 		013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCoordinator.swift; sourceTree = "<group>"; };
 		013D26D9271C4D330067B44E /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		013D26DB271C4D3E0067B44E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		013D26DD271C4D490067B44E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		013D26DF271C4F040067B44E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,7 +139,6 @@
 			children = (
 				013D26D4271C4CB00067B44E /* LoginCoordinator.swift */,
 				013D26DB271C4D3E0067B44E /* LoginViewController.swift */,
-				013D26DD271C4D490067B44E /* SignUpViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -311,7 +308,6 @@
 				013D26DA271C4D330067B44E /* PurchaseViewController.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				013D26D8271C4CDC0067B44E /* PurchaseCoordinator.swift in Sources */,
-				013D26DE271C4D490067B44E /* SignUpViewController.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
