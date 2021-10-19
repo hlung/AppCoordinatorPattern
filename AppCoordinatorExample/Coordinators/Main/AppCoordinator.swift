@@ -24,13 +24,17 @@ final class AppCoordinator {
     window.rootViewController = navigationController
   }
 
-  func showLoginFlow() {
-    let controller = LoginNavigationController()
-    print("\(#function) show")
-    navigationController.present(controller, animated: true)
+  // MARK: - Navigation
 
-    controller.deinitHandler = { _ in
-      print("\(#function) deinit")
+  func showLoginFlow() {
+    print("\(#function)")
+
+    let coordinator = LoginNavigationController()
+    navigationController.present(coordinator, animated: true)
+    coordinator.deinitHandler = { coordinator in
+      // Make sure to use coordinator from closure argument rather than the outside one,
+      // otherwise there will be a retain cycle.
+      print("\(#function) deinit - result: \(coordinator.result)")
     }
   }
 

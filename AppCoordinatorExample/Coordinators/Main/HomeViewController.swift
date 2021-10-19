@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     let button = UIButton(type: .custom)
     button.setTitle("Log In", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .lightGray
+    button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
     button.addTarget(self, action: #selector(logInButtonDidTap), for: .touchUpInside)
     return button
@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     let button = UIButton(type: .custom)
     button.setTitle("Purchase", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .lightGray
+    button.backgroundColor = .systemGreen
     button.setTitleColor(.black, for: .highlighted)
     button.addTarget(self, action: #selector(purchaseButtonDidTap), for: .touchUpInside)
     return button

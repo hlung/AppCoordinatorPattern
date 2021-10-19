@@ -10,6 +10,7 @@ import UIKit
 class LoginNavigationController: UINavigationController, Coordinator {
 
   var deinitHandler: ((LoginNavigationController) -> Void)?
+  var result: String = "-"
 
   init() {
     let viewController = LoginLandingViewController()
@@ -20,6 +21,12 @@ class LoginNavigationController: UINavigationController, Coordinator {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  deinit {
+    deinitHandler?(self)
+  }
+
+  // MARK: - Navigation
 
   func showLoginPage() {
     let viewController = LoginViewController()
@@ -33,13 +40,17 @@ class LoginNavigationController: UINavigationController, Coordinator {
     pushViewController(viewController, animated: true)
   }
 
-  func finish(success: Bool) {
-    // handle authentication result
+  func cancel() {
     dismiss(animated: true)
   }
 
-  deinit {
-    deinitHandler?(self)
+  func finish(result: String) {
+    self.result = result
+    dismiss(animated: true)
+  }
+
+  func reset() {
+    popToRootViewController(animated: true)
   }
 
 }

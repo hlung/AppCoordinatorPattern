@@ -8,7 +8,7 @@ class LoginLandingViewController: UIViewController {
     let button = UIButton(type: .custom)
     button.setTitle("Log In", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .lightGray
+    button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
     button.addTarget(self, action: #selector(logInButtonDidTap), for: .touchUpInside)
     return button
@@ -18,7 +18,7 @@ class LoginLandingViewController: UIViewController {
     let button = UIButton(type: .custom)
     button.setTitle("Sign Up", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .lightGray
+    button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
     button.addTarget(self, action: #selector(signUpButtonDidTap), for: .touchUpInside)
     return button
@@ -49,12 +49,12 @@ class LoginLandingViewController: UIViewController {
       signUpButton.widthAnchor.constraint(equalToConstant: 200),
     ])
 
-    let item = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissViewController))
+    let item = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonDidTap))
     navigationItem.leftBarButtonItems = [item]
   }
 
-  @objc func dismissViewController() {
-    dismiss(animated: true, completion: nil)
+  @objc func cancelButtonDidTap() {
+    coordinator?.cancel()
   }
 
   @objc func logInButtonDidTap() {
