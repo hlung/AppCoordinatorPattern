@@ -9,6 +9,13 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+  lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Welcome!"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+
   lazy var logInButton: UIButton = {
     let button = UIButton(type: .custom)
     button.setTitle("Log In", for: .normal)
@@ -31,12 +38,16 @@ class HomeViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Home"
+    title = "\(type(of: self))"
     view.backgroundColor = .white
+    view.addSubview(titleLabel)
     view.addSubview(logInButton)
     view.addSubview(purchaseButton)
 
     NSLayoutConstraint.activate([
+      titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+
       logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       logInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
       logInButton.widthAnchor.constraint(equalToConstant: 200),

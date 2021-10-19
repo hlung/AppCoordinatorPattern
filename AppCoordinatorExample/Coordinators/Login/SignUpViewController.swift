@@ -1,12 +1,12 @@
 import UIKit
 
-class LoginViewController: UIViewController {
+class SignUpViewController: UIViewController {
 
   weak var coordinator: LoginNavigationController?
 
   lazy var button: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Log In", for: .normal)
+    button.setTitle("Sign Up", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .lightGray
     button.setTitleColor(.black, for: .highlighted)
@@ -30,6 +30,5 @@ class LoginViewController: UIViewController {
   @objc func buttonDidTap() {
     coordinator?.finish(success: true)
   }
-
 }
 

@@ -7,21 +7,34 @@
 
 import UIKit
 
-class LoginNavigationController: UINavigationController, Coordinator, LoginViewControlerDelegate {
+class LoginNavigationController: UINavigationController, Coordinator {
 
   var deinitHandler: ((LoginNavigationController) -> Void)?
 
   init() {
-    let viewController = LoginViewController()
+    let viewController = LoginLandingViewController()
     super.init(rootViewController: viewController)
-    viewController.delegate = self
+    viewController.coordinator = self
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func loginViewController(_ viewController: LoginViewController, didLogin success: Bool) {
+  func showLoginPage() {
+    let viewController = LoginViewController()
+    viewController.coordinator = self
+    pushViewController(viewController, animated: true)
+  }
+
+  func showSignUpPage() {
+    let viewController = SignUpViewController()
+    viewController.coordinator = self
+    pushViewController(viewController, animated: true)
+  }
+
+  func finish(success: Bool) {
+    // handle authentication result
     dismiss(animated: true)
   }
 
