@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LoginViewControlerDelegate: AnyObject {
-  func loginViewControllerDidFinish(_ viewController: LoginViewController)
+  func loginViewController(_ viewController: LoginViewController, didLogin success: Bool)
 }
 
 class LoginViewController: UIViewController {
@@ -22,21 +22,35 @@ class LoginViewController: UIViewController {
     return label
   }()
 
+  lazy var logInButton: UIButton = {
+    let button = UIButton(type: .custom)
+    button.setTitle("Log In", for: .normal)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.backgroundColor = .lightGray
+    button.setTitleColor(.black, for: .highlighted)
+    button.addTarget(self, action: #selector(logInButtonDidTap), for: .touchUpInside)
+    return button
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Log In"
     view.backgroundColor = .white
     view.addSubview(logInLabel)
+    view.addSubview(logInButton)
 
     NSLayoutConstraint.activate([
       logInLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      logInLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200)
+      logInLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+
+      logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      logInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+      logInButton.widthAnchor.constraint(equalToConstant: 200),
     ])
   }
 
-  override func viewDidDisappear(_ animated: Bool) {
-    super.viewDidDisappear(animated)
-    delegate?.loginViewControllerDidFinish(self)
+  @objc func logInButtonDidTap() {
+    delegate?.loginViewController(self, didLogin: true)
   }
 
 }

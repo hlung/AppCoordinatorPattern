@@ -7,17 +7,6 @@
 
 import Foundation
 
-protocol CoordinatorDelegate: AnyObject {
-  func coordinatorDidStop(_ coordinator: Coordinator)
-}
-
 protocol Coordinator: AnyObject {
-  var delegate: CoordinatorDelegate? { get set }
-  func start()
-}
-
-extension Coordinator {
-  func stop() {
-    delegate?.coordinatorDidStop(self)
-  }
+  var deinitHandler: ((Self) -> Void)? { get set }
 }

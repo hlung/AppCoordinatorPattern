@@ -10,13 +10,9 @@ import UIKit
 final class AppCoordinator {
 
   private let window: UIWindow
-
-  private var childCoordinators = [Coordinator]()
   private let navigationController: UINavigationController
 
-  private lazy var homeViewController: HomeViewController = {
-    HomeViewController()
-  }()
+  private lazy var homeViewController = HomeViewController()
 
   init(window: UIWindow) {
     self.window = window
@@ -29,9 +25,13 @@ final class AppCoordinator {
   }
 
   func showLoginFlow() {
-    let coordinator = LoginCoordinator(rootViewController: navigationController, delegate: self)
-    childCoordinators.append(coordinator)
-    coordinator.start()
+    let controller = LoginNavigationController()
+    print("\(#function) show")
+    navigationController.present(controller, animated: true)
+
+    controller.deinitHandler = { _ in
+      print("\(#function) deinit")
+    }
   }
 
   func showPurchaseFlow() {
@@ -40,14 +40,6 @@ final class AppCoordinator {
 
 }
 
-extension AppCoordinator: CoordinatorDelegate {
-  func coordinatorDidStop(_ coordinator: Coordinator) {
-    print("\(#function) \(coordinator)")
-    if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
-      childCoordinators.remove(at: index)
-    }
-  }
-}
 
 extension UIApplication {
   var coordinator: AppCoordinator {
