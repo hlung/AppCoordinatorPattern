@@ -9,7 +9,7 @@ import UIKit
 
 class LoginNavigationController: UINavigationController, Coordinator {
 
-  var deinitHandler: ((LoginNavigationController) -> Void)?
+  var stop: ((LoginNavigationController) -> Void)?
   var result: String = "-"
 
   let viewController: UIViewController
@@ -33,7 +33,7 @@ class LoginNavigationController: UINavigationController, Coordinator {
 
   deinit {
     print("\(#fileID) \(#function)")
-    deinitHandler?(self)
+    stop?(self)
   }
 
   // MARK: - Navigation

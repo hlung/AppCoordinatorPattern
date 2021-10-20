@@ -8,6 +8,6 @@
 import Foundation
 
 protocol Coordinator: AnyObject {
-  var deinitHandler: ((Self) -> Void)? { get set }
+  var stop: ((Self) -> Void)? { get set }
   func start()
 }

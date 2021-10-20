@@ -9,7 +9,7 @@ import UIKit
 
 class PurchaseCoordinator: Coordinator {
 
-  var deinitHandler: ((PurchaseCoordinator) -> Void)?
+  var stop: ((PurchaseCoordinator) -> Void)?
   var result: String = "-"
 
   let viewController: UIViewController
@@ -25,7 +25,7 @@ class PurchaseCoordinator: Coordinator {
 
   deinit {
     print("\(#fileID) \(#function)")
-    deinitHandler?(self)
+    stop?(self)
   }
 
   // MARK: - Alert Controllers

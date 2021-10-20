@@ -32,7 +32,7 @@ final class AppCoordinator {
   func showLoginFlow() {
     let coordinator = LoginNavigationController(viewController: navigationController)
     coordinator.start()
-    coordinator.deinitHandler = { coordinator in
+    coordinator.stop = { coordinator in
       print("result: \(coordinator.result)")
     }
   }
@@ -40,7 +40,7 @@ final class AppCoordinator {
   func showPurchaseFlow() {
     let coordinator = PurchaseCoordinator(viewController: navigationController)
     coordinator.start()
-    coordinator.deinitHandler = { coordinator in
+    coordinator.stop = { coordinator in
       print("result: \(coordinator.result)")
     }
   }
