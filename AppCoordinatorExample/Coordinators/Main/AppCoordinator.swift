@@ -37,7 +37,11 @@ final class AppCoordinator {
   }
 
   func showPurchaseFlow() {
-
+    let coordinator = PurchaseCoordinator(rootViewController: navigationController)
+    coordinator.start()
+    coordinator.deinitHandler = { coordinator in
+      print("result: \(coordinator.result)")
+    }
   }
 
 }
