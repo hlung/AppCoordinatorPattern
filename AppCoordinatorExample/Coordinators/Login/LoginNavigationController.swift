@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// For demonstrating a coordinator that is a UIViewController subclass.
+/// This means UIKit presentation stack can hold on to the coordinator for us, so we don't have to manage its life time.
 class LoginNavigationController: UINavigationController, Coordinator {
 
   var stop: ((LoginNavigationController) -> Void)?

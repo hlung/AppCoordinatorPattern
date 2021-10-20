@@ -7,6 +7,9 @@
 
 import UIKit
 
+/// For demonstrating a coordinator that is not a UIViewController subclass by itself.
+/// This means UIKit presentation stack cannot hold on to the coordinator anymore.
+/// We solve this by passing on the coorinator reference to the things that will actually get into the UIKit presentation stack, which is the alert controllers.
 class PurchaseCoordinator: Coordinator {
 
   var stop: ((PurchaseCoordinator) -> Void)?
