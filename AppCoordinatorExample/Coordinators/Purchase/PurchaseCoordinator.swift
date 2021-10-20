@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// ⚠️ This is still experimental ⚠️
 /// For demonstrating a coordinator that is not a UIViewController subclass by itself.
 /// This means UIKit presentation stack cannot hold on to the coordinator anymore.
 /// We solve this by passing on the coorinator reference to the things that will actually get into the UIKit presentation stack, which is the alert controllers.
@@ -39,15 +40,21 @@ class PurchaseCoordinator: Coordinator {
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
       self.viewController.present(self.confirmationAlertController(), animated: true)
     }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+      self.result = "Not purchased"
+    }))
     return alert
   }
 
   func confirmationAlertController() -> CoordinatedAlertController {
     let alert = CoordinatedAlertController(title: "Purchase flow", message: "Are you sure?", preferredStyle: .alert)
     alert.retainedCoordinator = self
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+      self.result = "Purchased"
+    }))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+      self.result = "Not purchased"
+    }))
     return alert
   }
 
