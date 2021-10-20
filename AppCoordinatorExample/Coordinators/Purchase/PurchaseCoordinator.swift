@@ -32,7 +32,7 @@ class PurchaseCoordinator: Coordinator {
 
   func purchaseAlertController() -> CoordinatedAlertController {
     let alert = CoordinatedAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
-    alert.object = self
+    alert.retainedCoordinator = self
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
       self.viewController.present(self.confirmationAlertController(), animated: true)
     }))
@@ -42,14 +42,10 @@ class PurchaseCoordinator: Coordinator {
 
   func confirmationAlertController() -> CoordinatedAlertController {
     let alert = CoordinatedAlertController(title: "Purchase flow", message: "Are you sure?", preferredStyle: .alert)
-    alert.object = self
+    alert.retainedCoordinator = self
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     return alert
   }
 
-}
-
-class CoordinatedAlertController: UIAlertController {
-  var object: AnyObject?
 }
