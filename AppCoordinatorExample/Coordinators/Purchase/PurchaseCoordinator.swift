@@ -12,15 +12,15 @@ class PurchaseCoordinator: Coordinator {
   var deinitHandler: ((PurchaseCoordinator) -> Void)?
   var result: String = "-"
 
-  let rootViewController: UIViewController
+  let viewController: UIViewController
 
-  init(rootViewController: UIViewController) {
+  init(viewController: UIViewController) {
     print("\(#fileID) \(#function)")
-    self.rootViewController = rootViewController
+    self.viewController = viewController
   }
 
   func start() {
-    rootViewController.present(purchaseAlertController(), animated: true)
+    viewController.present(purchaseAlertController(), animated: true)
   }
 
   deinit {
@@ -34,7 +34,7 @@ class PurchaseCoordinator: Coordinator {
     let alert = CoordinatedAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
     alert.object = self
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.rootViewController.present(self.confirmationAlertController(), animated: true)
+      self.viewController.present(self.confirmationAlertController(), animated: true)
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     return alert

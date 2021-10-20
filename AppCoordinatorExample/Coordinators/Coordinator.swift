@@ -9,4 +9,5 @@ import Foundation
 
 protocol Coordinator: AnyObject {
   var deinitHandler: ((Self) -> Void)? { get set }
+  func start()
 }

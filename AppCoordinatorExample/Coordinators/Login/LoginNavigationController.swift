@@ -12,15 +12,23 @@ class LoginNavigationController: UINavigationController, Coordinator {
   var deinitHandler: ((LoginNavigationController) -> Void)?
   var result: String = "-"
 
-  init() {
+  let viewController: UIViewController
+
+  init(viewController: UIViewController) {
     print("\(#fileID) \(#function)")
-    let viewController = LoginLandingViewController()
-    super.init(rootViewController: viewController)
-    viewController.coordinator = self
+    self.viewController = viewController
+
+    let landingViewController = LoginLandingViewController()
+    super.init(rootViewController: landingViewController)
+    landingViewController.coordinator = self
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  func start() {
+    viewController.present(self, animated: true)
   }
 
   deinit {

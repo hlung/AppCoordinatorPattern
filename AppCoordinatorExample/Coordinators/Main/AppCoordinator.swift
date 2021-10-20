@@ -26,18 +26,19 @@ final class AppCoordinator {
 
   // MARK: - Navigation
 
+  // Make sure to use coordinator from closure argument rather than the outside one,
+  // otherwise there will be a retain cycle.
+
   func showLoginFlow() {
-    let coordinator = LoginNavigationController()
-    navigationController.present(coordinator, animated: true)
+    let coordinator = LoginNavigationController(viewController: navigationController)
+    coordinator.start()
     coordinator.deinitHandler = { coordinator in
-      // Make sure to use coordinator from closure argument rather than the outside one,
-      // otherwise there will be a retain cycle.
       print("result: \(coordinator.result)")
     }
   }
 
   func showPurchaseFlow() {
-    let coordinator = PurchaseCoordinator(rootViewController: navigationController)
+    let coordinator = PurchaseCoordinator(viewController: navigationController)
     coordinator.start()
     coordinator.deinitHandler = { coordinator in
       print("result: \(coordinator.result)")
