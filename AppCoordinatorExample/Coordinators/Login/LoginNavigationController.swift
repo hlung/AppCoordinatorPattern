@@ -13,6 +13,7 @@ class LoginNavigationController: UINavigationController, Coordinator {
   var result: String = "-"
 
   init() {
+    print("\(#fileID) \(#function)")
     let viewController = LoginLandingViewController()
     super.init(rootViewController: viewController)
     viewController.coordinator = self
@@ -23,6 +24,7 @@ class LoginNavigationController: UINavigationController, Coordinator {
   }
 
   deinit {
+    print("\(#fileID) \(#function)")
     deinitHandler?(self)
   }
 

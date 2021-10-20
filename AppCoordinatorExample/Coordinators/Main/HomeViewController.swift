@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
 
   lazy var logInButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Log In", for: .normal)
+    button.setTitle("Log In Flow", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
 
   lazy var purchaseButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Purchase", for: .normal)
+    button.setTitle("Purchase Flow", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemGreen
     button.setTitleColor(.black, for: .highlighted)
