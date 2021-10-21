@@ -9,8 +9,9 @@ import UIKit
 
 /// ⚠️ This is still experimental ⚠️
 /// For demonstrating a coordinator that is not a UIViewController subclass by itself.
-/// This means UIKit presentation stack cannot hold on to the coordinator anymore.
-/// We solve this by passing on the coorinator reference to the things that will actually get into the UIKit presentation stack, which is the alert controllers.
+/// This means we cannot use the presentation stack to retain it.
+/// If there will be always some view controller presented during the coordinator's life time, we can pass on the coordinator to those view controllers to retain it.
+/// This way we can still put stop() in deinit.
 class PurchaseCoordinator: Coordinator {
 
   var stop: ((PurchaseCoordinator) -> Void)?
@@ -49,10 +50,10 @@ class PurchaseCoordinator: Coordinator {
   func confirmationAlertController() -> CoordinatedAlertController {
     let alert = CoordinatedAlertController(title: "Purchase flow", message: "Are you sure?", preferredStyle: .alert)
     alert.retainedCoordinator = self
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+    alert.addAction(UIAlertAction(title: "No", style: .default, handler: { _ in
       self.result = "Purchased"
     }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+    alert.addAction(UIAlertAction(title: "Yes!", style: .cancel, handler: { _ in
       self.result = "Not purchased"
     }))
     return alert
