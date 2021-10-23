@@ -112,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				013D26A0271C4C220067B44E /* AppDelegate.swift */,
+				013D26D1271C4C5F0067B44E /* AppDirector.swift */,
+				013D26A4271C4C220067B44E /* HomeViewController.swift */,
 				013D26E2271C4F150067B44E /* Coordinators */,
 				013D26A9271C4C240067B44E /* Assets.xcassets */,
 				013D26AB271C4C240067B44E /* LaunchScreen.storyboard */,
@@ -149,15 +151,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		013D26D3271C4C9A0067B44E /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				013D26D1271C4C5F0067B44E /* AppDirector.swift */,
-				013D26A4271C4C220067B44E /* HomeViewController.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
 		013D26D6271C4CBF0067B44E /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				013D26DF271C4F040067B44E /* Coordinator.swift */,
-				013D26D3271C4C9A0067B44E /* Main */,
 				013D26D0271C4C3D0067B44E /* Login */,
 				013D26D6271C4CBF0067B44E /* Purchase */,
 			);
