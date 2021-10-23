@@ -7,17 +7,10 @@
 
 import UIKit
 
-/** ⚠️ This is still experimental ⚠️
- For demonstrating a coordinator that is not a UIViewController subclass by itself.
- This means we cannot use the presentation stack to retain it.
-
- Option 1: Pass on coordinator to presented view controllers
- If there will be always some view controller presented during the coordinator's life time, we can pass coordinator to those view controllers to retain it.
- This way we can call stop() in last view controller deinit.
-
- Option 2:
- Another option is to create a retain cycle on purpose, and manually remove it when our coordinator ends. This is a bit risky. And it is not so different
- than the original implementation where child coordinators are held on to by AppDirector.
+/**
+ For demonstrating a coordinator that is not a UIViewController subclass by itself. Here it instead manages a series of UIAlertController.
+ This means we cannot use the presentation stack to retain the coordinator since there's no view controller with same lifetime as the whole flow.
+ The coordinator needs to be held on to by something else to keep it alive. And completion has to be manually called.
  */
 class PurchaseCoordinator: Coordinator {
 
@@ -41,26 +34,27 @@ class PurchaseCoordinator: Coordinator {
 
   // MARK: - Alert Controllers
 
-  func purchaseAlertController() -> CoordinatedAlertController {
-    let alert = CoordinatedAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
-    alert.retainedCoordinator = self
+  func purchaseAlertController() -> UIAlertController {
+    let alert = UIAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+      self.result = "Cancelled"
+      self.completion?(self)
+    }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
       self.viewController.present(self.confirmationAlertController(), animated: true)
-    }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.result = "Not purchased"
     }))
     return alert
   }
 
-  func confirmationAlertController() -> CoordinatedAlertController {
-    let alert = CoordinatedAlertController(title: "Purchase flow", message: "Are you sure?", preferredStyle: .alert)
-    alert.retainedCoordinator = self
-    alert.addAction(UIAlertAction(title: "No", style: .default, handler: { _ in
-      self.result = "Purchased"
+  func confirmationAlertController() -> UIAlertController {
+    let alert = UIAlertController(title: "Purchase flow", message: "Confirm?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+      self.result = "Cancelled"
+      self.completion?(self)
     }))
-    alert.addAction(UIAlertAction(title: "Yes!", style: .cancel, handler: { _ in
-      self.result = "Not purchased"
+    alert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in
+      self.result = "Purchased"
+      self.completion?(self)
     }))
     return alert
   }

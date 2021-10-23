@@ -20,7 +20,6 @@
 		013D26E4271D1E820067B44E /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E3271D1E820067B44E /* LoginNavigationController.swift */; };
 		013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E5271E613B0067B44E /* LoginLandingViewController.swift */; };
 		013D26E8271E61520067B44E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E7271E61520067B44E /* SignUpViewController.swift */; };
-		013D26F0272095880067B44E /* CoordinatedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26EF272095880067B44E /* CoordinatedAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +59,6 @@
 		013D26E3271D1E820067B44E /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		013D26E5271E613B0067B44E /* LoginLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
 		013D26E7271E61520067B44E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		013D26EF272095880067B44E /* CoordinatedAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatedAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */,
-				013D26EF272095880067B44E /* CoordinatedAlertController.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -303,7 +300,6 @@
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
 				013D26E0271C4F040067B44E /* Coordinator.swift in Sources */,
 				013D26E8271E61520067B44E /* SignUpViewController.swift in Sources */,
-				013D26F0272095880067B44E /* CoordinatedAlertController.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				013D26D8271C4CDC0067B44E /* PurchaseCoordinator.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginNavigationController.swift in Sources */,

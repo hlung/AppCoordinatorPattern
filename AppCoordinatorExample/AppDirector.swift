@@ -14,9 +14,12 @@ final class AppDirector {
   private lazy var navigationController = UINavigationController()
   private lazy var homeViewController = HomeViewController()
 
+  private var purchaseCoordinator: PurchaseCoordinator?
+
   func setup(with window: UIWindow) {
     navigationController.setViewControllers([homeViewController], animated: false)
     window.rootViewController = navigationController
+    window.makeKeyAndVisible()
   }
 
   // MARK: - Navigation
@@ -25,17 +28,18 @@ final class AppDirector {
     let coordinator = LoginNavigationController(viewController: navigationController)
     coordinator.start()
     coordinator.completion = { coordinator in
-      print("result: \(coordinator.result)")
+      print("Login result: \(coordinator.result)")
     }
   }
 
-  // Experimental
   func showPurchaseFlow() {
     let coordinator = PurchaseCoordinator(viewController: navigationController)
     coordinator.start()
-    coordinator.completion = { coordinator in
-      print("result: \(coordinator.result)")
+    coordinator.completion = { [weak self] coordinator in
+      print("Purchase result: \(coordinator.result)")
+      self?.purchaseCoordinator = nil // release the coordinator
     }
+    self.purchaseCoordinator = coordinator // retain the coordinator
   }
 
 }
