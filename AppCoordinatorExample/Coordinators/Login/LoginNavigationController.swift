@@ -19,7 +19,7 @@ class LoginNavigationController: UINavigationController, Coordinator {
   let viewController: UIViewController
 
   init(viewController: UIViewController) {
-    print("\(#fileID) \(#function)")
+    print("\(type(of: self)) \(#function)")
     self.viewController = viewController
 
     let landingViewController = LoginLandingViewController()
@@ -36,7 +36,7 @@ class LoginNavigationController: UINavigationController, Coordinator {
   }
 
   deinit {
-    print("\(#fileID) \(#function)")
+    print("\(type(of: self)) \(#function)")
     completion?(self)
   }
 

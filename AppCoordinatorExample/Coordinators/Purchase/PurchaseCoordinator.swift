@@ -20,7 +20,7 @@ class PurchaseCoordinator: Coordinator {
   let viewController: UIViewController
 
   init(viewController: UIViewController) {
-    print("\(#fileID) \(#function)")
+    print("\(type(of: self)) \(#function)")
     self.viewController = viewController
   }
 
@@ -29,7 +29,7 @@ class PurchaseCoordinator: Coordinator {
   }
 
   deinit {
-    print("\(#fileID) \(#function)")
+    print("\(type(of: self)) \(#function)")
   }
 
   // MARK: - Alert Controllers
