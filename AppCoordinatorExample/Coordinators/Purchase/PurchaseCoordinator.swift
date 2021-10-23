@@ -7,11 +7,18 @@
 
 import UIKit
 
-/// ⚠️ This is still experimental ⚠️
-/// For demonstrating a coordinator that is not a UIViewController subclass by itself.
-/// This means we cannot use the presentation stack to retain it.
-/// If there will be always some view controller presented during the coordinator's life time, we can pass on the coordinator to those view controllers to retain it.
-/// This way we can still put stop() in deinit.
+/** ⚠️ This is still experimental ⚠️
+ For demonstrating a coordinator that is not a UIViewController subclass by itself.
+ This means we cannot use the presentation stack to retain it.
+
+ Option 1: Pass on coordinator to presented view controllers
+ If there will be always some view controller presented during the coordinator's life time, we can pass coordinator to those view controllers to retain it.
+ This way we can call stop() in last view controller deinit.
+
+ Option 2:
+ Another option is to create a retain cycle on purpose, and manually remove it when our coordinator ends. This is a bit risky. And it is not so different
+ than the original implementation where child coordinators are held on to by AppCoordinator.
+ */
 class PurchaseCoordinator: Coordinator {
 
   var stop: ((PurchaseCoordinator) -> Void)?
