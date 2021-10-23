@@ -7,11 +7,6 @@
 
 import UIKit
 
-/**
- For demonstrating a coordinator that is not a UIViewController subclass by itself. Here it instead manages a series of UIAlertController.
- This means we cannot use the presentation stack to retain the coordinator since there's no view controller with same lifetime as the whole flow.
- The coordinator needs to be held on to by something else to keep it alive. And completion still has to be manually called.
- */
 class PurchaseCoordinator: Coordinator {
 
   var completion: ((PurchaseCoordinator) -> Void)?
