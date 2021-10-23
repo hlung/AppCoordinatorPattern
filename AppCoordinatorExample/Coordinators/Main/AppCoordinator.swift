@@ -26,9 +26,6 @@ final class AppCoordinator {
 
   // MARK: - Navigation
 
-  // Make sure to use coordinator from closure argument rather than the outside one,
-  // otherwise there will be a retain cycle.
-
   func showLoginFlow() {
     let coordinator = LoginNavigationController(viewController: navigationController)
     coordinator.start()
@@ -37,6 +34,7 @@ final class AppCoordinator {
     }
   }
 
+  // Experimental
   func showPurchaseFlow() {
     let coordinator = PurchaseCoordinator(viewController: navigationController)
     coordinator.start()
