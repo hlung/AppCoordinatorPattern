@@ -14,7 +14,7 @@ import UIKit
 class LoginNavigationController: UINavigationController, Coordinator {
 
   var completion: ((LoginNavigationController) -> Void)?
-  var result: String = "-"
+  var result: String = "Cancelled"
 
   let viewController: UIViewController
 
@@ -37,7 +37,7 @@ class LoginNavigationController: UINavigationController, Coordinator {
 
   deinit {
     print("\(type(of: self)) \(#function)")
-    completion?(self)
+    completion?(self) // this is the only place where we need to call completion!
   }
 
   // MARK: - Navigation

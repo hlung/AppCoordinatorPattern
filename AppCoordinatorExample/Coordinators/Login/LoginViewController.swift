@@ -6,7 +6,7 @@ class LoginViewController: UIViewController {
 
   lazy var button: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Log In", for: .normal)
+    button.setTitle("Finish Log In", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
@@ -14,13 +14,13 @@ class LoginViewController: UIViewController {
     return button
   }()
 
-  lazy var cancelButton: UIButton = {
+  lazy var backButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Cancel", for: .normal)
+    button.setTitle("Back", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemGray
     button.setTitleColor(.black, for: .highlighted)
-    button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
+    button.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
     return button
   }()
 
@@ -29,15 +29,16 @@ class LoginViewController: UIViewController {
     title = "\(type(of: self))"
     view.backgroundColor = .white
     view.addSubview(button)
-    view.addSubview(cancelButton)
+    view.addSubview(backButton)
 
     NSLayoutConstraint.activate([
       button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       button.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
       button.widthAnchor.constraint(equalToConstant: 200),
-      cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
-      cancelButton.widthAnchor.constraint(equalToConstant: 200),
+
+      backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+      backButton.widthAnchor.constraint(equalToConstant: 200),
     ])
   }
 
@@ -45,7 +46,7 @@ class LoginViewController: UIViewController {
     coordinator?.finish(result: "Log In")
   }
 
-  @objc func cancelButtonDidTap() {
+  @objc func backButtonDidTap() {
     coordinator?.reset()
   }
 

@@ -24,6 +24,16 @@ class LoginLandingViewController: UIViewController {
     return button
   }()
 
+  lazy var cancelButton: UIButton = {
+    let button = UIButton(type: .custom)
+    button.setTitle("Cancel", for: .normal)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.backgroundColor = .systemGray
+    button.setTitleColor(.black, for: .highlighted)
+    button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
+    return button
+  }()
+
   init() {
     super.init(nibName: nil, bundle: nil)
   }
@@ -38,6 +48,7 @@ class LoginLandingViewController: UIViewController {
     view.backgroundColor = .white
     view.addSubview(logInButton)
     view.addSubview(signUpButton)
+    view.addSubview(cancelButton)
 
     NSLayoutConstraint.activate([
       logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -47,6 +58,10 @@ class LoginLandingViewController: UIViewController {
       signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       signUpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
       signUpButton.widthAnchor.constraint(equalToConstant: 200),
+
+      cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 300),
+      cancelButton.widthAnchor.constraint(equalToConstant: 200),
     ])
 
     let item = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonDidTap))
