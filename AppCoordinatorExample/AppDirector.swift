@@ -25,15 +25,17 @@ final class AppDirector {
   // MARK: - Navigation
 
   func showLoginFlow() {
-    let coordinator = LoginNavigationController(viewController: navigationController)
+    let coordinator = LoginNavigationController(presenterViewController: navigationController)
     coordinator.start()
     coordinator.completion = { coordinator in
       print("Login result: \(coordinator.result)")
     }
+    // We don't need to retain/release the coordinator (LoginNavigationController) here
+    // because the navigation stack already manages this for us. 😎
   }
 
   func showPurchaseFlow() {
-    let coordinator = PurchaseCoordinator(viewController: navigationController)
+    let coordinator = PurchaseCoordinator(presenterViewController: navigationController)
     coordinator.start()
     coordinator.completion = { [weak self] coordinator in
       print("Purchase result: \(coordinator.result)")

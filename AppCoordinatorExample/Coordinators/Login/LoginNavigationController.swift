@@ -16,11 +16,11 @@ class LoginNavigationController: UINavigationController, Coordinator {
   var completion: ((LoginNavigationController) -> Void)?
   var result: String = "Cancelled"
 
-  let viewController: UIViewController
+  let presenterViewController: UIViewController
 
-  init(viewController: UIViewController) {
+  init(presenterViewController: UIViewController) {
     print("\(type(of: self)) \(#function)")
-    self.viewController = viewController
+    self.presenterViewController = presenterViewController
 
     let landingViewController = LoginLandingViewController()
     super.init(rootViewController: landingViewController)
@@ -32,7 +32,7 @@ class LoginNavigationController: UINavigationController, Coordinator {
   }
 
   func start() {
-    viewController.present(self, animated: true)
+    presenterViewController.present(self, animated: true)
   }
 
   deinit {

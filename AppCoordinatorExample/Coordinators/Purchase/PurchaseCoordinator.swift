@@ -17,15 +17,15 @@ class PurchaseCoordinator: Coordinator {
   var completion: ((PurchaseCoordinator) -> Void)?
   var result: String = "-"
 
-  let viewController: UIViewController
+  let presenterViewController: UIViewController
 
-  init(viewController: UIViewController) {
+  init(presenterViewController: UIViewController) {
     print("\(type(of: self)) \(#function)")
-    self.viewController = viewController
+    self.presenterViewController = presenterViewController
   }
 
   func start() {
-    viewController.present(purchaseAlertController(), animated: true)
+    presenterViewController.present(purchaseAlertController(), animated: true)
   }
 
   deinit {
@@ -41,7 +41,7 @@ class PurchaseCoordinator: Coordinator {
       self.completion?(self)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.viewController.present(self.confirmationAlertController(), animated: true)
+      self.presenterViewController.present(self.confirmationAlertController(), animated: true)
     }))
     return alert
   }
