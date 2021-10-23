@@ -9,17 +9,12 @@ import UIKit
 
 final class AppCoordinator {
 
-  private let window: UIWindow
-  private let navigationController: UINavigationController
+  static var shared = AppCoordinator()
 
+  private lazy var navigationController = UINavigationController()
   private lazy var homeViewController = HomeViewController()
 
-  init(window: UIWindow) {
-    self.window = window
-    self.navigationController = UINavigationController()
-  }
-
-  func start() {
+  func setup(with window: UIWindow) {
     navigationController.setViewControllers([homeViewController], animated: false)
     window.rootViewController = navigationController
   }
@@ -43,11 +38,4 @@ final class AppCoordinator {
     }
   }
 
-}
-
-
-extension UIApplication {
-  var coordinator: AppCoordinator {
-    return (delegate as! AppDelegate).coordinator
-  }
 }

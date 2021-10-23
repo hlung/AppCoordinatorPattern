@@ -59,11 +59,11 @@ class HomeViewController: UIViewController {
   }
 
   @objc func logInButtonDidTap() {
-    UIApplication.shared.coordinator.showLoginFlow()
+    AppCoordinator.shared.showLoginFlow()
   }
 
   @objc func purchaseButtonDidTap() {
-    UIApplication.shared.coordinator.showPurchaseFlow()
+    AppCoordinator.shared.showPurchaseFlow()
   }
 
 }
