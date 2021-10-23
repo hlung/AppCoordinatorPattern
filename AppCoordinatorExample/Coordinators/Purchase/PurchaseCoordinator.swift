@@ -17,7 +17,7 @@ import UIKit
 
  Option 2:
  Another option is to create a retain cycle on purpose, and manually remove it when our coordinator ends. This is a bit risky. And it is not so different
- than the original implementation where child coordinators are held on to by AppCoordinator.
+ than the original implementation where child coordinators are held on to by AppDirector.
  */
 class PurchaseCoordinator: Coordinator {
 

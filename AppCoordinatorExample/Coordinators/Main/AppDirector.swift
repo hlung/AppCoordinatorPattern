@@ -1,5 +1,5 @@
 //
-//  AppCoordinator.swift
+//  AppDirector.swift
 //  AppCoordinatorExample
 //
 //  Created by Kolyutsakul, Thongchai on 17/10/21.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class AppCoordinator {
+final class AppDirector {
 
-  static var shared = AppCoordinator()
+  static var shared = AppDirector()
 
   private lazy var navigationController = UINavigationController()
   private lazy var homeViewController = HomeViewController()

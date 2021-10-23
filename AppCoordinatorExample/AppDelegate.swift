@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let window = UIWindow(frame: UIScreen.main.bounds)
     self.window = window
 
-    AppCoordinator.shared.setup(with: window)
+    AppDirector.shared.setup(with: window)
 
     return true
   }
