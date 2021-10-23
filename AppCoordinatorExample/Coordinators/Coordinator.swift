@@ -8,6 +8,6 @@
 import Foundation
 
 protocol Coordinator: AnyObject {
-  var stop: ((Self) -> Void)? { get set }
+  var completion: ((Self) -> Void)? { get set }
   func start()
 }
