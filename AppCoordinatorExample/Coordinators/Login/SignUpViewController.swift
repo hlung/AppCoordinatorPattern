@@ -2,7 +2,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
-  weak var coordinator: LoginNavigationController?
+  weak var coordinator: LoginCoordinator?
 
   lazy var button: UIButton = {
     let button = UIButton(type: .custom)
