@@ -31,15 +31,23 @@ final class AppDirector {
   // MARK: - Navigation
 
   func showHome() {
-//    navigationController.setViewControllers([homeViewController], animated: false)
-//    window.rootViewController = navigationController
+    let coordinator = HomeCoordinator(window: window)
+    coordinator.completion = { [weak self] coordinator in
+      UserDefaults.standard.isLoggedIn = false
+      self?.childCoordinators.removeAll(where: { $0 === coordinator })
+      self?.showLogin()
+    }
+    coordinator.start()
+    childCoordinators.append(coordinator)
   }
 
   func showLogin() {
     let coordinator = LoginCoordinator(window: window)
     coordinator.completion = { [weak self] coordinator in
       print("Login result: \(coordinator.result)")
+      UserDefaults.standard.isLoggedIn = true
       self?.childCoordinators.removeAll(where: { $0 === coordinator })
+      self?.showHome()
     }
     coordinator.start()
     childCoordinators.append(coordinator)

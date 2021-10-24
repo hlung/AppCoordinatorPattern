@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PurchaseCoordinator: Coordinator {
+final class PurchaseCoordinator: Coordinator {
 
   var completion: ((PurchaseCoordinator) -> Void)?
   var result: String = "-"

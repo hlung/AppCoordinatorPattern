@@ -1,8 +1,40 @@
-//
-//  HomeCoordinator.swift
-//  AppCoordinatorExample
-//
-//  Created by Kolyutsakul, Thongchai on 24/10/21.
-//
+import UIKit
 
-import Foundation
+final class HomeCoordinator: Coordinator {
+
+  var completion: ((HomeCoordinator) -> Void)?
+  var result: String = "Cancelled"
+
+  let window: UIWindow
+  private lazy var navigationController = UINavigationController()
+
+  init(window: UIWindow) {
+    print("\(type(of: self)) \(#function)")
+    self.window = window
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  deinit {
+    print("\(type(of: self)) \(#function)")
+  }
+
+  func start() {
+    let appearance = UINavigationBarAppearance()
+    appearance.backgroundColor = .systemGray3
+    navigationController.navigationBar.scrollEdgeAppearance = appearance
+
+    let viewController = HomeViewController()
+    navigationController.setViewControllers([viewController], animated: false)
+    window.rootViewController = navigationController
+
+    viewController.logoutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
+  }
+
+  @objc func logoutButtonDidTap() {
+    completion?(self)
+  }
+
+}

@@ -1,6 +1,6 @@
 import UIKit
 
-class LoginCoordinator: Coordinator {
+final class LoginCoordinator: Coordinator {
 
   var completion: ((LoginCoordinator) -> Void)?
   var result: String = "Cancelled"
@@ -26,8 +26,8 @@ class LoginCoordinator: Coordinator {
     appearance.backgroundColor = .systemGray3
     navigationController.navigationBar.scrollEdgeAppearance = appearance
 
-    let landingViewController = LoginLandingViewController(coordinator: self)
-    navigationController.setViewControllers([landingViewController], animated: false)
+    let viewController = LoginLandingViewController(coordinator: self)
+    navigationController.setViewControllers([viewController], animated: false)
     window.rootViewController = navigationController
   }
 
