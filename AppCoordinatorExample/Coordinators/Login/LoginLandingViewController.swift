@@ -14,16 +14,6 @@ class LoginLandingViewController: UIViewController {
     return button
   }()
 
-  lazy var signUpButton: UIButton = {
-    let button = UIButton(type: .custom)
-    button.setTitle("Sign Up", for: .normal)
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .systemBlue
-    button.setTitleColor(.black, for: .highlighted)
-    button.addTarget(self, action: #selector(signUpButtonDidTap), for: .touchUpInside)
-    return button
-  }()
-
   init(coordinator: LoginCoordinator) {
     self.coordinator = coordinator
     super.init(nibName: nil, bundle: nil)
@@ -38,25 +28,16 @@ class LoginLandingViewController: UIViewController {
     title = "\(type(of: self))"
     view.backgroundColor = .white
     view.addSubview(logInButton)
-    view.addSubview(signUpButton)
 
     NSLayoutConstraint.activate([
       logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       logInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
       logInButton.widthAnchor.constraint(equalToConstant: 200),
-
-      signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      signUpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
-      signUpButton.widthAnchor.constraint(equalToConstant: 200),
     ])
   }
 
   @objc func logInButtonDidTap() {
     coordinator?.showLoginPage()
-  }
-
-  @objc func signUpButtonDidTap() {
-    coordinator?.showSignUpPage()
   }
 
 }

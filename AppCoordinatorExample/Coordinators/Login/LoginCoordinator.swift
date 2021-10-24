@@ -39,12 +39,6 @@ final class LoginCoordinator: Coordinator {
     navigationController.pushViewController(viewController, animated: true)
   }
 
-  func showSignUpPage() {
-    let viewController = SignUpViewController()
-    viewController.coordinator = self
-    navigationController.pushViewController(viewController, animated: true)
-  }
-
   func finish(result: String) {
     self.result = result
     completion?(self)
