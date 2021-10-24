@@ -1,5 +1,6 @@
 import UIKit
 
+/// An example of a coordinator that manages a UINavigationController and returns a login result.
 final class LoginCoordinator: Coordinator {
 
   var completion: ((LoginCoordinator) -> Void)?

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// An example of a coordinator that manages an operation involving a series of UIAlertController.
 final class PurchaseCoordinator: Coordinator {
 
   var completion: ((PurchaseCoordinator) -> Void)?

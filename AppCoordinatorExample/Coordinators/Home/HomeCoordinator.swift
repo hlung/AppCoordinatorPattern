@@ -1,5 +1,6 @@
 import UIKit
 
+/// An example of a coordinator that manages main content of the app.
 final class HomeCoordinator: Coordinator {
 
   var completion: ((HomeCoordinator) -> Void)?
