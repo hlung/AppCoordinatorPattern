@@ -10,7 +10,7 @@ import UIKit
 final class PurchaseCoordinator: Coordinator {
 
   var completion: ((PurchaseCoordinator) -> Void)?
-  var result: String = "-"
+  var result: String = "Cancelled"
 
   let presenterViewController: UIViewController
 
@@ -32,7 +32,6 @@ final class PurchaseCoordinator: Coordinator {
   func purchaseAlertController() -> UIAlertController {
     let alert = UIAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.result = "Cancelled"
       self.completion?(self)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -44,7 +43,6 @@ final class PurchaseCoordinator: Coordinator {
   func confirmationAlertController() -> UIAlertController {
     let alert = UIAlertController(title: "Purchase flow", message: "Confirm?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.result = "Cancelled"
       self.completion?(self)
     }))
     alert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in

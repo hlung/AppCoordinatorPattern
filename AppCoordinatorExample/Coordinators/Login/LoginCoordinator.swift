@@ -3,7 +3,7 @@ import UIKit
 final class LoginCoordinator: Coordinator {
 
   var completion: ((LoginCoordinator) -> Void)?
-  var result: String = "Cancelled"
+  var result: String = ""
 
   let window: UIWindow
   private lazy var navigationController = UINavigationController()

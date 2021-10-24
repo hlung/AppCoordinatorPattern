@@ -3,7 +3,6 @@ import UIKit
 final class HomeCoordinator: Coordinator {
 
   var completion: ((HomeCoordinator) -> Void)?
-  var result: String = "Cancelled"
 
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
@@ -31,10 +30,15 @@ final class HomeCoordinator: Coordinator {
     window.rootViewController = navigationController
 
     viewController.logoutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
+    viewController.purchaseButton.addTarget(self, action: #selector(purchaseButtonDidTap), for: .touchUpInside)
   }
 
   @objc func logoutButtonDidTap() {
     completion?(self)
+  }
+
+  @objc func purchaseButtonDidTap() {
+    AppDirector.shared.showPurchase()
   }
 
 }

@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
   }
 
   @objc func buttonDidTap() {
-    coordinator?.finish(result: "Log In")
+    coordinator?.finish(result: "Logged In")
   }
 
   @objc func backButtonDidTap() {

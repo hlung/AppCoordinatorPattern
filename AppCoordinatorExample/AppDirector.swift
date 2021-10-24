@@ -11,9 +11,6 @@ final class AppDirector {
 
   static var shared = AppDirector()
 
-//  private lazy var navigationController = UINavigationController()
-//  private lazy var homeViewController = HomeViewController()
-
   private var window: UIWindow!
   private var childCoordinators: [AnyObject] = []
 
@@ -54,15 +51,14 @@ final class AppDirector {
   }
 
   func showPurchase() {
-    // We have to manually retain PurchaseCoordinator because is not a view controller subclass.
-    // So the navigation stack cannot help retain it for us. 😢
-//    let coordinator = PurchaseCoordinator(presenterViewController: navigationController)
-//    coordinator.completion = { [weak self] coordinator in
-//      print("Purchase result: \(coordinator.result)")
-//      self?.purchaseCoordinator = nil // release the coordinator
-//    }
-//    self.purchaseCoordinator = coordinator // retain the coordinator
-//    coordinator.start()
+    guard let viewController = window.rootViewController else { return }
+    let coordinator = PurchaseCoordinator(presenterViewController: viewController)
+    coordinator.completion = { [weak self] coordinator in
+      print("Purchase result: \(coordinator.result)")
+      self?.childCoordinators.removeAll(where: { $0 === coordinator })
+    }
+    coordinator.start()
+    childCoordinators.append(coordinator)
   }
 
 }
