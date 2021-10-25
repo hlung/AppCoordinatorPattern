@@ -39,7 +39,7 @@ final class HomeCoordinator: Coordinator {
   }
 
   @objc func purchaseButtonDidTap() {
-    AppDirector.shared.showPurchase()
+    AppCoordinator.shared.showPurchase()
   }
 
 }

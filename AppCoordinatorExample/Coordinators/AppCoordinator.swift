@@ -1,5 +1,5 @@
 //
-//  AppDirector.swift
+//  AppCoordinator.swift
 //  AppCoordinatorExample
 //
 //  Created by Kolyutsakul, Thongchai on 17/10/21.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class AppDirector {
+final class AppCoordinator {
 
-  static var shared = AppDirector()
+  static var shared = AppCoordinator()
 
   private var window: UIWindow!
   private var childCoordinators: [AnyObject] = []
