@@ -3,8 +3,7 @@ import UIKit
 /// An example of a coordinator that manages main content of the app.
 final class HomeCoordinator: ChildCoordinator {
 
-  var completion: ((HomeCoordinator) -> Void)?
-
+  var delegate: ChildCoordinatorDelegate?
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
 
@@ -35,7 +34,7 @@ final class HomeCoordinator: ChildCoordinator {
   }
 
   @objc func logoutButtonDidTap() {
-    completion?(self)
+    stop()
   }
 
   @objc func purchaseButtonDidTap() {

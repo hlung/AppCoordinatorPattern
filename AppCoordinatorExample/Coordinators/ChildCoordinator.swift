@@ -8,6 +8,23 @@
 import Foundation
 
 protocol ChildCoordinator: AnyObject {
-  var completion: ((Self) -> Void)? { get set }
+//  var completion: ((Self) -> Void)? { get set }
+  var delegate: ChildCoordinatorDelegate? { get set }
   func start()
+  func stop()
+}
+
+extension ChildCoordinator {
+  func stop() {
+    delegate?.childCoordinatorDidStop(self)
+  }
+}
+
+//protocol ChildCoordinator: AnyObject {
+//  var delegate: CoordinatorDelegate? { get set }
+//  func start()
+//}
+
+protocol ChildCoordinatorDelegate: AnyObject {
+  func childCoordinatorDidStop(_ coordinator: ChildCoordinator)
 }

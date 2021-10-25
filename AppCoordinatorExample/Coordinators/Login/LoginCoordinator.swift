@@ -3,7 +3,10 @@ import UIKit
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
 final class LoginCoordinator: ChildCoordinator {
 
-  var completion: ((LoginCoordinator) -> Void)?
+  var delegate: ChildCoordinatorDelegate?
+
+//  var completion: ((HomeCoordinator) -> Void)?
+
   var result: String = ""
 
   let window: UIWindow
@@ -42,7 +45,7 @@ final class LoginCoordinator: ChildCoordinator {
 
   func finish(result: String) {
     self.result = result
-    completion?(self)
+//    completion?(self)
   }
 
   func reset() {

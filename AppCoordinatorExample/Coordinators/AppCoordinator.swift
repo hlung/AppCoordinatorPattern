@@ -29,23 +29,24 @@ final class AppCoordinator {
 
   func showHome() {
     let coordinator = HomeCoordinator(window: window)
-    coordinator.completion = { [weak self] coordinator in
-      UserDefaults.standard.isLoggedIn = false
-      self?.childCoordinators.removeAll(where: { $0 === coordinator })
-      self?.showLogin()
-    }
+//    coordinator.completion = { [weak self] coordinator in
+//      UserDefaults.standard.isLoggedIn = false
+//      self?.childCoordinators.removeAll(where: { $0 === coordinator })
+//      self?.showLogin()
+//    }
+    coordinator.delegate = self
     coordinator.start()
     childCoordinators.append(coordinator)
   }
 
   func showLogin() {
     let coordinator = LoginCoordinator(window: window)
-    coordinator.completion = { [weak self] coordinator in
-      print("Login result: \(coordinator.result)")
-      UserDefaults.standard.isLoggedIn = true
-      self?.childCoordinators.removeAll(where: { $0 === coordinator })
-      self?.showHome()
-    }
+//    coordinator.completion = { [weak self] coordinator in
+//      print("Login result: \(coordinator.result)")
+//      UserDefaults.standard.isLoggedIn = true
+//      self?.childCoordinators.removeAll(where: { $0 === coordinator })
+//      self?.showHome()
+//    }
     coordinator.start()
     childCoordinators.append(coordinator)
   }
@@ -53,12 +54,18 @@ final class AppCoordinator {
   func showPurchase() {
     guard let viewController = window.rootViewController else { return }
     let coordinator = PurchaseCoordinator(presenterViewController: viewController)
-    coordinator.completion = { [weak self] coordinator in
-      print("Purchase result: \(coordinator.result)")
-      self?.childCoordinators.removeAll(where: { $0 === coordinator })
-    }
+//    coordinator.completion = { [weak self] coordinator in
+//      print("Purchase result: \(coordinator.result)")
+//      self?.childCoordinators.removeAll(where: { $0 === coordinator })
+//    }
     coordinator.start()
     childCoordinators.append(coordinator)
   }
 
+}
+
+extension AppCoordinator: ChildCoordinatorDelegate {
+  func childCoordinatorDidStop(_ coordinator: ChildCoordinator) {
+    
+  }
 }
