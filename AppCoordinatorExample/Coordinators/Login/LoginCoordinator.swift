@@ -1,7 +1,7 @@
 import UIKit
 
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
-final class LoginCoordinator: Coordinator {
+final class LoginCoordinator: ChildCoordinator {
 
   var completion: ((LoginCoordinator) -> Void)?
   var result: String = ""

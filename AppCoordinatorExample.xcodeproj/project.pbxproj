@@ -16,7 +16,7 @@
 		013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D1271C4C5F0067B44E /* AppCoordinator.swift */; };
 		013D26D8271C4CDC0067B44E /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
-		013D26E0271C4F040067B44E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DF271C4F040067B44E /* Coordinator.swift */; };
+		013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DF271C4F040067B44E /* ChildCoordinator.swift */; };
 		013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E3271D1E820067B44E /* LoginCoordinator.swift */; };
 		013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E5271E613B0067B44E /* LoginLandingViewController.swift */; };
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
@@ -56,7 +56,7 @@
 		013D26D1271C4C5F0067B44E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCoordinator.swift; sourceTree = "<group>"; };
 		013D26DB271C4D3E0067B44E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		013D26DF271C4F040067B44E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		013D26DF271C4F040067B44E /* ChildCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCoordinator.swift; sourceTree = "<group>"; };
 		013D26E3271D1E820067B44E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		013D26E5271E613B0067B44E /* LoginLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
 		017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
-				013D26DF271C4F040067B44E /* Coordinator.swift */,
+				013D26DF271C4F040067B44E /* ChildCoordinator.swift */,
 				017D82532725B5BD00CA3FBF /* Home */,
 				013D26D0271C4C3D0067B44E /* Login */,
 				013D26D6271C4CBF0067B44E /* Purchase */,
@@ -309,7 +309,7 @@
 			files = (
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
-				013D26E0271C4F040067B44E /* Coordinator.swift in Sources */,
+				013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				013D26D8271C4CDC0067B44E /* PurchaseCoordinator.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,

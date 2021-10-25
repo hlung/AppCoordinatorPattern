@@ -8,7 +8,7 @@
 import UIKit
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
-final class PurchaseCoordinator: Coordinator {
+final class PurchaseCoordinator: ChildCoordinator {
 
   var completion: ((PurchaseCoordinator) -> Void)?
   var result: String = "Cancelled"
