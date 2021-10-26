@@ -1,8 +1,12 @@
 import UIKit
 
+protocol LoginLandingViewControllerDelegate: AnyObject {
+  func loginLandingViewControllerDidSelectLogin(_ viewController: LoginLandingViewController)
+}
+
 class LoginLandingViewController: UIViewController {
 
-  weak var coordinator: LoginCoordinator?
+  weak var delegate: LoginLandingViewControllerDelegate?
 
   lazy var logInButton: UIButton = {
     let button = UIButton(type: .custom)
@@ -14,8 +18,7 @@ class LoginLandingViewController: UIViewController {
     return button
   }()
 
-  init(coordinator: LoginCoordinator) {
-    self.coordinator = coordinator
+  init() {
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -37,7 +40,7 @@ class LoginLandingViewController: UIViewController {
   }
 
   @objc func logInButtonDidTap() {
-    coordinator?.showLoginPage()
+    delegate?.loginLandingViewControllerDidSelectLogin(self)
   }
 
 }

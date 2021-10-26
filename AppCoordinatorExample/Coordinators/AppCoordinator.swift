@@ -29,9 +29,12 @@ final class AppCoordinator {
 
   func showHome() {
     let coordinator = HomeCoordinator(window: window)
+    coordinator.delegate = self
     coordinator.completion = { [weak self] coordinator in
-      UserDefaults.standard.isLoggedIn = false
       self?.childCoordinators.removeAll(where: { $0 === coordinator })
+
+      // log out
+      UserDefaults.standard.isLoggedIn = false
       self?.showLogin()
     }
     coordinator.start()
@@ -42,8 +45,10 @@ final class AppCoordinator {
     let coordinator = LoginCoordinator(window: window)
     coordinator.completion = { [weak self] coordinator in
       print("Login result: \(coordinator.result)")
-      UserDefaults.standard.isLoggedIn = true
       self?.childCoordinators.removeAll(where: { $0 === coordinator })
+
+      // log in
+      UserDefaults.standard.isLoggedIn = true
       self?.showHome()
     }
     coordinator.start()
@@ -61,4 +66,10 @@ final class AppCoordinator {
     childCoordinators.append(coordinator)
   }
 
+}
+
+extension AppCoordinator: HomeCoordinatorDelegate {
+  func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator) {
+    showPurchase()
+  }
 }

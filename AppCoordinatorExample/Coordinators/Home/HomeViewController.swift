@@ -1,6 +1,13 @@
 import UIKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+  func homeViewControllerDidLogOut(_ viewController: HomeViewController)
+  func homeViewControllerPurchase(_ viewController: HomeViewController)
+}
+
 class HomeViewController: UIViewController {
+
+  weak var delegate: HomeViewControllerDelegate?
 
   lazy var titleLabel: UILabel = {
     let label = UILabel()
@@ -47,7 +54,19 @@ class HomeViewController: UIViewController {
       purchaseButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
       purchaseButton.widthAnchor.constraint(equalToConstant: 200),
     ])
+
+    logoutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
+    purchaseButton.addTarget(self, action: #selector(purchaseButtonDidTap), for: .touchUpInside)
   }
+
+  @objc func logoutButtonDidTap() {
+    delegate?.homeViewControllerDidLogOut(self)
+  }
+
+  @objc func purchaseButtonDidTap() {
+    delegate?.homeViewControllerPurchase(self)
+  }
+
 
 }
 

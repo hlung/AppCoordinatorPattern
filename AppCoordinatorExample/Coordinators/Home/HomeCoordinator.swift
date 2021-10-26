@@ -1,9 +1,14 @@
 import UIKit
 
+protocol HomeCoordinatorDelegate: AnyObject {
+  func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator)
+}
+
 /// An example of a coordinator that manages main content of the app.
 final class HomeCoordinator: ChildCoordinator {
 
   var completion: ((HomeCoordinator) -> Void)?
+  weak var delegate: HomeCoordinatorDelegate?
 
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
@@ -27,19 +32,19 @@ final class HomeCoordinator: ChildCoordinator {
     navigationController.navigationBar.scrollEdgeAppearance = appearance
 
     let viewController = HomeViewController()
+    viewController.delegate = self
     navigationController.setViewControllers([viewController], animated: false)
     window.rootViewController = navigationController
-
-    viewController.logoutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
-    viewController.purchaseButton.addTarget(self, action: #selector(purchaseButtonDidTap), for: .touchUpInside)
   }
+  
+}
 
-  @objc func logoutButtonDidTap() {
+extension HomeCoordinator: HomeViewControllerDelegate {
+  func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
     completion?(self)
   }
 
-  @objc func purchaseButtonDidTap() {
-    AppCoordinator.shared.showPurchase()
+  func homeViewControllerPurchase(_ viewController: HomeViewController) {
+    delegate?.homeCoordinatorDidSelectPurchase(self)
   }
-
 }

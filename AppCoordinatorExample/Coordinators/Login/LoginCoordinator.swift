@@ -27,26 +27,29 @@ final class LoginCoordinator: ChildCoordinator {
     appearance.backgroundColor = .systemGray3
     navigationController.navigationBar.scrollEdgeAppearance = appearance
 
-    let viewController = LoginLandingViewController(coordinator: self)
+    let viewController = LoginLandingViewController()
+    viewController.delegate = self
     navigationController.setViewControllers([viewController], animated: false)
     window.rootViewController = navigationController
   }
 
-  // MARK: - Navigation
+}
 
-  func showLoginPage() {
+extension LoginCoordinator: LoginLandingViewControllerDelegate {
+  func loginLandingViewControllerDidSelectLogin(_ viewController: LoginLandingViewController) {
     let viewController = LoginViewController()
-    viewController.coordinator = self
+    viewController.delegate = self
     navigationController.pushViewController(viewController, animated: true)
   }
+}
 
-  func finish(result: String) {
+extension LoginCoordinator: LoginViewControllerDelegate {
+  func loginViewControllerDidFinishLogin(_ viewController: LoginViewController, result: String) {
     self.result = result
     completion?(self)
   }
 
-  func reset() {
+  func loginViewControllerDidCancel(_ viewController: LoginViewController) {
     navigationController.popToRootViewController(animated: true)
   }
-
 }

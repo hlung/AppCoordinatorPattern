@@ -1,16 +1,21 @@
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+  func loginViewControllerDidFinishLogin(_ viewController: LoginViewController, result: String)
+  func loginViewControllerDidCancel(_ viewController: LoginViewController)
+}
+
 class LoginViewController: UIViewController {
 
-  weak var coordinator: LoginCoordinator?
+  weak var delegate: LoginViewControllerDelegate?
 
-  lazy var button: UIButton = {
+  lazy var finishButton: UIButton = {
     let button = UIButton(type: .custom)
     button.setTitle("Finish Log In", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
-    button.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
+    button.addTarget(self, action: #selector(finishButtonDidTap), for: .touchUpInside)
     return button
   }()
 
@@ -28,13 +33,13 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
     title = "\(type(of: self))"
     view.backgroundColor = .white
-    view.addSubview(button)
+    view.addSubview(finishButton)
     view.addSubview(backButton)
 
     NSLayoutConstraint.activate([
-      button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      button.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-      button.widthAnchor.constraint(equalToConstant: 200),
+      finishButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      finishButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+      finishButton.widthAnchor.constraint(equalToConstant: 200),
 
       backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
@@ -42,12 +47,12 @@ class LoginViewController: UIViewController {
     ])
   }
 
-  @objc func buttonDidTap() {
-    coordinator?.finish(result: "Logged In")
+  @objc func finishButtonDidTap() {
+    delegate?.loginViewControllerDidFinishLogin(self, result: "success")
   }
 
   @objc func backButtonDidTap() {
-    coordinator?.reset()
+    delegate?.loginViewControllerDidCancel(self)
   }
 
 }
