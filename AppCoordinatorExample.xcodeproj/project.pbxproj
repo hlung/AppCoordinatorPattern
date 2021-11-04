@@ -21,6 +21,7 @@
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
 		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
+		01872F172733E5A2004A76A0 /* ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01872F162733E5A2004A76A0 /* ParentCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		013D26E5271E613B0067B44E /* LoginLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
 		017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		01872F162733E5A2004A76A0 /* ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
+				01872F162733E5A2004A76A0 /* ParentCoordinator.swift */,
 				013D26DF271C4F040067B44E /* ChildCoordinator.swift */,
 				017D82532725B5BD00CA3FBF /* Home */,
 				013D26D0271C4C3D0067B44E /* Login */,
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
+				01872F172733E5A2004A76A0 /* ParentCoordinator.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
 				013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
