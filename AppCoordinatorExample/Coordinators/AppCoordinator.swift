@@ -3,7 +3,6 @@ import UIKit
 final class AppCoordinator: ParentCoordinator {
 
   private var window: UIWindow!
-
   var children: [AnyObject] = []
 
   init(window: UIWindow) {
