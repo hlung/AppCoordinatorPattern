@@ -14,7 +14,6 @@
 		013D26B8271C4C250067B44E /* AppCoordinatorExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26B7271C4C250067B44E /* AppCoordinatorExampleTests.swift */; };
 		013D26C3271C4C250067B44E /* AppCoordinatorExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26C2271C4C250067B44E /* AppCoordinatorExampleUITests.swift */; };
 		013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D1271C4C5F0067B44E /* AppCoordinator.swift */; };
-		013D26D8271C4CDC0067B44E /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
 		013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DF271C4F040067B44E /* ChildCoordinator.swift */; };
 		013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E3271D1E820067B44E /* LoginCoordinator.swift */; };
@@ -311,7 +310,6 @@
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
 				013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
-				013D26D8271C4CDC0067B44E /* PurchaseCoordinator.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,

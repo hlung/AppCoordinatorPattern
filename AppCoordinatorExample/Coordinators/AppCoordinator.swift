@@ -12,9 +12,10 @@ final class AppCoordinator {
   static var shared = AppCoordinator()
 
   private var window: UIWindow!
-  private var childCoordinators: [AnyObject] = []
 
-  func setup(with window: UIWindow) {
+  var children: [AnyObject] = []
+
+  func start(with window: UIWindow) {
     self.window = window
     if UserDefaults.standard.isLoggedIn {
       showHome()
@@ -30,40 +31,34 @@ final class AppCoordinator {
   func showHome() {
     let coordinator = HomeCoordinator(window: window)
     coordinator.delegate = self
-    coordinator.completion = { [weak self] coordinator in
-      self?.childCoordinators.removeAll(where: { $0 === coordinator })
-
-      // log out
+    coordinator.teardown = { [weak self] coordinator in
       UserDefaults.standard.isLoggedIn = false
+      self?.children.removeAll(where: { $0 === coordinator })
       self?.showLogin()
     }
     coordinator.start()
-    childCoordinators.append(coordinator)
+    children.append(coordinator)
   }
 
   func showLogin() {
     let coordinator = LoginCoordinator(window: window)
-    coordinator.completion = { [weak self] coordinator in
+    coordinator.teardown = { [weak self] coordinator in
       print("Login result: \(coordinator.result)")
-      self?.childCoordinators.removeAll(where: { $0 === coordinator })
-
-      // log in
       UserDefaults.standard.isLoggedIn = true
+      self?.children.removeAll(where: { $0 === coordinator })
       self?.showHome()
     }
     coordinator.start()
-    childCoordinators.append(coordinator)
+    children.append(coordinator)
   }
 
   func showPurchase() {
-    guard let viewController = window.rootViewController else { return }
-    let coordinator = PurchaseCoordinator(presenterViewController: viewController)
-    coordinator.completion = { [weak self] coordinator in
-      print("Purchase result: \(coordinator.result)")
-      self?.childCoordinators.removeAll(where: { $0 === coordinator })
-    }
-    coordinator.start()
-    childCoordinators.append(coordinator)
+//    guard let viewController = window.rootViewController else { return }
+//    let coordinator = PurchaseCoordinator(presenterViewController: viewController)
+//    coordinator.teardown = { coordinator in
+//      print("Purchase result: \(coordinator.result)")
+//    }
+//    coordinator.setup()
   }
 
 }

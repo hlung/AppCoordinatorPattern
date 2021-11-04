@@ -3,9 +3,10 @@ import UIKit
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
 final class LoginCoordinator: ChildCoordinator {
 
-  var completion: ((LoginCoordinator) -> Void)?
-  var result: String = ""
+  let parentCoordinator = AppCoordinator.shared
+  var teardown: ((LoginCoordinator) -> Void)?
 
+  var result: String = ""
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
 
@@ -46,7 +47,7 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
 extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewControllerDidFinishLogin(_ viewController: LoginViewController, result: String) {
     self.result = result
-    completion?(self)
+    stop()
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {

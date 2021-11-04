@@ -7,9 +7,9 @@ protocol HomeCoordinatorDelegate: AnyObject {
 /// An example of a coordinator that manages main content of the app.
 final class HomeCoordinator: ChildCoordinator {
 
-  var completion: ((HomeCoordinator) -> Void)?
-  weak var delegate: HomeCoordinatorDelegate?
+  var teardown: ((HomeCoordinator) -> Void)?
 
+  weak var delegate: HomeCoordinatorDelegate?
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
 
@@ -41,7 +41,7 @@ final class HomeCoordinator: ChildCoordinator {
 
 extension HomeCoordinator: HomeViewControllerDelegate {
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
-    completion?(self)
+    stop()
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {

@@ -8,6 +8,13 @@
 import Foundation
 
 protocol ChildCoordinator: AnyObject {
-  var completion: ((Self) -> Void)? { get set }
+  var teardown: ((Self) -> Void)? { get set }
+
   func start()
+}
+
+extension ChildCoordinator {
+  func stop() {
+    teardown?(self)
+  }
 }

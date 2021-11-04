@@ -10,9 +10,10 @@ import UIKit
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
 final class PurchaseCoordinator: ChildCoordinator {
 
-  var completion: ((PurchaseCoordinator) -> Void)?
-  var result: String = "Cancelled"
+  let parentCoordinator = AppCoordinator.shared
+  var teardown: ((PurchaseCoordinator) -> Void)?
 
+  var result: String = "Cancelled"
   let presenterViewController: UIViewController
 
   init(presenterViewController: UIViewController) {
@@ -33,7 +34,7 @@ final class PurchaseCoordinator: ChildCoordinator {
   func purchaseAlertController() -> UIAlertController {
     let alert = UIAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.completion?(self)
+      self.stop()
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
       self.presenterViewController.present(self.confirmationAlertController(), animated: true)
@@ -44,11 +45,11 @@ final class PurchaseCoordinator: ChildCoordinator {
   func confirmationAlertController() -> UIAlertController {
     let alert = UIAlertController(title: "Purchase flow", message: "Confirm?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.completion?(self)
+      self.stop()
     }))
     alert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in
       self.result = "Purchased"
-      self.completion?(self)
+      self.stop()
     }))
     return alert
   }
