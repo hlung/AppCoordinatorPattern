@@ -3,7 +3,6 @@ import UIKit
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
 final class LoginCoordinator: ChildCoordinator {
 
-  let parentCoordinator = AppCoordinator.shared
   var teardown: ((LoginCoordinator) -> Void)?
 
   var result: String = ""

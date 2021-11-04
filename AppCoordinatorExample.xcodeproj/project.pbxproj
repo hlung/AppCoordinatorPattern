@@ -20,6 +20,7 @@
 		013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E5271E613B0067B44E /* LoginLandingViewController.swift */; };
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
 		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
+		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +312,7 @@
 				013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
+				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,

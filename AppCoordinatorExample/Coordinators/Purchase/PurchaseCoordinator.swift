@@ -1,16 +1,8 @@
-//
-//  PurchaseCoordinator.swift
-//  AppCoordinatorExample
-//
-//  Created by Kolyutsakul, Thongchai on 17/10/21.
-//
-
 import UIKit
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
 final class PurchaseCoordinator: ChildCoordinator {
 
-  let parentCoordinator = AppCoordinator.shared
   var teardown: ((PurchaseCoordinator) -> Void)?
 
   var result: String = "Cancelled"
@@ -43,7 +35,7 @@ final class PurchaseCoordinator: ChildCoordinator {
   }
 
   func confirmationAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase flow", message: "Confirm?", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Purchase flow", message: "Confirm purchase?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
       self.stop()
     }))

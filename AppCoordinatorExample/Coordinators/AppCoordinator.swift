@@ -1,10 +1,3 @@
-//
-//  AppCoordinator.swift
-//  AppCoordinatorExample
-//
-//  Created by Kolyutsakul, Thongchai on 17/10/21.
-//
-
 import UIKit
 
 final class AppCoordinator {
@@ -53,12 +46,14 @@ final class AppCoordinator {
   }
 
   func showPurchase() {
-//    guard let viewController = window.rootViewController else { return }
-//    let coordinator = PurchaseCoordinator(presenterViewController: viewController)
-//    coordinator.teardown = { coordinator in
-//      print("Purchase result: \(coordinator.result)")
-//    }
-//    coordinator.setup()
+    guard let viewController = window.rootViewController else { return }
+    let coordinator = PurchaseCoordinator(presenterViewController: viewController)
+    coordinator.teardown = { [weak self] coordinator in
+      print("Purchase result: \(coordinator.result)")
+      self?.children.removeAll(where: { $0 === coordinator })
+    }
+    coordinator.start()
+    children.append(coordinator)
   }
 
 }
