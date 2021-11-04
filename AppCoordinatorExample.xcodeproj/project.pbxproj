@@ -163,8 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
-				01872F162733E5A2004A76A0 /* ParentCoordinator.swift */,
-				013D26DF271C4F040067B44E /* ChildCoordinator.swift */,
+				01872F1B2733E6F9004A76A0 /* Protocols */,
 				017D82532725B5BD00CA3FBF /* Home */,
 				013D26D0271C4C3D0067B44E /* Login */,
 				013D26D6271C4CBF0067B44E /* Purchase */,
@@ -179,6 +178,15 @@
 				013D26A4271C4C220067B44E /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		01872F1B2733E6F9004A76A0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				01872F162733E5A2004A76A0 /* ParentCoordinator.swift */,
+				013D26DF271C4F040067B44E /* ChildCoordinator.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
