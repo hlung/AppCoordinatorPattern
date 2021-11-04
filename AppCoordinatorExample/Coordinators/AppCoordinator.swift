@@ -7,7 +7,6 @@ final class AppCoordinator {
   var children: [AnyObject] = []
 
   init(window: UIWindow) {
-    print("\(type(of: self)) \(#function)")
     self.window = window
   }
 
@@ -28,8 +27,8 @@ final class AppCoordinator {
     coordinator.delegate = self
     coordinator.teardown = { [weak self] coordinator in
       UserDefaults.standard.isLoggedIn = false
-      self?.children.removeAll(where: { $0 === coordinator })
       self?.showLogin()
+      self?.children.removeAll(where: { $0 === coordinator })
     }
     coordinator.start()
     children.append(coordinator)
@@ -40,8 +39,8 @@ final class AppCoordinator {
     coordinator.teardown = { [weak self] coordinator in
       print("Login result: \(coordinator.result)")
       UserDefaults.standard.isLoggedIn = true
-      self?.children.removeAll(where: { $0 === coordinator })
       self?.showHome()
+      self?.children.removeAll(where: { $0 === coordinator })
     }
     coordinator.start()
     children.append(coordinator)
