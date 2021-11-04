@@ -2,14 +2,16 @@ import UIKit
 
 final class AppCoordinator {
 
-  static var shared = AppCoordinator()
-
   private var window: UIWindow!
 
   var children: [AnyObject] = []
 
-  func start(with window: UIWindow) {
+  init(window: UIWindow) {
+    print("\(type(of: self)) \(#function)")
     self.window = window
+  }
+
+  func start() {
     if UserDefaults.standard.isLoggedIn {
       showHome()
     }
