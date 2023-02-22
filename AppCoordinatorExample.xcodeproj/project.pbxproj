@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0115A43929A6734900D5F28A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0115A43829A6734900D5F28A /* Coordinator.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
 		013D26AA271C4C240067B44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013D26A9271C4C240067B44E /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0115A43829A6734900D5F28A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013D26A0271C4C220067B44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013D26A4271C4C220067B44E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		01872F1B2733E6F9004A76A0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				0115A43829A6734900D5F28A /* Coordinator.swift */,
 				01872F162733E5A2004A76A0 /* ParentCoordinator.swift */,
 				013D26DF271C4F040067B44E /* ChildCoordinator.swift */,
 			);
@@ -326,6 +329,7 @@
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
+				0115A43929A6734900D5F28A /* Coordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
 				017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */,

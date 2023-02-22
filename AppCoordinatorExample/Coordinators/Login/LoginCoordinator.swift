@@ -1,13 +1,12 @@
 import UIKit
 
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
-final class LoginCoordinator: ChildCoordinator {
+final class LoginCoordinator: Coordinator {
 
-  var teardown: ((LoginCoordinator) -> Void)?
-
-  var result: String = ""
+//  var result: String = ""
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
+  private var continuation: CheckedContinuation<String, Error>?
 
   init(window: UIWindow) {
     print("\(type(of: self)) \(#function)")
@@ -33,6 +32,10 @@ final class LoginCoordinator: ChildCoordinator {
     window.rootViewController = navigationController
   }
 
+  func result() async throws -> String {
+    try await withCheckedThrowingContinuation { self.continuation = $0 }
+  }
+
 }
 
 extension LoginCoordinator: LoginLandingViewControllerDelegate {
@@ -45,8 +48,9 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
 
 extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewControllerDidFinishLogin(_ viewController: LoginViewController, result: String) {
-    self.result = result
-    stop()
+//    self.result = result
+//    stop()
+    continuation?.resume(returning: result)
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {

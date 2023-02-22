@@ -5,13 +5,12 @@ protocol HomeCoordinatorDelegate: AnyObject {
 }
 
 /// An example of a coordinator that manages main content of the app.
-final class HomeCoordinator: ChildCoordinator {
-
-  var teardown: ((HomeCoordinator) -> Void)?
+final class HomeCoordinator: Coordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
+  private var continuation: CheckedContinuation<Void, Error>?
 
   init(window: UIWindow) {
     print("\(type(of: self)) \(#function)")
@@ -36,12 +35,17 @@ final class HomeCoordinator: ChildCoordinator {
     navigationController.setViewControllers([viewController], animated: false)
     window.rootViewController = navigationController
   }
+
+  func result() async throws {
+    try await withCheckedThrowingContinuation { self.continuation = $0 }
+  }
   
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
-    stop()
+//    stop()
+    continuation?.resume(returning: ())
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {
