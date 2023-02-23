@@ -1,18 +1,15 @@
 import UIKit
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
-final class PurchaseCoordinator: ChildCoordinator {
+final class PurchaseCoordinator: Coordinator {
 
   enum PurchaseResult {
-    case unknown
     case cancelled
     case success
   }
 
-  var teardown: ((PurchaseCoordinator) -> Void)?
-
-  var result: PurchaseResult = .unknown
   let presenterViewController: UIViewController
+  private var continuation: CheckedContinuation<PurchaseResult, Error>?
 
   init(presenterViewController: UIViewController) {
     print("\(type(of: self)) \(#function)")
@@ -23,6 +20,10 @@ final class PurchaseCoordinator: ChildCoordinator {
     presenterViewController.present(purchaseAlertController(), animated: true)
   }
 
+  func result() async throws -> PurchaseResult {
+    try await withCheckedThrowingContinuation { self.continuation = $0 }
+  }
+
   deinit {
     print("\(type(of: self)) \(#function)")
   }
@@ -30,22 +31,27 @@ final class PurchaseCoordinator: ChildCoordinator {
   // MARK: - Alert Controllers
 
   func purchaseAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.result = .cancelled
-      self.presenterViewController.present(self.purchaseResultAlertController("Purchase Cancelled"), animated: true)
+    let alert = UIAlertController(title: "Purchase flow",
+                                  message: "Do you want to purchase?",
+                                  preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Cancel",
+                                  style: .cancel,
+                                  handler: { _ in
+      self.presenterViewController.present(self.purchaseResultAlertController(.cancelled), animated: true)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.result = .success
-      self.presenterViewController.present(self.purchaseResultAlertController("Purchase Success"), animated: true)
+      self.presenterViewController.present(self.purchaseResultAlertController(.success), animated: true)
     }))
     return alert
   }
 
-  func purchaseResultAlertController(_ title: String) -> UIAlertController {
-    let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+  func purchaseResultAlertController(_ result: PurchaseResult) -> UIAlertController {
+    let title = result == .success ? "Purchase Success" : "Purchase Cancelled"
+    let alert = UIAlertController(title: title,
+                                  message: "",
+                                  preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.stop()
+      self.continuation?.resume(returning: result)
     }))
     return alert
   }

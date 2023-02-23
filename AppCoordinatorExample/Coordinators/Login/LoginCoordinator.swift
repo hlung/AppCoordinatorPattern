@@ -3,7 +3,6 @@ import UIKit
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
 final class LoginCoordinator: Coordinator {
 
-//  var result: String = ""
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
   private var continuation: CheckedContinuation<String, Error>?
@@ -48,8 +47,6 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
 
 extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewControllerDidFinishLogin(_ viewController: LoginViewController, result: String) {
-//    self.result = result
-//    stop()
     continuation?.resume(returning: result)
   }
 

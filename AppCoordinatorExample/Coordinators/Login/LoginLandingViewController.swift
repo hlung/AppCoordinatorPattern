@@ -10,7 +10,7 @@ class LoginLandingViewController: UIViewController {
 
   lazy var logInButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Log In", for: .normal)
+    button.setTitle("Open LoginViewController", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
@@ -35,7 +35,6 @@ class LoginLandingViewController: UIViewController {
     NSLayoutConstraint.activate([
       logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       logInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-      logInButton.widthAnchor.constraint(equalToConstant: 200),
     ])
   }
 

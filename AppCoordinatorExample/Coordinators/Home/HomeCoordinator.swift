@@ -44,7 +44,6 @@ final class HomeCoordinator: Coordinator {
 
 extension HomeCoordinator: HomeViewControllerDelegate {
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
-//    stop()
     continuation?.resume(returning: ())
   }
 
