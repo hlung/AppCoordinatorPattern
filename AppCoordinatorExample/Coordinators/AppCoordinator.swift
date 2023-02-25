@@ -11,9 +11,10 @@ import UIKit
   func start() {
     // Note:
     // Need to set a dummy view controller to window.rootViewController here because
-    // in coordinator.start(), where the correct viewController is set up,
-    // is an async task. App will crash if rootViewController at the end of
-    // application didFinishLaunchingWithOptions.
+    // in coordinator.start(), where the correct viewController is set up, is an async task.
+    // App will crash if rootViewController at the end of application didFinishLaunchingWithOptions.
+    // It will be briefly visible, which should be ok for demo purpose.
+    // In a real production app, you may want to handle this more gracefully.
     window.rootViewController = UIViewController()
     window.makeKeyAndVisible()
 
