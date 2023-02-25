@@ -2,7 +2,7 @@ import UIKit
 
 @MainActor final class AppCoordinator {
 
-  private var window: UIWindow!
+  private let window: UIWindow
 
   init(window: UIWindow) {
     self.window = window
@@ -33,6 +33,8 @@ import UIKit
     Task {
       let coordinator = HomeCoordinator(window: window)
       try? await coordinator.start()
+
+      // When HomeCoordinator ends, it means we have logged out.
       UserDefaults.standard.isLoggedIn = false
       start()
     }
@@ -42,6 +44,8 @@ import UIKit
     Task {
       let coordinator = LoginCoordinator(window: window)
       let result = try? await coordinator.start()
+
+      // When LoginCoordinator ends, it means we have successfully logged in.
       print("Login result: \(String(describing: result))")
       UserDefaults.standard.isLoggedIn = true
       start()
