@@ -6,9 +6,7 @@ import UIKit
 
   init(window: UIWindow) {
     self.window = window
-  }
 
-  func start() {
     // Note:
     // Need to set a dummy view controller to window.rootViewController here because
     // in coordinator.start(), where the correct viewController is set up, is an async task.
@@ -17,7 +15,9 @@ import UIKit
     // In a real production app, you may want to handle this more gracefully.
     window.rootViewController = UIViewController()
     window.makeKeyAndVisible()
+  }
 
+  func start() {
     if UserDefaults.standard.isLoggedIn {
       showHome()
     }
@@ -26,27 +26,7 @@ import UIKit
     }
   }
 
-  // MARK: - Navigation
-
-  func showHome() {
-    Task {
-      let coordinator = HomeCoordinator(window: window)
-      coordinator.delegate = self
-      try? await coordinator.start()
-      UserDefaults.standard.isLoggedIn = false
-      showLogin()
-    }
-  }
-
-  func showLogin() {
-    Task {
-      let coordinator = LoginCoordinator(window: window)
-      let result = try? await coordinator.start()
-      print("Login result: \(String(describing: result))")
-      UserDefaults.standard.isLoggedIn = true
-      showHome()
-    }
-  }
+  // MARK: - Public Navigation
 
   func showPurchase() {
     Task {
@@ -54,6 +34,28 @@ import UIKit
       let coordinator = PurchaseCoordinator(presenterViewController: viewController)
       let result = try? await coordinator.start()
       print("Purchase result: \(String(describing: result))")
+    }
+  }
+
+  // MARK: - Private Navigation
+
+  private func showHome() {
+    Task {
+      let coordinator = HomeCoordinator(window: window)
+      coordinator.delegate = self
+      try? await coordinator.start()
+      UserDefaults.standard.isLoggedIn = false
+      start()
+    }
+  }
+
+  private func showLogin() {
+    Task {
+      let coordinator = LoginCoordinator(window: window)
+      let result = try? await coordinator.start()
+      print("Login result: \(String(describing: result))")
+      UserDefaults.standard.isLoggedIn = true
+      start()
     }
   }
 
