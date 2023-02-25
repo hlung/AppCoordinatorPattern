@@ -27,23 +27,11 @@ import UIKit
     }
   }
 
-  // MARK: - Public Navigation
-
-  func showPurchase() {
-    Task {
-      guard let viewController = window.rootViewController else { return }
-      let coordinator = PurchaseCoordinator(rootViewController: viewController)
-      let result = try? await coordinator.start()
-      print("Purchase result: \(String(describing: result))")
-    }
-  }
-
-  // MARK: - Private Navigation
+  // MARK: - Private
 
   private func showHome() {
     Task {
       let coordinator = HomeCoordinator(window: window)
-      coordinator.delegate = self
       try? await coordinator.start()
       UserDefaults.standard.isLoggedIn = false
       start()
@@ -60,10 +48,4 @@ import UIKit
     }
   }
 
-}
-
-extension AppCoordinator: HomeCoordinatorDelegate {
-  func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator) {
-    showPurchase()
-  }
 }

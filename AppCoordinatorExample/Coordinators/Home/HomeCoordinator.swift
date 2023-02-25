@@ -1,13 +1,8 @@
 import UIKit
 
-protocol HomeCoordinatorDelegate: AnyObject {
-  func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator)
-}
-
 /// An example of a coordinator that manages main content of the app.
 @MainActor final class HomeCoordinator: Coordinator {
 
-  weak var delegate: HomeCoordinatorDelegate?
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
   private var continuation: CheckedContinuation<Void, Error>?
@@ -46,6 +41,13 @@ extension HomeCoordinator: HomeViewControllerDelegate {
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {
-    delegate?.homeCoordinatorDidSelectPurchase(self)
+    Task {
+      guard let viewController = window.rootViewController else { return }
+      let coordinator = PurchaseCoordinator(rootViewController: viewController)
+      let result = try? await coordinator.start()
+
+      // Use the result. Here we just print it.
+      print("Purchase result: \(String(describing: result))")
+    }
   }
 }
