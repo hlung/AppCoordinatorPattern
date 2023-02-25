@@ -13,7 +13,8 @@ import UIKit
     // App will crash if rootViewController at the end of application didFinishLaunchingWithOptions.
     // It will be briefly visible, which should be ok for demo purpose.
     // In a real production app, you may want to handle this more gracefully.
-    window.rootViewController = UIViewController()
+    let dummyViewController = UIViewController()
+    window.rootViewController = dummyViewController
     window.makeKeyAndVisible()
   }
 
@@ -31,7 +32,7 @@ import UIKit
   func showPurchase() {
     Task {
       guard let viewController = window.rootViewController else { return }
-      let coordinator = PurchaseCoordinator(presenterViewController: viewController)
+      let coordinator = PurchaseCoordinator(rootViewController: viewController)
       let result = try? await coordinator.start()
       print("Purchase result: \(String(describing: result))")
     }

@@ -8,16 +8,16 @@ import UIKit
     case success
   }
 
-  let presenterViewController: UIViewController
+  let rootViewController: UIViewController
   private var continuation: CheckedContinuation<PurchaseResult, Error>?
 
-  init(presenterViewController: UIViewController) {
+  init(rootViewController: UIViewController) {
     print("\(type(of: self)) \(#function)")
-    self.presenterViewController = presenterViewController
+    self.rootViewController = rootViewController
   }
 
   func start() async throws -> PurchaseResult {
-    presenterViewController.present(purchaseAlertController(), animated: true)
+    rootViewController.present(purchaseAlertController(), animated: true)
 
     return try await withCheckedThrowingContinuation { self.continuation = $0 }
   }
@@ -35,12 +35,12 @@ import UIKit
     alert.addAction(UIAlertAction(title: "Cancel",
                                   style: .cancel,
                                   handler: { _ in
-      self.presenterViewController.present(self.purchaseResultAlertController(.cancelled), animated: true)
+      self.rootViewController.present(self.purchaseResultAlertController(.cancelled), animated: true)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
       Task {
         await self.purchase()
-        self.presenterViewController.present(self.purchaseResultAlertController(.success), animated: true)
+        self.rootViewController.present(self.purchaseResultAlertController(.success), animated: true)
       }
     }))
     return alert
@@ -50,7 +50,7 @@ import UIKit
     let alert = UIAlertController(title: "Purchasing ...",
                                   message: "",
                                   preferredStyle: .alert)
-    self.presenterViewController.present(alert, animated: true)
+    self.rootViewController.present(alert, animated: true)
     try? await Task.sleep(nanoseconds:1_000_000_000) // wait 1 second
     await alert.dismissAnimatedAsync()
   }

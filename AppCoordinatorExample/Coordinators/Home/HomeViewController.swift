@@ -46,13 +46,13 @@ class HomeViewController: UIViewController {
       titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
 
-      logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      logoutButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-      logoutButton.widthAnchor.constraint(equalToConstant: 200),
-
       purchaseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      purchaseButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+      purchaseButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
       purchaseButton.widthAnchor.constraint(equalToConstant: 200),
+
+      logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      logoutButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+      logoutButton.widthAnchor.constraint(equalToConstant: 200),
     ])
 
     logoutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
