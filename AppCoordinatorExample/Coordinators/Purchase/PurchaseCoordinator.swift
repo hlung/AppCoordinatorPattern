@@ -1,7 +1,7 @@
 import UIKit
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
-final class PurchaseCoordinator: Coordinator {
+@MainActor final class PurchaseCoordinator: Coordinator {
 
   enum PurchaseResult {
     case cancelled
@@ -16,12 +16,10 @@ final class PurchaseCoordinator: Coordinator {
     self.presenterViewController = presenterViewController
   }
 
-  func start() {
+  func start() async throws -> PurchaseResult {
     presenterViewController.present(purchaseAlertController(), animated: true)
-  }
 
-  func result() async throws -> PurchaseResult {
-    try await withCheckedThrowingContinuation { self.continuation = $0 }
+    return try await withCheckedThrowingContinuation { self.continuation = $0 }
   }
 
   deinit {
@@ -40,9 +38,21 @@ final class PurchaseCoordinator: Coordinator {
       self.presenterViewController.present(self.purchaseResultAlertController(.cancelled), animated: true)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.presenterViewController.present(self.purchaseResultAlertController(.success), animated: true)
+      Task {
+        await self.purchase()
+        self.presenterViewController.present(self.purchaseResultAlertController(.success), animated: true)
+      }
     }))
     return alert
+  }
+
+  func purchase() async {
+    let alert = UIAlertController(title: "Purchasing ...",
+                                  message: "",
+                                  preferredStyle: .alert)
+    self.presenterViewController.present(alert, animated: true)
+    try? await Task.sleep(nanoseconds:1_000_000_000) // wait 1 second
+    await alert.dismissAnimatedAsync()
   }
 
   func purchaseResultAlertController(_ result: PurchaseResult) -> UIAlertController {

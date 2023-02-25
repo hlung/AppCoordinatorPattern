@@ -1,7 +1,7 @@
 import UIKit
 
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
-final class LoginCoordinator: Coordinator {
+@MainActor final class LoginCoordinator: Coordinator {
 
   let window: UIWindow
   private lazy var navigationController = UINavigationController()
@@ -20,7 +20,7 @@ final class LoginCoordinator: Coordinator {
     print("\(type(of: self)) \(#function)")
   }
 
-  func start() {
+  func start() async throws -> String {
     let appearance = UINavigationBarAppearance()
     appearance.backgroundColor = .systemGray3
     navigationController.navigationBar.scrollEdgeAppearance = appearance
@@ -29,10 +29,8 @@ final class LoginCoordinator: Coordinator {
     viewController.delegate = self
     navigationController.setViewControllers([viewController], animated: false)
     window.rootViewController = navigationController
-  }
 
-  func result() async throws -> String {
-    try await withCheckedThrowingContinuation { self.continuation = $0 }
+    return try await withCheckedThrowingContinuation { self.continuation = $0 }
   }
 
 }

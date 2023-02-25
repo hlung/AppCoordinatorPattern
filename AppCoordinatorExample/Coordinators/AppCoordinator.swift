@@ -9,6 +9,12 @@ import UIKit
   }
 
   func start() {
+    // Note:
+    // Need to set a dummy view controller to window.rootViewController here because
+    // in coordinator.start(), where the correct viewController is set up,
+    // is an async task. App will crash if rootViewController at the end of
+    // application didFinishLaunchingWithOptions.
+    window.rootViewController = UIViewController()
     window.makeKeyAndVisible()
 
     if UserDefaults.standard.isLoggedIn {
@@ -21,28 +27,20 @@ import UIKit
 
   // MARK: - Navigation
 
-  // Note: coordinator.start(), where window.rootViewController is set up,
-  // has to be outside Task. Otherwise app will crash because window has no
-  // rootViewController at the end of application didFinishLaunchingWithOptions.
-
   func showHome() {
-    let coordinator = HomeCoordinator(window: window)
-    coordinator.delegate = self
-    coordinator.start()
-
     Task {
-      try? await coordinator.result()
+      let coordinator = HomeCoordinator(window: window)
+      coordinator.delegate = self
+      try? await coordinator.start()
       UserDefaults.standard.isLoggedIn = false
       showLogin()
     }
   }
 
   func showLogin() {
-    let coordinator = LoginCoordinator(window: window)
-    coordinator.start()
-
     Task {
-      let result = try? await coordinator.result()
+      let coordinator = LoginCoordinator(window: window)
+      let result = try? await coordinator.start()
       print("Login result: \(String(describing: result))")
       UserDefaults.standard.isLoggedIn = true
       showHome()
@@ -50,12 +48,10 @@ import UIKit
   }
 
   func showPurchase() {
-    guard let viewController = window.rootViewController else { return }
-    let coordinator = PurchaseCoordinator(presenterViewController: viewController)
-    coordinator.start()
-
     Task {
-      let result = try? await coordinator.result()
+      guard let viewController = window.rootViewController else { return }
+      let coordinator = PurchaseCoordinator(presenterViewController: viewController)
+      let result = try? await coordinator.start()
       print("Purchase result: \(String(describing: result))")
     }
   }

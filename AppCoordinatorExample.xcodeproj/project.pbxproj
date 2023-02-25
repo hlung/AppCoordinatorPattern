@@ -23,6 +23,7 @@
 		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		01872F172733E5A2004A76A0 /* ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01872F162733E5A2004A76A0 /* ParentCoordinator.swift */; };
+		01A5A89A29AA5BF0001E3DD8 /* UIViewController+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5A89929AA5BF0001E3DD8 /* UIViewController+Async.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		01872F162733E5A2004A76A0 /* ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCoordinator.swift; sourceTree = "<group>"; };
+		01A5A89929AA5BF0001E3DD8 /* UIViewController+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Async.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				013D26A0271C4C220067B44E /* AppDelegate.swift */,
-				017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */,
 				013D26E2271C4F150067B44E /* Coordinators */,
+				01A5A89B29AA5BFD001E3DD8 /* Extensions */,
 				013D26A9271C4C240067B44E /* Assets.xcassets */,
 				013D26AB271C4C240067B44E /* LaunchScreen.storyboard */,
 				013D26AE271C4C240067B44E /* Info.plist */,
@@ -190,6 +192,15 @@
 				013D26DF271C4F040067B44E /* ChildCoordinator.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		01A5A89B29AA5BFD001E3DD8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */,
+				01A5A89929AA5BF0001E3DD8 /* UIViewController+Async.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +338,7 @@
 				013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
+				01A5A89A29AA5BF0001E3DD8 /* UIViewController+Async.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				0115A43929A6734900D5F28A /* Coordinator.swift in Sources */,

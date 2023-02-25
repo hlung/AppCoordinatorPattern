@@ -48,7 +48,15 @@ class LoginViewController: UIViewController {
   }
 
   @objc func finishButtonDidTap() {
-    delegate?.loginViewControllerDidFinishLogin(self, result: "success")
+    Task {
+      let alert = UIAlertController(title: "Logging in ...",
+                                    message: "",
+                                    preferredStyle: .alert)
+      self.present(alert, animated: true)
+      try await Task.sleep(nanoseconds:1_000_000_000) // wait 1 second
+      await alert.dismissAnimatedAsync()
+      self.delegate?.loginViewControllerDidFinishLogin(self, result: "success")
+    }
   }
 
   @objc func backButtonDidTap() {

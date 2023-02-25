@@ -5,7 +5,7 @@ protocol HomeCoordinatorDelegate: AnyObject {
 }
 
 /// An example of a coordinator that manages main content of the app.
-final class HomeCoordinator: Coordinator {
+@MainActor final class HomeCoordinator: Coordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
   let window: UIWindow
@@ -25,7 +25,7 @@ final class HomeCoordinator: Coordinator {
     print("\(type(of: self)) \(#function)")
   }
 
-  func start() {
+  func start() async throws {
     let appearance = UINavigationBarAppearance()
     appearance.backgroundColor = .systemGray3
     navigationController.navigationBar.scrollEdgeAppearance = appearance
@@ -34,12 +34,10 @@ final class HomeCoordinator: Coordinator {
     viewController.delegate = self
     navigationController.setViewControllers([viewController], animated: false)
     window.rootViewController = navigationController
-  }
 
-  func result() async throws {
     try await withCheckedThrowingContinuation { self.continuation = $0 }
   }
-  
+
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
