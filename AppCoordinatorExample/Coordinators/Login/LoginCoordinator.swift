@@ -12,19 +12,11 @@ import UIKit
     self.window = window
   }
 
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
   deinit {
     print("\(type(of: self)) \(#function)")
   }
 
   func start() async throws -> String {
-    let appearance = UINavigationBarAppearance()
-    appearance.backgroundColor = .systemGray3
-    navigationController.navigationBar.scrollEdgeAppearance = appearance
-
     let viewController = LoginLandingViewController()
     viewController.delegate = self
     navigationController.setViewControllers([viewController], animated: false)

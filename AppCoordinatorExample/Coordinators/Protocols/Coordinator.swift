@@ -1,6 +1,6 @@
 import Foundation
 
 protocol Coordinator: AnyObject {
-  associatedtype CoordinatorResult
-  func start() async throws -> CoordinatorResult
+  associatedtype Output
+  func start() async throws -> Output
 }

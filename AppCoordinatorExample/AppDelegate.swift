@@ -3,6 +3,8 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+  static let shared = UIApplication.shared.delegate as! AppDelegate
+
   var window: UIWindow?
   private(set) var coordinator: AppCoordinator!
 
