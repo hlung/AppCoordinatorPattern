@@ -51,3 +51,18 @@ import UIKit
   }
 
 }
+
+extension UserDefaults {
+  private enum Key {
+    static let isLoggedIn = "isLoggedIn"
+  }
+
+  var isLoggedIn: Bool {
+    get {
+      bool(forKey: Key.isLoggedIn)
+    }
+    set {
+      setValue(newValue, forKey: Key.isLoggedIn)
+    }
+  }
+}
