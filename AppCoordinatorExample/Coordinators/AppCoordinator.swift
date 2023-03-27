@@ -3,6 +3,7 @@ import UIKit
 @MainActor final class AppCoordinator {
 
   private let window: UIWindow
+  private var observation: NSKeyValueObservation?
 
   init(window: UIWindow) {
     self.window = window
@@ -17,11 +18,21 @@ import UIKit
   }
 
   func start() {
-    if UserDefaults.standard.isLoggedIn {
-      showHome()
-    }
-    else {
-      showLogin()
+    observation = UserDefaults.standard.observe(
+      \.isLoggedIn,
+       options: [.initial, .new]
+    ) { [weak self] userDefaults, change in
+
+      guard let self = self else { return }
+      Task { @MainActor in
+        guard let isLoggedIn = change.newValue else { return }
+        if isLoggedIn {
+          self.showHome()
+        }
+        else {
+          self.showLogin()
+        }
+      }
     }
   }
 
@@ -34,7 +45,6 @@ import UIKit
 
       // When HomeCoordinator ends, it means we have logged out.
       UserDefaults.standard.isLoggedIn = false
-      start()
     }
   }
 
@@ -42,11 +52,10 @@ import UIKit
     Task {
       let coordinator = LoginCoordinator(window: window)
       let result = try? await coordinator.start()
+      print("Login result: \(String(describing: result))")
 
       // When LoginCoordinator ends, it means we have successfully logged in.
-      print("Login result: \(String(describing: result))")
       UserDefaults.standard.isLoggedIn = true
-      start()
     }
   }
 
@@ -57,7 +66,7 @@ extension UserDefaults {
     static let isLoggedIn = "isLoggedIn"
   }
 
-  var isLoggedIn: Bool {
+  @objc var isLoggedIn: Bool {
     get {
       bool(forKey: Key.isLoggedIn)
     }
