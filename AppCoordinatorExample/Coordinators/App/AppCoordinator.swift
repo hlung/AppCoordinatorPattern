@@ -1,8 +1,8 @@
 import UIKit
 
-final class AppCoordinator {
+final class AppCoordinator: Coordinator {
 
-  private var window: UIWindow!
+  let window: UIWindow
   var children: [AnyObject] = []
 
   init(window: UIWindow) {
