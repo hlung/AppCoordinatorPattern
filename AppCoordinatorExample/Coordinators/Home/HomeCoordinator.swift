@@ -10,6 +10,7 @@ final class HomeCoordinator: Coordinator {
 
   let window: UIWindow
   weak var delegate: HomeCoordinatorDelegate?
+  weak var parentCoordinator: ParentCoordinator?
   private lazy var navigationController = UINavigationController()
 
   init(window: UIWindow) {

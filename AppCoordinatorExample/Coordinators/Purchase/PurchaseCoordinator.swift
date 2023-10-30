@@ -10,6 +10,7 @@ final class PurchaseCoordinator: Coordinator {
   var window: UIWindow
 
   weak var delegate: PurchaseCoordinatorDelegate?
+  weak var parentCoordinator: ParentCoordinator?
 
   init(window: UIWindow) {
     print("\(type(of: self)) \(#function)")

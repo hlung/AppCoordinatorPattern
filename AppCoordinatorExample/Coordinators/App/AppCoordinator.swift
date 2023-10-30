@@ -25,23 +25,22 @@ final class AppCoordinator: ParentCoordinator {
 
   func showHome() {
     let coordinator = HomeCoordinator(window: window)
+    // I want to make delegate assignment part of addChild(),
+    // but there are some protocol/associatedType problems.
     coordinator.delegate = self
-    coordinator.start()
-    children.append(coordinator)
+    addChild(coordinator)
   }
 
   func showLogin() {
     let coordinator = LoginCoordinator(window: window)
     coordinator.delegate = self
-    coordinator.start()
-    children.append(coordinator)
+    addChild(coordinator)
   }
 
   func showPurchase() {
     let coordinator = PurchaseCoordinator(window: window)
     coordinator.delegate = self
-    coordinator.start()
-    children.append(coordinator)
+    addChild(coordinator)
   }
 
 }
@@ -49,7 +48,7 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
     UserDefaults.standard.isLoggedIn = false
-    children.removeAll(where: { $0 === coordinator })
+    coordinator.removeFromParent()
     showLogin()
   }
 
@@ -62,7 +61,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
     print("Login result: \(username)")
     UserDefaults.standard.isLoggedIn = true
-    children.removeAll(where: { $0 === coordinator })
+    coordinator.removeFromParent()
     showHome()
   }
 }
@@ -70,11 +69,11 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 extension AppCoordinator: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
-    children.removeAll(where: { $0 === coordinator })
+    coordinator.removeFromParent()
   }
 
   func purchaseCoordinatorDidCancel(_ coordinator: PurchaseCoordinator) {
     print("Purchase Cancelled")
-    children.removeAll(where: { $0 === coordinator })
+    coordinator.removeFromParent()
   }
 }
