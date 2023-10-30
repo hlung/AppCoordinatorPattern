@@ -1,7 +1,7 @@
 import UIKit
 
 protocol LoginViewControllerDelegate: AnyObject {
-  func loginViewControllerDidFinishLogin(_ viewController: LoginViewController, result: String)
+  func loginViewController(_ viewController: LoginViewController, didLogInWith username: String)
   func loginViewControllerDidCancel(_ viewController: LoginViewController)
 }
 
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
   }
 
   @objc func finishButtonDidTap() {
-    delegate?.loginViewControllerDidFinishLogin(self, result: "success")
+    delegate?.loginViewController(self, didLogInWith: "success")
   }
 
   @objc func backButtonDidTap() {

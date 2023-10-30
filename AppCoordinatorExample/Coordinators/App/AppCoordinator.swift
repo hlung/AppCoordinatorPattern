@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinator: ParentCoordinator {
+final class AppCoordinator {
 
   private var window: UIWindow!
   var children: [AnyObject] = []
@@ -24,34 +24,20 @@ final class AppCoordinator: ParentCoordinator {
   func showHome() {
     let coordinator = HomeCoordinator(window: window)
     coordinator.delegate = self
-    coordinator.teardown = { [weak self] coordinator in
-      UserDefaults.standard.isLoggedIn = false
-      self?.showLogin()
-      self?.children.removeAll(where: { $0 === coordinator })
-    }
     coordinator.start()
     children.append(coordinator)
   }
 
   func showLogin() {
     let coordinator = LoginCoordinator(window: window)
-    coordinator.teardown = { [weak self] coordinator in
-      print("Login result: \(coordinator.result)")
-      UserDefaults.standard.isLoggedIn = true
-      self?.showHome()
-      self?.children.removeAll(where: { $0 === coordinator })
-    }
+    coordinator.delegate = self
     coordinator.start()
     children.append(coordinator)
   }
 
   func showPurchase() {
-    guard let viewController = window.rootViewController else { return }
-    let coordinator = PurchaseCoordinator(presenterViewController: viewController)
-    coordinator.teardown = { [weak self] coordinator in
-      print("Purchase result: \(coordinator.result)")
-      self?.children.removeAll(where: { $0 === coordinator })
-    }
+    let coordinator = PurchaseCoordinator(window: window)
+    coordinator.delegate = self
     coordinator.start()
     children.append(coordinator)
   }
@@ -59,7 +45,34 @@ final class AppCoordinator: ParentCoordinator {
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {
+  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
+    UserDefaults.standard.isLoggedIn = false
+    children.removeAll(where: { $0 === coordinator })
+    showLogin()
+  }
+
   func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator) {
     showPurchase()
+  }
+}
+
+extension AppCoordinator: LoginCoordinatorDelegate {
+  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
+    print("Login result: \(username)")
+    UserDefaults.standard.isLoggedIn = true
+    children.removeAll(where: { $0 === coordinator })
+    showHome()
+  }
+}
+
+extension AppCoordinator: PurchaseCoordinatorDelegate {
+  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
+    print("Purchase OK")
+    children.removeAll(where: { $0 === coordinator })
+  }
+
+  func purchaseCoordinatorDidCancel(_ coordinator: PurchaseCoordinator) {
+    print("Purchase Cancelled")
+    children.removeAll(where: { $0 === coordinator })
   }
 }

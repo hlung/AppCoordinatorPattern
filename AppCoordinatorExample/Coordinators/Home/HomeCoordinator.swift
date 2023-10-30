@@ -2,15 +2,14 @@ import UIKit
 
 protocol HomeCoordinatorDelegate: AnyObject {
   func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator)
+  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator)
 }
 
 /// An example of a coordinator that manages main content of the app.
-final class HomeCoordinator: ChildCoordinator {
+final class HomeCoordinator: Coordinator {
 
-  var teardown: ((HomeCoordinator) -> Void)?
-
-  weak var delegate: HomeCoordinatorDelegate?
   let window: UIWindow
+  weak var delegate: HomeCoordinatorDelegate?
   private lazy var navigationController = UINavigationController()
 
   init(window: UIWindow) {
@@ -41,7 +40,7 @@ final class HomeCoordinator: ChildCoordinator {
 
 extension HomeCoordinator: HomeViewControllerDelegate {
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
-    stop()
+    delegate?.homeCoordinatorDidLogOut(self)
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {

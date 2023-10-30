@@ -1,12 +1,14 @@
 import UIKit
 
+protocol LoginCoordinatorDelegate: AnyObject {
+  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String)
+}
+
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
-final class LoginCoordinator: ChildCoordinator {
+final class LoginCoordinator: Coordinator {
 
-  var teardown: ((LoginCoordinator) -> Void)?
-
-  var result: String = ""
   let window: UIWindow
+  weak var delegate: LoginCoordinatorDelegate?
   private lazy var navigationController = UINavigationController()
 
   init(window: UIWindow) {
@@ -44,9 +46,8 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
 }
 
 extension LoginCoordinator: LoginViewControllerDelegate {
-  func loginViewControllerDidFinishLogin(_ viewController: LoginViewController, result: String) {
-    self.result = result
-    stop()
+  func loginViewController(_ viewController: LoginViewController, didLogInWith username: String) {
+    delegate?.loginCoordinator(self, didLogInWith: username)
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {
