@@ -16,7 +16,6 @@ final class AppCoordinator: Coordinator {
     else {
       showLogin()
     }
-    window.makeKeyAndVisible()
   }
 
   // MARK: - Navigation
