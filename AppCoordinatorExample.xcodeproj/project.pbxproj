@@ -15,13 +15,11 @@
 		013D26C3271C4C250067B44E /* AppCoordinatorExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26C2271C4C250067B44E /* AppCoordinatorExampleUITests.swift */; };
 		013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D1271C4C5F0067B44E /* AppCoordinator.swift */; };
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
-		013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DF271C4F040067B44E /* ChildCoordinator.swift */; };
 		013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E3271D1E820067B44E /* LoginCoordinator.swift */; };
 		013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E5271E613B0067B44E /* LoginLandingViewController.swift */; };
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
 		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
-		01872F172733E5A2004A76A0 /* ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01872F162733E5A2004A76A0 /* ParentCoordinator.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,12 +56,10 @@
 		013D26D1271C4C5F0067B44E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCoordinator.swift; sourceTree = "<group>"; };
 		013D26DB271C4D3E0067B44E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		013D26DF271C4F040067B44E /* ChildCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCoordinator.swift; sourceTree = "<group>"; };
 		013D26E3271D1E820067B44E /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		013D26E5271E613B0067B44E /* LoginLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
 		017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		01872F162733E5A2004A76A0 /* ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCoordinator.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,8 +160,6 @@
 		013D26E2271C4F150067B44E /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				01872F162733E5A2004A76A0 /* ParentCoordinator.swift */,
-				013D26DF271C4F040067B44E /* ChildCoordinator.swift */,
 				01A7A3CA2AEFA98500B632CC /* Coordinator.swift */,
 				01A7A3C92AEFA8D200B632CC /* App */,
 				017D82532725B5BD00CA3FBF /* Home */,
@@ -322,9 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
-				01872F172733E5A2004A76A0 /* ParentCoordinator.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
-				013D26E0271C4F040067B44E /* ChildCoordinator.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
