@@ -25,7 +25,7 @@ import UIKit
 
       guard let self = self else { return }
       Task { @MainActor in
-        guard let isLoggedIn = change.newValue else { return }
+        let isLoggedIn = change.newValue ?? false
         if isLoggedIn {
           self.showHome()
         }
