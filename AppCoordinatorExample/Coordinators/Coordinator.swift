@@ -8,9 +8,7 @@ import UIKit
  */
 protocol Coordinator: AnyObject where ViewController: UIViewController {
   associatedtype ViewController
-
   var rootViewController: ViewController { get }
-
   func start()
 }
 
