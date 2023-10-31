@@ -48,7 +48,7 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
     UserDefaults.standard.loggedInUsername = nil
-    coordinator.removeFromParent()
+    removeChild(coordinator)
     showLogin()
   }
 
@@ -61,7 +61,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
     print("Login result: \(username)")
     UserDefaults.standard.loggedInUsername = username
-    coordinator.removeFromParent()
+    removeChild(coordinator)
     showHome()
   }
 }
@@ -69,11 +69,11 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 extension AppCoordinator: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
-    coordinator.removeFromParent()
+    removeChild(coordinator)
   }
 
   func purchaseCoordinatorDidCancel(_ coordinator: PurchaseCoordinator) {
     print("Purchase Cancelled")
-    coordinator.removeFromParent()
+    removeChild(coordinator)
   }
 }
