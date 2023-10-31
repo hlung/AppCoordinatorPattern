@@ -7,14 +7,13 @@ protocol LoginCoordinatorDelegate: AnyObject {
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
 final class LoginCoordinator: Coordinator {
 
-  let window: UIWindow
   weak var delegate: LoginCoordinatorDelegate?
   weak var parentCoordinator: ParentCoordinator?
-  private lazy var navigationController = UINavigationController()
+  let navigationController: UINavigationController
 
-  init(window: UIWindow) {
+  init(navigationController: UINavigationController) {
     print("\(type(of: self)) \(#function)")
-    self.window = window
+    self.navigationController = navigationController
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -33,7 +32,6 @@ final class LoginCoordinator: Coordinator {
     let viewController = LoginLandingViewController()
     viewController.delegate = self
     navigationController.setViewControllers([viewController], animated: false)
-    window.rootViewController = navigationController
   }
 
 }

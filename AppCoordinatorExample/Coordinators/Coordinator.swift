@@ -1,10 +1,6 @@
 import UIKit
 
 protocol Coordinator: AnyObject {
-  // For this demo purpose, it's easier to use a window.
-  // This may be a UIViewController or UINavigationController.
-  var window: UIWindow { get }
-
   // Optional because this is weak
   var parentCoordinator: ParentCoordinator? { get set }
 

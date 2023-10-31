@@ -2,11 +2,11 @@ import UIKit
 
 final class AppCoordinator: ParentCoordinator {
 
-  let window: UIWindow
+  let navigationController: UINavigationController
   var children: [any Coordinator] = []
 
-  init(window: UIWindow) {
-    self.window = window
+  init(navigationController: UINavigationController) {
+    self.navigationController = navigationController
   }
 
   func start() {
@@ -21,7 +21,7 @@ final class AppCoordinator: ParentCoordinator {
   // MARK: - Navigation
 
   func showHome() {
-    let coordinator = HomeCoordinator(window: window)
+    let coordinator = HomeCoordinator(navigationController: navigationController)
     addChild(coordinator)
     // I want to make delegate assignment part of addChild(),
     // but there are some protocol/associatedType problems.
@@ -30,14 +30,14 @@ final class AppCoordinator: ParentCoordinator {
   }
 
   func showLogin() {
-    let coordinator = LoginCoordinator(window: window)
+    let coordinator = LoginCoordinator(navigationController: navigationController)
     addChild(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
 
   func showPurchase() {
-    let coordinator = PurchaseCoordinator(window: window)
+    let coordinator = PurchaseCoordinator(navigationController: navigationController)
     addChild(coordinator)
     coordinator.delegate = self
     coordinator.start()

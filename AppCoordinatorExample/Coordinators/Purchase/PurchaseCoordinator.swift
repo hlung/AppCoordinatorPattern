@@ -7,14 +7,15 @@ protocol PurchaseCoordinatorDelegate: AnyObject {
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
 final class PurchaseCoordinator: Coordinator {
-  var window: UIWindow
 
   weak var delegate: PurchaseCoordinatorDelegate?
   weak var parentCoordinator: ParentCoordinator?
 
-  init(window: UIWindow) {
+  let navigationController: UINavigationController
+
+  init(navigationController: UINavigationController) {
     print("\(type(of: self)) \(#function)")
-    self.window = window
+    self.navigationController = navigationController
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -26,7 +27,7 @@ final class PurchaseCoordinator: Coordinator {
   }
 
   func start() {
-    self.window.rootViewController?.present(purchaseAlertController(), animated: true)
+    self.navigationController.present(purchaseAlertController(), animated: true)
   }
 
   // MARK: - Alert Controllers
@@ -37,7 +38,7 @@ final class PurchaseCoordinator: Coordinator {
       self.delegate?.purchaseCoordinatorDidCancel(self)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.window.rootViewController?.present(self.confirmationAlertController(), animated: true)
+      self.navigationController.present(self.confirmationAlertController(), animated: true)
     }))
     return alert
   }
@@ -48,7 +49,7 @@ final class PurchaseCoordinator: Coordinator {
       self.delegate?.purchaseCoordinatorDidCancel(self)
     }))
     alert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in
-      self.window.rootViewController?.present(self.purchasedAlertController(), animated: true)
+      self.navigationController.present(self.purchasedAlertController(), animated: true)
     }))
     return alert
   }
