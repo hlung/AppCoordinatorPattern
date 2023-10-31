@@ -9,12 +9,11 @@ protocol HomeCoordinatorDelegate: AnyObject {
 final class HomeCoordinator: Coordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
-  weak var parentCoordinator: ParentCoordinator?
-  let navigationController: UINavigationController
+  let rootViewController: UINavigationController
 
   init(navigationController: UINavigationController) {
     print("\(type(of: self)) \(#function)")
-    self.navigationController = navigationController
+    self.rootViewController = navigationController
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -28,11 +27,11 @@ final class HomeCoordinator: Coordinator {
   func start() {
     let appearance = UINavigationBarAppearance()
     appearance.backgroundColor = .systemGray3
-    navigationController.navigationBar.scrollEdgeAppearance = appearance
+    rootViewController.navigationBar.scrollEdgeAppearance = appearance
 
     let viewController = HomeViewController()
     viewController.delegate = self
-    navigationController.setViewControllers([viewController], animated: false)
+    rootViewController.setViewControllers([viewController], animated: false)
   }
   
 }

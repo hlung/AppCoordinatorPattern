@@ -6,7 +6,11 @@ import UIKit
  Taking all of the driving logic out of your view controllers."
  - from https://khanlou.com/2015/10/coordinators-redux/
  */
-protocol Coordinator: AnyObject {
+protocol Coordinator: AnyObject where ViewController: UIViewController {
+  associatedtype ViewController
+
+  var rootViewController: ViewController { get }
+
   func start()
 }
 

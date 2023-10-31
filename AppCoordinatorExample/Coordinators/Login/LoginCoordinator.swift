@@ -8,12 +8,11 @@ protocol LoginCoordinatorDelegate: AnyObject {
 final class LoginCoordinator: Coordinator {
 
   weak var delegate: LoginCoordinatorDelegate?
-  weak var parentCoordinator: ParentCoordinator?
-  let navigationController: UINavigationController
+  let rootViewController: UINavigationController
 
   init(navigationController: UINavigationController) {
     print("\(type(of: self)) \(#function)")
-    self.navigationController = navigationController
+    self.rootViewController = navigationController
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -27,11 +26,11 @@ final class LoginCoordinator: Coordinator {
   func start() {
     let appearance = UINavigationBarAppearance()
     appearance.backgroundColor = .systemGray3
-    navigationController.navigationBar.scrollEdgeAppearance = appearance
+    rootViewController.navigationBar.scrollEdgeAppearance = appearance
 
     let viewController = LoginLandingViewController()
     viewController.delegate = self
-    navigationController.setViewControllers([viewController], animated: false)
+    rootViewController.setViewControllers([viewController], animated: false)
   }
 
 }
@@ -40,7 +39,7 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
   func loginLandingViewControllerDidSelectLogin(_ viewController: LoginLandingViewController) {
     let viewController = LoginViewController()
     viewController.delegate = self
-    navigationController.pushViewController(viewController, animated: true)
+    rootViewController.pushViewController(viewController, animated: true)
   }
 }
 
@@ -50,6 +49,6 @@ extension LoginCoordinator: LoginViewControllerDelegate {
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {
-    navigationController.popToRootViewController(animated: true)
+    rootViewController.popToRootViewController(animated: true)
   }
 }

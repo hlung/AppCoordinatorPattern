@@ -9,13 +9,12 @@ protocol PurchaseCoordinatorDelegate: AnyObject {
 final class PurchaseCoordinator: Coordinator {
 
   weak var delegate: PurchaseCoordinatorDelegate?
-  weak var parentCoordinator: ParentCoordinator?
 
-  let navigationController: UINavigationController
+  let rootViewController: UINavigationController
 
   init(navigationController: UINavigationController) {
     print("\(type(of: self)) \(#function)")
-    self.navigationController = navigationController
+    self.rootViewController = navigationController
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -27,7 +26,7 @@ final class PurchaseCoordinator: Coordinator {
   }
 
   func start() {
-    self.navigationController.present(purchaseAlertController(), animated: true)
+    self.rootViewController.present(purchaseAlertController(), animated: true)
   }
 
   // MARK: - Alert Controllers
@@ -38,7 +37,7 @@ final class PurchaseCoordinator: Coordinator {
       self.delegate?.purchaseCoordinatorDidCancel(self)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.navigationController.present(self.confirmationAlertController(), animated: true)
+      self.rootViewController.present(self.confirmationAlertController(), animated: true)
     }))
     return alert
   }
@@ -49,7 +48,7 @@ final class PurchaseCoordinator: Coordinator {
       self.delegate?.purchaseCoordinatorDidCancel(self)
     }))
     alert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in
-      self.navigationController.present(self.purchasedAlertController(), animated: true)
+      self.rootViewController.present(self.purchasedAlertController(), animated: true)
     }))
     return alert
   }
