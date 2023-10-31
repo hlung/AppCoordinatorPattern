@@ -1,8 +1,8 @@
 import UIKit
 
 protocol Coordinator: AnyObject {
-  // This can be just a rootViewController. But for this demo purpose, it's easier to just use window.
-  // A window also has a rootViewController, so it kinda works for now.
+  // For this demo purpose, it's easier to use a window.
+  // This may be a UIViewController or UINavigationController.
   var window: UIWindow { get }
 
   // Optional because this is weak
