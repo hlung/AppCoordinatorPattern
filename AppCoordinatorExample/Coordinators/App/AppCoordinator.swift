@@ -25,22 +25,25 @@ final class AppCoordinator: ParentCoordinator {
 
   func showHome() {
     let coordinator = HomeCoordinator(window: window)
+    addChild(coordinator)
     // I want to make delegate assignment part of addChild(),
     // but there are some protocol/associatedType problems.
     coordinator.delegate = self
-    addChild(coordinator)
+    coordinator.start()
   }
 
   func showLogin() {
     let coordinator = LoginCoordinator(window: window)
-    coordinator.delegate = self
     addChild(coordinator)
+    coordinator.delegate = self
+    coordinator.start()
   }
 
   func showPurchase() {
     let coordinator = PurchaseCoordinator(window: window)
-    coordinator.delegate = self
     addChild(coordinator)
+    coordinator.delegate = self
+    coordinator.start()
   }
 
 }

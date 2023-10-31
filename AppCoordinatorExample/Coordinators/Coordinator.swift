@@ -29,6 +29,5 @@ extension ParentCoordinator {
   func addChild(_ coordinator: any Coordinator) {
     children.append(coordinator)
     coordinator.parentCoordinator = self
-    coordinator.start()
   }
 }
