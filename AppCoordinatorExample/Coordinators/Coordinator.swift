@@ -15,15 +15,15 @@ protocol Coordinator: AnyObject where ViewController: UIViewController {
 }
 
 protocol ParentCoordinator: Coordinator {
-  var children: [any Coordinator] { get set }
+  var childCoordinators: [any Coordinator] { get set }
 }
 
 extension ParentCoordinator {
   func addChild(_ coordinator: any Coordinator) {
-    children.append(coordinator)
+    childCoordinators.append(coordinator)
   }
 
   func removeChild(_ coordinator: any Coordinator) {
-    children.removeAll(where: { $0 === self })
+    childCoordinators.removeAll(where: { $0 === self })
   }
 }
