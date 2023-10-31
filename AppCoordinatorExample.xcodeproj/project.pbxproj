@@ -21,6 +21,7 @@
 		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
+		01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				013D26A0271C4C220067B44E /* AppDelegate.swift */,
-				017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */,
+				01A7A3CC2AF0B1D100B632CC /* Extensions */,
 				013D26E2271C4F150067B44E /* Coordinators */,
 				013D26A9271C4C240067B44E /* Assets.xcassets */,
 				013D26AB271C4C240067B44E /* LaunchScreen.storyboard */,
@@ -184,6 +186,15 @@
 				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		01A7A3CC2AF0B1D100B632CC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */,
+				01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +334,7 @@
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
+				01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
 				017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */,
 			);
