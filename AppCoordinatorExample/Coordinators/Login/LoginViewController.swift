@@ -9,9 +9,18 @@ class LoginViewController: UIViewController {
 
   weak var delegate: LoginViewControllerDelegate?
 
+  lazy var usernameTextField: UITextField = {
+    let textField = UITextField()
+    textField.translatesAutoresizingMaskIntoConstraints = false
+    textField.placeholder = "Username"
+    textField.layer.borderColor = UIColor.gray.cgColor
+    textField.layer.borderWidth = 1
+    return textField
+  }()
+
   lazy var finishButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Finish Log In", for: .normal)
+    button.setTitle("Log In", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemBlue
     button.setTitleColor(.black, for: .highlighted)
@@ -33,10 +42,15 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
     title = "\(type(of: self))"
     view.backgroundColor = .white
+    view.addSubview(usernameTextField)
     view.addSubview(finishButton)
     view.addSubview(backButton)
 
     NSLayoutConstraint.activate([
+      usernameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      usernameTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+      usernameTextField.widthAnchor.constraint(equalToConstant: 200),
+
       finishButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       finishButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
       finishButton.widthAnchor.constraint(equalToConstant: 200),
@@ -48,7 +62,8 @@ class LoginViewController: UIViewController {
   }
 
   @objc func finishButtonDidTap() {
-    delegate?.loginViewController(self, didLogInWith: "success")
+    guard let username = usernameTextField.text, !username.isEmpty else { return }
+    delegate?.loginViewController(self, didLogInWith: username)
   }
 
   @objc func backButtonDidTap() {

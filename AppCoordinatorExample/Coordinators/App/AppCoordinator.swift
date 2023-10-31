@@ -47,7 +47,7 @@ final class AppCoordinator: ParentCoordinator {
 
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
-    UserDefaults.standard.isLoggedIn = false
+    UserDefaults.standard.loggedInUsername = nil
     coordinator.removeFromParent()
     showLogin()
   }
@@ -60,7 +60,7 @@ extension AppCoordinator: HomeCoordinatorDelegate {
 extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
     print("Login result: \(username)")
-    UserDefaults.standard.isLoggedIn = true
+    UserDefaults.standard.loggedInUsername = username
     coordinator.removeFromParent()
     showHome()
   }

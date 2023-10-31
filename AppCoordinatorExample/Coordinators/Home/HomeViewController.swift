@@ -11,14 +11,14 @@ class HomeViewController: UIViewController {
 
   lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "Welcome!"
+    label.text = "Welcome! \(UserDefaults.standard.loggedInUsername ?? "-")"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
 
-  lazy var logoutButton: UIButton = {
+  lazy var logOutButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Log out", for: .normal)
+    button.setTitle("Log Out", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemRed
     button.setTitleColor(.black, for: .highlighted)
@@ -39,23 +39,23 @@ class HomeViewController: UIViewController {
     title = "\(type(of: self))"
     view.backgroundColor = .white
     view.addSubview(titleLabel)
-    view.addSubview(logoutButton)
+    view.addSubview(logOutButton)
     view.addSubview(purchaseButton)
 
     NSLayoutConstraint.activate([
       titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
 
-      logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      logoutButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-      logoutButton.widthAnchor.constraint(equalToConstant: 200),
+      logOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      logOutButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+      logOutButton.widthAnchor.constraint(equalToConstant: 200),
 
       purchaseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       purchaseButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
       purchaseButton.widthAnchor.constraint(equalToConstant: 200),
     ])
 
-    logoutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
+    logOutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
     purchaseButton.addTarget(self, action: #selector(purchaseButtonDidTap), for: .touchUpInside)
   }
 

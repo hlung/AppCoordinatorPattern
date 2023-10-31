@@ -32,7 +32,7 @@ final class PurchaseCoordinator: Coordinator {
   // MARK: - Alert Controllers
 
   func purchaseAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase flow", message: "Do you want to purchase?", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Purchase flow 1", message: "Do you want to purchase?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
       self.delegate?.purchaseCoordinatorDidCancel(self)
     }))
@@ -43,11 +43,19 @@ final class PurchaseCoordinator: Coordinator {
   }
 
   func confirmationAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase flow", message: "Confirm purchase?", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Purchase flow 2", message: "Do you really really really want to purchase?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
       self.delegate?.purchaseCoordinatorDidCancel(self)
     }))
     alert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in
+      self.window.rootViewController?.present(self.purchasedAlertController(), animated: true)
+    }))
+    return alert
+  }
+
+  func purchasedAlertController() -> UIAlertController {
+    let alert = UIAlertController(title: "Purchase flow 3", message: "All set!", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
       self.delegate?.purchaseCoordinatorDidPurchase(self)
     }))
     return alert

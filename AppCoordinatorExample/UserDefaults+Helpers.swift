@@ -1,16 +1,20 @@
 import Foundation
 
 private enum Key {
-  static let isLoggedIn = "isLoggedIn"
+  static let loggedInUsername = "loggedInUsername"
 }
 
 extension UserDefaults {
-  var isLoggedIn: Bool {
+  var loggedInUsername: String? {
     get {
-      bool(forKey: Key.isLoggedIn)
+      string(forKey: Key.loggedInUsername)
     }
     set {
-      setValue(newValue, forKey: Key.isLoggedIn)
+      set(newValue, forKey: Key.loggedInUsername)
     }
+  }
+
+  var isLoggedIn: Bool {
+    loggedInUsername != nil
   }
 }
