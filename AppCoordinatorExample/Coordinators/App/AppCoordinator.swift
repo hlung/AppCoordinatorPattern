@@ -1,12 +1,9 @@
 import UIKit
 
-protocol AppCoordinatorDelegate: AnyObject {}
-
 final class AppCoordinator: ParentCoordinator {
 
   let window: UIWindow
   var children: [any Coordinator] = []
-  weak var delegate: AppCoordinatorDelegate?
 
   init(window: UIWindow) {
     self.window = window
