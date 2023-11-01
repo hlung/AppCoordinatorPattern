@@ -11,3 +11,7 @@ protocol Coordinator: AnyObject where ViewController: UIViewController {
   var rootViewController: ViewController { get }
   func start()
 }
+
+protocol ParentCoordinator: Coordinator {
+  var childCoordinators: [any Coordinator] { get set }
+}

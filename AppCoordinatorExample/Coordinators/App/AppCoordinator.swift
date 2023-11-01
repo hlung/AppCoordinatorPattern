@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinator: Coordinator {
+final class AppCoordinator: ParentCoordinator {
 
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
