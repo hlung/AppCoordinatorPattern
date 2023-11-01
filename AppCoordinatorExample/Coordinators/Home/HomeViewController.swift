@@ -67,6 +67,5 @@ class HomeViewController: UIViewController {
     delegate?.homeViewControllerPurchase(self)
   }
 
-
 }
 
