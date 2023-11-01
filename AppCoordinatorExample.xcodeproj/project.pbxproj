@@ -22,7 +22,6 @@
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 		01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */; };
-		01A7A3D02AF0B58A00B632CC /* CoordinatorClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CF2AF0B58A00B632CC /* CoordinatorClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +63,6 @@
 		017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
-		01A7A3CF2AF0B58A00B632CC /* CoordinatorClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				01A7A3CA2AEFA98500B632CC /* Coordinator.swift */,
-				01A7A3CF2AF0B58A00B632CC /* CoordinatorClass.swift */,
 				01A7A3C92AEFA8D200B632CC /* App */,
 				017D82532725B5BD00CA3FBF /* Home */,
 				013D26D0271C4C3D0067B44E /* Login */,
@@ -340,7 +337,6 @@
 				01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
 				017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */,
-				01A7A3D02AF0B58A00B632CC /* CoordinatorClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
