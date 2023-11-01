@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinator: ParentCoordinator {
+final class AppCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
@@ -22,7 +22,7 @@ final class AppCoordinator: ParentCoordinator {
 
   func showHome() {
     let coordinator = HomeCoordinator(navigationController: rootViewController)
-    addChild(coordinator)
+    childCoordinators.append(coordinator)
     // I want to make delegate assignment part of addChild(),
     // but there are some protocol/associatedType problems.
     coordinator.delegate = self
@@ -31,14 +31,14 @@ final class AppCoordinator: ParentCoordinator {
 
   func showLogin() {
     let coordinator = LoginCoordinator(navigationController: rootViewController)
-    addChild(coordinator)
+    childCoordinators.append(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
 
   func showPurchase() {
     let coordinator = PurchaseCoordinator(navigationController: rootViewController)
-    addChild(coordinator)
+    childCoordinators.append(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
@@ -48,7 +48,7 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
     UserDefaults.standard.loggedInUsername = nil
-    removeChild(coordinator)
+    childCoordinators.removeAll(where: { $0 === self })
     showLogin()
   }
 
@@ -61,7 +61,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
     print("Login result: \(username)")
     UserDefaults.standard.loggedInUsername = username
-    removeChild(coordinator)
+    childCoordinators.removeAll(where: { $0 === self })
     showHome()
   }
 }
@@ -69,11 +69,11 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 extension AppCoordinator: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
-    removeChild(coordinator)
+    childCoordinators.removeAll(where: { $0 === self })
   }
 
   func purchaseCoordinatorDidCancel(_ coordinator: PurchaseCoordinator) {
     print("Purchase Cancelled")
-    removeChild(coordinator)
+    childCoordinators.removeAll(where: { $0 === self })
   }
 }
