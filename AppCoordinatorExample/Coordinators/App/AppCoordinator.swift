@@ -35,7 +35,7 @@ final class AppCoordinator: ParentCoordinator {
   }
 
   func showPurchase() {
-    let coordinator = PurchaseCoordinator(navigationController: rootViewController)
+    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
     addChild(coordinator)
     coordinator.delegate = self
     coordinator.start()

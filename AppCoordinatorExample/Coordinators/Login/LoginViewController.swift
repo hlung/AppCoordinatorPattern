@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
     textField.placeholder = "Username"
+    textField.text = "John Viki"
     textField.layer.borderColor = UIColor.gray.cgColor
     textField.layer.borderWidth = 1
     return textField

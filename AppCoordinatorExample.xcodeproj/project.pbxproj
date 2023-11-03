@@ -22,6 +22,7 @@
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 		01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */; };
+		01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
+		01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSVODViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */,
+				01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			files = (
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
+				01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,

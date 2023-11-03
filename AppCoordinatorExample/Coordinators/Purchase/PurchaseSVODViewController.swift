@@ -1,13 +1,11 @@
 import UIKit
 
-protocol HomeViewControllerDelegate: AnyObject {
-  func homeViewControllerDidLogOut(_ viewController: HomeViewController)
-  func homeViewControllerPurchase(_ viewController: HomeViewController)
+protocol PurchaseSVODViewControllerDelegate: AnyObject {
 }
 
-class HomeViewController: UIViewController {
+class PurchaseSVODViewController: UIViewController {
 
-  weak var delegate: HomeViewControllerDelegate?
+  weak var delegate: PurchaseSVODViewControllerDelegate?
 
   lazy var stackView: UIStackView = {
     let stackView = UIStackView()
@@ -20,14 +18,14 @@ class HomeViewController: UIViewController {
 
   lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "Welcome! \(UserDefaults.standard.loggedInUsername ?? "-")"
+    label.text = "Purchase SVOD"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
 
-  lazy var purchaseSVODButton: UIButton = {
+  lazy var buyButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Purchase SVOD", for: .normal)
+    button.setTitle("Buy", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemGreen
     button.setTitleColor(.black, for: .highlighted)
@@ -35,9 +33,9 @@ class HomeViewController: UIViewController {
     return button
   }()
 
-  lazy var logOutButton: UIButton = {
+  lazy var cancelButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Log Out", for: .normal)
+    button.setTitle("Cancel", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemRed
     button.setTitleColor(.black, for: .highlighted)
@@ -51,8 +49,8 @@ class HomeViewController: UIViewController {
     view.backgroundColor = .white
     view.addSubview(stackView)
     stackView.addArrangedSubview(titleLabel)
-    stackView.addArrangedSubview(purchaseSVODButton)
-    stackView.addArrangedSubview(logOutButton)
+    stackView.addArrangedSubview(buyButton)
+    stackView.addArrangedSubview(cancelButton)
     stackView.addArrangedSubview(UIView())
 
     NSLayoutConstraint.activate([
@@ -62,16 +60,16 @@ class HomeViewController: UIViewController {
       stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
     ])
 
-    logOutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
-    purchaseSVODButton.addTarget(self, action: #selector(purchaseSVODButtonDidTap), for: .touchUpInside)
+    buyButton.addTarget(self, action: #selector(buyButtonDidTap), for: .touchUpInside)
+    cancelButton.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
   }
 
-  @objc func logoutButtonDidTap() {
-    delegate?.homeViewControllerDidLogOut(self)
+  @objc func buyButtonDidTap() {
+
   }
 
-  @objc func purchaseSVODButtonDidTap() {
-    delegate?.homeViewControllerPurchase(self)
+  @objc func cancelButtonDidTap() {
+
   }
 
 }

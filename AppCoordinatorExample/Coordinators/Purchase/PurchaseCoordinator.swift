@@ -8,12 +8,19 @@ protocol PurchaseCoordinatorDelegate: AnyObject {
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
 final class PurchaseCoordinator: Coordinator {
 
+  enum ProductType {
+    case svod
+    case tvod
+  }
+
   weak var delegate: PurchaseCoordinatorDelegate?
 
   let rootViewController: UINavigationController
+  let productType: ProductType
 
-  init(navigationController: UINavigationController) {
+  init(navigationController: UINavigationController, productType: ProductType) {
     print("\(type(of: self)) \(#function)")
+    self.productType = productType
     self.rootViewController = navigationController
   }
 
@@ -26,7 +33,13 @@ final class PurchaseCoordinator: Coordinator {
   }
 
   func start() {
-    self.rootViewController.present(purchaseAlertController(), animated: true)
+    switch productType {
+    case .svod:
+      let vc = PurchaseSVODViewController()
+      self.rootViewController.present(vc, animated: true)
+    case .tvod:
+      break
+    }
   }
 
   // MARK: - Alert Controllers
