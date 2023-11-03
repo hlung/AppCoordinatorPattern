@@ -32,6 +32,8 @@ final class HomeCoordinator: ParentCoordinator {
     let viewController = HomeViewController()
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)
+
+    showStartUpAlertsIfNeeded()
   }
 
   func showPurchase() {
@@ -42,7 +44,7 @@ final class HomeCoordinator: ParentCoordinator {
   }
 
   func showStartUpAlertsIfNeeded() {
-    if !UserDefaults.standard.onboardingFinished {
+    if !UserDefaults.standard.onboardingShown {
       showOnboarding()
     }
     else if UserDefaults.standard.consent == nil {
@@ -58,17 +60,22 @@ final class HomeCoordinator: ParentCoordinator {
   func showOnboarding() {
     let viewController = OnboardingViewController()
     viewController.delegate = self
-    viewController.modalPresentationStyle = .fullScreen
+    viewController.deinitHandler = { [weak self] in
+      self?.showStartUpAlertsIfNeeded()
+    }
     rootViewController.present(viewController, animated: true)
+    UserDefaults.standard.onboardingShown = true
   }
 
   func showConsentAlert() {
     let alert = UIAlertController(title: "CMP Consent", message: "Do you want to accept?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
       UserDefaults.standard.consent = "reject"
+      self.showStartUpAlertsIfNeeded()
     }))
     alert.addAction(UIAlertAction(title: "Accept", style: .default, handler: { _ in
       UserDefaults.standard.consent = "accept"
+      self.showStartUpAlertsIfNeeded()
     }))
     rootViewController.present(alert, animated: true)
   }
@@ -77,6 +84,7 @@ final class HomeCoordinator: ParentCoordinator {
     let alert = UIAlertController(title: "Verify email", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Verify", style: .default, handler: { _ in
       UserDefaults.standard.emailVerified = true
+      self.showStartUpAlertsIfNeeded()
     }))
     rootViewController.present(alert, animated: true)
   }
@@ -84,10 +92,6 @@ final class HomeCoordinator: ParentCoordinator {
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
-  func homeViewControllerDidAppear(_ viewController: HomeViewController) {
-    showStartUpAlertsIfNeeded()
-  }
-
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
     delegate?.homeCoordinatorDidLogOut(self)
   }
@@ -115,7 +119,6 @@ extension HomeCoordinator: PurchaseCoordinatorDelegate {
 
 extension HomeCoordinator: OnboardingViewControllerDelegate {
   func onboardingViewControllerDidFinish(_ viewController: OnboardingViewController) {
-    UserDefaults.standard.onboardingFinished = true
     viewController.dismiss(animated: true)
   }
 }

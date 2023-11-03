@@ -2,7 +2,7 @@ import Foundation
 
 private enum Key {
   static let loggedInUsername = "loggedInUsername"
-  static let onboardingFinished = "onboardingFinished"
+  static let onboardingShown = "onboardingShown"
   static let consent = "consent"
   static let emailVerified = "emailVerified"
 }
@@ -17,9 +17,9 @@ extension UserDefaults {
     loggedInUsername != nil
   }
 
-  var onboardingFinished: Bool {
-    get { bool(forKey: Key.onboardingFinished) }
-    set { set(newValue, forKey: Key.onboardingFinished) }
+  var onboardingShown: Bool {
+    get { bool(forKey: Key.onboardingShown) }
+    set { set(newValue, forKey: Key.onboardingShown) }
   }
 
   var consent: String? {

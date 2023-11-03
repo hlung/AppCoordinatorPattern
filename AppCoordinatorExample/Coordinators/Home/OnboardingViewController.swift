@@ -8,6 +8,7 @@ protocol OnboardingViewControllerDelegate: AnyObject {
 class OnboardingViewController: UIViewController {
 
   weak var delegate: OnboardingViewControllerDelegate?
+  var deinitHandler: () -> Void = {}
 
   lazy var stackView: UIStackView = {
     let stackView = UIStackView()
@@ -52,7 +53,6 @@ class OnboardingViewController: UIViewController {
     view.addSubview(stackView)
     stackView.addArrangedSubview(titleLabel)
     stackView.addArrangedSubview(finishButton)
-//    stackView.addArrangedSubview(logOutButton)
     stackView.addArrangedSubview(UIView())
 
     NSLayoutConstraint.activate([
@@ -63,12 +63,11 @@ class OnboardingViewController: UIViewController {
     ])
 
     finishButton.addTarget(self, action: #selector(finishButtonDidTap), for: .touchUpInside)
-//    logOutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
   }
 
-//  @objc func logoutButtonDidTap() {
-//    delegate?.OnboardingViewControllerDidLogOut(self)
-//  }
+  deinit {
+    deinitHandler()
+  }
 
   @objc func finishButtonDidTap() {
     delegate?.onboardingViewControllerDidFinish(self)
