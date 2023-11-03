@@ -23,8 +23,6 @@ final class AppCoordinator: ParentCoordinator {
   func showHome() {
     let coordinator = HomeCoordinator(navigationController: rootViewController)
     addChild(coordinator)
-    // I want to make delegate assignment part of addChild(),
-    // but there are some protocol/associatedType problems.
     coordinator.delegate = self
     coordinator.start()
   }
