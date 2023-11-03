@@ -2,19 +2,27 @@ import Foundation
 
 private enum Key {
   static let loggedInUsername = "loggedInUsername"
+  static let consent = "consent"
+  static let emailVerified = "emailVerified"
 }
 
 extension UserDefaults {
   var loggedInUsername: String? {
-    get {
-      string(forKey: Key.loggedInUsername)
-    }
-    set {
-      set(newValue, forKey: Key.loggedInUsername)
-    }
+    get { string(forKey: Key.loggedInUsername) }
+    set { set(newValue, forKey: Key.loggedInUsername) }
   }
 
   var isLoggedIn: Bool {
     loggedInUsername != nil
+  }
+
+  var consent: String? {
+    get { string(forKey: Key.consent) }
+    set { set(newValue, forKey: Key.consent) }
+  }
+
+  var emailVerified: Bool {
+    get { bool(forKey: Key.emailVerified) }
+    set { set(newValue, forKey: Key.emailVerified) }
   }
 }
