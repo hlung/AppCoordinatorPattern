@@ -37,16 +37,15 @@ final class PurchaseCoordinator: Coordinator {
     case .svod:
       let vc = PurchaseSVODViewController()
       vc.delegate = self
-      self.rootViewController.present(vc, animated: true)
+      self.rootViewController.pushViewController(vc, animated: true)
     case .tvod:
       break // to be implemented
     }
   }
 
   func stop() {
-    rootViewController.presentedViewController?.dismiss(animated: true, completion: {
-      self.delegate?.purchaseCoordinatorDidStop(self)
-    })
+    rootViewController.popToRootViewController(animated: true)
+    self.delegate?.purchaseCoordinatorDidStop(self)
   }
 
 }

@@ -20,7 +20,7 @@ class OnboardingViewController: UIViewController {
 
   lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "Onboarding for \(UserDefaults.standard.loggedInUsername ?? "-")"
+    label.text = "Onboarding!"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()

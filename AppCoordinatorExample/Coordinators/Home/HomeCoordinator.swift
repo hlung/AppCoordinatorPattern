@@ -32,8 +32,6 @@ final class HomeCoordinator: ParentCoordinator {
     let viewController = HomeViewController()
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)
-
-    showStartUpAlertsIfNeeded()
   }
 
   func showPurchase() {
@@ -43,41 +41,53 @@ final class HomeCoordinator: ParentCoordinator {
     coordinator.start()
   }
 
-  func showOnboarding() {
-    let viewController = OnboardingViewController()
-    viewController.delegate = self
-    rootViewController.pushViewController(viewController, animated: true)
-  }
-
   func showStartUpAlertsIfNeeded() {
     if !UserDefaults.standard.onboardingFinished {
       showOnboarding()
     }
     else if UserDefaults.standard.consent == nil {
-      let alert = UIAlertController(title: "CMP Consent", message: "Do you want to accept?", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
-        UserDefaults.standard.consent = "reject"
-        self.showStartUpAlertsIfNeeded()
-      }))
-      alert.addAction(UIAlertAction(title: "Accept", style: .default, handler: { _ in
-        UserDefaults.standard.consent = "accept"
-        self.showStartUpAlertsIfNeeded()
-      }))
-      rootViewController.present(alert, animated: true)
+      showConsentAlert()
     }
     else if !UserDefaults.standard.emailVerified {
-      let alert = UIAlertController(title: "Verify email", message: nil, preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Verify", style: .default, handler: { _ in
-        UserDefaults.standard.emailVerified = true
-        self.showStartUpAlertsIfNeeded()
-      }))
-      rootViewController.present(alert, animated: true)
+      showEmailVerificationAlert()
     }
-    // add more alerts here
+    // handle deeplinks
+    // and other things here
   }
+
+  func showOnboarding() {
+    let viewController = OnboardingViewController()
+    viewController.delegate = self
+    viewController.modalPresentationStyle = .fullScreen
+    rootViewController.present(viewController, animated: true)
+  }
+
+  func showConsentAlert() {
+    let alert = UIAlertController(title: "CMP Consent", message: "Do you want to accept?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
+      UserDefaults.standard.consent = "reject"
+    }))
+    alert.addAction(UIAlertAction(title: "Accept", style: .default, handler: { _ in
+      UserDefaults.standard.consent = "accept"
+    }))
+    rootViewController.present(alert, animated: true)
+  }
+
+  func showEmailVerificationAlert() {
+    let alert = UIAlertController(title: "Verify email", message: nil, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Verify", style: .default, handler: { _ in
+      UserDefaults.standard.emailVerified = true
+    }))
+    rootViewController.present(alert, animated: true)
+  }
+
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
+  func homeViewControllerDidAppear(_ viewController: HomeViewController) {
+    showStartUpAlertsIfNeeded()
+  }
+
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
     delegate?.homeCoordinatorDidLogOut(self)
   }
@@ -106,7 +116,7 @@ extension HomeCoordinator: PurchaseCoordinatorDelegate {
 extension HomeCoordinator: OnboardingViewControllerDelegate {
   func onboardingViewControllerDidFinish(_ viewController: OnboardingViewController) {
     UserDefaults.standard.onboardingFinished = true
-    rootViewController.popToRootViewController(animated: true)
+    viewController.dismiss(animated: true)
   }
 }
 

@@ -1,6 +1,7 @@
 import UIKit
 
 protocol HomeViewControllerDelegate: AnyObject {
+  func homeViewControllerDidAppear(_ viewController: HomeViewController)
   func homeViewControllerDidLogOut(_ viewController: HomeViewController)
   func homeViewControllerPurchase(_ viewController: HomeViewController)
   func homeViewControllerDidTapOnboarding(_ viewController: HomeViewController)
@@ -77,6 +78,11 @@ class HomeViewController: UIViewController {
     logOutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
     purchaseSVODButton.addTarget(self, action: #selector(purchaseSVODButtonDidTap), for: .touchUpInside)
     onboardingButton.addTarget(self, action: #selector(onboardingButtonDidTap), for: .touchUpInside)
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    delegate?.homeViewControllerDidAppear(self)
   }
 
   @objc func onboardingButtonDidTap() {
