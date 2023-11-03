@@ -1,5 +1,20 @@
 import UIKit
 
+/* --- Main structure ---
+ - AppCoordinator
+    - If not logged in, start LoginCoordinator
+    - If logged in, start HomeController
+ - LoginCoordinator
+    - perform login
+ - HomeController
+    - If new user, start OnboardingCoordinator
+    - If user have no email, start EmailInputCoordinator
+    - If Sourcepoint returns a CMP banner vc, show it
+ - PurchaseCoordinator
+    - Show different VC depending on ProductType
+    - If user haven't verify email, start EmailVerificationCoordinator
+ */
+
 final class AppCoordinator: ParentCoordinator {
 
   let rootViewController: UINavigationController
