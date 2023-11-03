@@ -58,6 +58,7 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
     UserDefaults.standard.loggedInUsername = nil
+    UserDefaults.standard.onboardingFinished = false
     UserDefaults.standard.consent = nil
     UserDefaults.standard.emailVerified = false
     removeChild(coordinator)

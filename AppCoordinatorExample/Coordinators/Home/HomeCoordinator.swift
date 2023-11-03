@@ -43,8 +43,17 @@ final class HomeCoordinator: ParentCoordinator {
     coordinator.start()
   }
 
+  func showOnboarding() {
+    let viewController = OnboardingViewController()
+    viewController.delegate = self
+    rootViewController.pushViewController(viewController, animated: true)
+  }
+
   func showStartUpAlertsIfNeeded() {
-    if UserDefaults.standard.consent == nil {
+    if !UserDefaults.standard.onboardingFinished {
+      showOnboarding()
+    }
+    else if UserDefaults.standard.consent == nil {
       let alert = UIAlertController(title: "CMP Consent", message: "Do you want to accept?", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
         UserDefaults.standard.consent = "reject"
@@ -76,6 +85,10 @@ extension HomeCoordinator: HomeViewControllerDelegate {
   func homeViewControllerPurchase(_ viewController: HomeViewController) {
     showPurchase()
   }
+
+  func homeViewControllerDidTapOnboarding(_ viewController: HomeViewController) {
+    showOnboarding()
+  }
 }
 
 extension HomeCoordinator: PurchaseCoordinatorDelegate {
@@ -89,3 +102,11 @@ extension HomeCoordinator: PurchaseCoordinatorDelegate {
     removeChild(coordinator)
   }
 }
+
+extension HomeCoordinator: OnboardingViewControllerDelegate {
+  func onboardingViewControllerDidFinish(_ viewController: OnboardingViewController) {
+    UserDefaults.standard.onboardingFinished = true
+    rootViewController.popToRootViewController(animated: true)
+  }
+}
+

@@ -1,14 +1,13 @@
+import Foundation
 import UIKit
 
-protocol HomeViewControllerDelegate: AnyObject {
-  func homeViewControllerDidLogOut(_ viewController: HomeViewController)
-  func homeViewControllerPurchase(_ viewController: HomeViewController)
-  func homeViewControllerDidTapOnboarding(_ viewController: HomeViewController)
+protocol OnboardingViewControllerDelegate: AnyObject {
+  func onboardingViewControllerDidFinish(_ viewController: OnboardingViewController)
 }
 
-class HomeViewController: UIViewController {
+class OnboardingViewController: UIViewController {
 
-  weak var delegate: HomeViewControllerDelegate?
+  weak var delegate: OnboardingViewControllerDelegate?
 
   lazy var stackView: UIStackView = {
     let stackView = UIStackView()
@@ -21,24 +20,14 @@ class HomeViewController: UIViewController {
 
   lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "Welcome! \(UserDefaults.standard.loggedInUsername ?? "-")"
+    label.text = "Onboarding for \(UserDefaults.standard.loggedInUsername ?? "-")"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
 
-  lazy var onboardingButton: UIButton = {
+  lazy var finishButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setTitle("Show onboarding", for: .normal)
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .systemGreen
-    button.setTitleColor(.black, for: .highlighted)
-    button.widthAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
-    return button
-  }()
-
-  lazy var purchaseSVODButton: UIButton = {
-    let button = UIButton(type: .custom)
-    button.setTitle("Purchase SVOD", for: .normal)
+    button.setTitle("Finish", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .systemGreen
     button.setTitleColor(.black, for: .highlighted)
@@ -62,9 +51,8 @@ class HomeViewController: UIViewController {
     view.backgroundColor = .white
     view.addSubview(stackView)
     stackView.addArrangedSubview(titleLabel)
-    stackView.addArrangedSubview(onboardingButton)
-    stackView.addArrangedSubview(purchaseSVODButton)
-    stackView.addArrangedSubview(logOutButton)
+    stackView.addArrangedSubview(finishButton)
+//    stackView.addArrangedSubview(logOutButton)
     stackView.addArrangedSubview(UIView())
 
     NSLayoutConstraint.activate([
@@ -74,21 +62,16 @@ class HomeViewController: UIViewController {
       stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
     ])
 
-    logOutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
-    purchaseSVODButton.addTarget(self, action: #selector(purchaseSVODButtonDidTap), for: .touchUpInside)
-    onboardingButton.addTarget(self, action: #selector(onboardingButtonDidTap), for: .touchUpInside)
+    finishButton.addTarget(self, action: #selector(finishButtonDidTap), for: .touchUpInside)
+//    logOutButton.addTarget(self, action: #selector(logoutButtonDidTap), for: .touchUpInside)
   }
 
-  @objc func onboardingButtonDidTap() {
-    delegate?.homeViewControllerDidTapOnboarding(self)
-  }
+//  @objc func logoutButtonDidTap() {
+//    delegate?.OnboardingViewControllerDidLogOut(self)
+//  }
 
-  @objc func logoutButtonDidTap() {
-    delegate?.homeViewControllerDidLogOut(self)
-  }
-
-  @objc func purchaseSVODButtonDidTap() {
-    delegate?.homeViewControllerPurchase(self)
+  @objc func finishButtonDidTap() {
+    delegate?.onboardingViewControllerDidFinish(self)
   }
 
 }
