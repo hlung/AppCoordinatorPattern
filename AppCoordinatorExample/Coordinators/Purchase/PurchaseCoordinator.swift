@@ -2,7 +2,7 @@ import UIKit
 
 protocol PurchaseCoordinatorDelegate: AnyObject {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator)
-  func purchaseCoordinatorDidCancel(_ coordinator: PurchaseCoordinator)
+  func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator)
 }
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
@@ -43,35 +43,24 @@ final class PurchaseCoordinator: Coordinator {
     }
   }
 
-  // MARK: - Alert Controllers
-
-  func purchaseConfirmationAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase confirmation", message: "Do you want to purchase?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.delegate?.purchaseCoordinatorDidCancel(self)
-    }))
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.rootViewController.topmostViewController.present(self.purchaseSuccessAlertController(), animated: true)
-    }))
-    return alert
-  }
-
-  func purchaseSuccessAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase success", message: "All set!", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.delegate?.purchaseCoordinatorDidPurchase(self)
-    }))
-    return alert
+  func stop() {
+    rootViewController.presentedViewController?.dismiss(animated: true, completion: {
+      self.delegate?.purchaseCoordinatorDidStop(self)
+    })
   }
 
 }
 
 extension PurchaseCoordinator: PurchaseSVODViewControllerDelegate {
-  func purchaseSVODViewControllerDidRequestPurchase(_ viewController: PurchaseSVODViewController) {
-    rootViewController.topmostViewController.present(purchaseConfirmationAlertController(), animated: true)
+  func purchaseSVODViewControllerDidPurchase(_ viewController: PurchaseSVODViewController) {
+    delegate?.purchaseCoordinatorDidPurchase(self)
   }
 
-  func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController) {
-    delegate?.purchaseCoordinatorDidCancel(self)
+  func purchaseSVODViewControllerDidRequestDismiss(_ viewController: PurchaseSVODViewController) {
+    stop()
+  }
+
+  func purchaseSVODViewControllerDidDismiss(_ viewController: PurchaseSVODViewController) {
+    delegate?.purchaseCoordinatorDidStop(self)
   }
 }

@@ -1,8 +1,9 @@
 import UIKit
 
 protocol PurchaseSVODViewControllerDelegate: AnyObject {
-  func purchaseSVODViewControllerDidRequestPurchase(_ viewController: PurchaseSVODViewController)
-  func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController)
+  func purchaseSVODViewControllerDidPurchase(_ viewController: PurchaseSVODViewController)
+  func purchaseSVODViewControllerDidRequestDismiss(_ viewController: PurchaseSVODViewController)
+  func purchaseSVODViewControllerDidDismiss(_ viewController: PurchaseSVODViewController)
 }
 
 class PurchaseSVODViewController: UIViewController {
@@ -46,7 +47,7 @@ class PurchaseSVODViewController: UIViewController {
   }()
 
   deinit {
-    delegate?.purchaseSVODViewControllerDidCancel(self)
+    delegate?.purchaseSVODViewControllerDidDismiss(self)
   }
 
   override func viewDidLoad() {
@@ -71,12 +72,32 @@ class PurchaseSVODViewController: UIViewController {
   }
 
   @objc func buyButtonDidTap() {
-    delegate?.purchaseSVODViewControllerDidRequestPurchase(self)
+    present(purchaseConfirmationAlertController(), animated: true)
   }
 
   @objc func cancelButtonDidTap() {
-    dismiss(animated: true)
+    self.delegate?.purchaseSVODViewControllerDidRequestDismiss(self)
   }
 
+  // MARK: - Alert Controllers
+
+  func purchaseConfirmationAlertController() -> UIAlertController {
+    let alert = UIAlertController(title: "Purchase confirmation", message: "Do you want to purchase?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+    }))
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+      self.present(self.purchaseSuccessAlertController(), animated: true)
+    }))
+    return alert
+  }
+
+  func purchaseSuccessAlertController() -> UIAlertController {
+    let alert = UIAlertController(title: "Purchase success", message: "All set!", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+      self.delegate?.purchaseSVODViewControllerDidPurchase(self)
+    }))
+    return alert
+  }
+  
 }
 

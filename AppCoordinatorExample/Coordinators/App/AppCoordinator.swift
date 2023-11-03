@@ -10,9 +10,13 @@ import UIKit
     - If new user, start OnboardingCoordinator
     - If user have no email, start EmailInputCoordinator
     - If Sourcepoint returns a CMP banner vc, show it
+    - When user want to buy, start PurchaseCoordinator
  - PurchaseCoordinator
     - Show different VC depending on ProductType
     - If user haven't verify email, start EmailVerificationCoordinator
+
+ Rules:
+ - A view controller should never dismiss itself. It requests its delegate (coordinator) to dismiss, which will call coordinator.stop().
  */
 
 final class AppCoordinator: ParentCoordinator {

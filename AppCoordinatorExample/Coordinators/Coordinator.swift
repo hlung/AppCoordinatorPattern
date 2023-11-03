@@ -22,6 +22,6 @@ extension ParentCoordinator {
   }
 
   func removeChild(_ coordinator: any Coordinator) {
-    childCoordinators.removeAll(where: { $0 === self })
+    childCoordinators.removeAll(where: { $0 === coordinator })
   }
 }
