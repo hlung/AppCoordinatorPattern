@@ -36,42 +36,42 @@ final class PurchaseCoordinator: Coordinator {
     switch productType {
     case .svod:
       let vc = PurchaseSVODViewController()
+      vc.delegate = self
       self.rootViewController.present(vc, animated: true)
     case .tvod:
-      break
+      break // to be implemented
     }
   }
 
   // MARK: - Alert Controllers
 
-  func purchaseAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase flow 1", message: "Do you want to purchase?", preferredStyle: .alert)
+  func purchaseConfirmationAlertController() -> UIAlertController {
+    let alert = UIAlertController(title: "Purchase confirmation", message: "Do you want to purchase?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
       self.delegate?.purchaseCoordinatorDidCancel(self)
     }))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      self.rootViewController.present(self.confirmationAlertController(), animated: true)
+      self.rootViewController.topmostViewController.present(self.purchaseSuccessAlertController(), animated: true)
     }))
     return alert
   }
 
-  func confirmationAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase flow 2", message: "Do you really really really want to purchase?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-      self.delegate?.purchaseCoordinatorDidCancel(self)
-    }))
-    alert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in
-      self.rootViewController.present(self.purchasedAlertController(), animated: true)
-    }))
-    return alert
-  }
-
-  func purchasedAlertController() -> UIAlertController {
-    let alert = UIAlertController(title: "Purchase flow 3", message: "All set!", preferredStyle: .alert)
+  func purchaseSuccessAlertController() -> UIAlertController {
+    let alert = UIAlertController(title: "Purchase success", message: "All set!", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
       self.delegate?.purchaseCoordinatorDidPurchase(self)
     }))
     return alert
   }
 
+}
+
+extension PurchaseCoordinator: PurchaseSVODViewControllerDelegate {
+  func purchaseSVODViewControllerDidRequestPurchase(_ viewController: PurchaseSVODViewController) {
+    rootViewController.topmostViewController.present(purchaseConfirmationAlertController(), animated: true)
+  }
+
+  func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController) {
+    delegate?.purchaseCoordinatorDidCancel(self)
+  }
 }

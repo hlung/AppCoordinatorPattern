@@ -18,4 +18,15 @@ import UIKit
     view.removeFromSuperview()
     removeFromParent()
   }
+
+  var topmostViewController: UIViewController {
+    if let presentedViewController = self.presentedViewController {
+      return presentedViewController.topmostViewController
+    }
+    else if let navigationController = self as? UINavigationController,
+            let topViewController = navigationController.topViewController {
+      return topViewController.topmostViewController
+    }
+    return self
+  }
 }

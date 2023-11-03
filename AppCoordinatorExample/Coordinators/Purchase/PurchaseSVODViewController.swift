@@ -1,6 +1,8 @@
 import UIKit
 
 protocol PurchaseSVODViewControllerDelegate: AnyObject {
+  func purchaseSVODViewControllerDidRequestPurchase(_ viewController: PurchaseSVODViewController)
+  func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController)
 }
 
 class PurchaseSVODViewController: UIViewController {
@@ -43,6 +45,10 @@ class PurchaseSVODViewController: UIViewController {
     return button
   }()
 
+  deinit {
+    delegate?.purchaseSVODViewControllerDidCancel(self)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "\(type(of: self))"
@@ -65,11 +71,11 @@ class PurchaseSVODViewController: UIViewController {
   }
 
   @objc func buyButtonDidTap() {
-
+    delegate?.purchaseSVODViewControllerDidRequestPurchase(self)
   }
 
   @objc func cancelButtonDidTap() {
-
+    dismiss(animated: true)
   }
 
 }

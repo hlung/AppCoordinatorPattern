@@ -1,15 +1,15 @@
 import UIKit
 
 protocol HomeCoordinatorDelegate: AnyObject {
-  func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator)
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator)
 }
 
 /// An example of a coordinator that manages main content of the app.
-final class HomeCoordinator: Coordinator {
+final class HomeCoordinator: ParentCoordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
   let rootViewController: UINavigationController
+  var childCoordinators: [any Coordinator] = []
 
   init(navigationController: UINavigationController) {
     print("\(type(of: self)) \(#function)")
@@ -33,7 +33,13 @@ final class HomeCoordinator: Coordinator {
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)
   }
-  
+
+  func showPurchase() {
+    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
+    addChild(coordinator)
+    coordinator.delegate = self
+    coordinator.start()
+  }
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
@@ -42,6 +48,18 @@ extension HomeCoordinator: HomeViewControllerDelegate {
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {
-    delegate?.homeCoordinatorDidSelectPurchase(self)
+    showPurchase()
+  }
+}
+
+extension HomeCoordinator: PurchaseCoordinatorDelegate {
+  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
+    print("Purchase OK")
+    removeChild(coordinator)
+  }
+
+  func purchaseCoordinatorDidCancel(_ coordinator: PurchaseCoordinator) {
+    print("Purchase Cancelled")
+    removeChild(coordinator)
   }
 }

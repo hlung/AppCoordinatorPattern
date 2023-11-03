@@ -49,13 +49,6 @@ final class AppCoordinator: ParentCoordinator {
     coordinator.start()
   }
 
-  func showPurchase() {
-    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
-    addChild(coordinator)
-    coordinator.delegate = self
-    coordinator.start()
-  }
-
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {
@@ -63,10 +56,6 @@ extension AppCoordinator: HomeCoordinatorDelegate {
     UserDefaults.standard.loggedInUsername = nil
     removeChild(coordinator)
     showLogin()
-  }
-
-  func homeCoordinatorDidSelectPurchase(_ coordinator: HomeCoordinator) {
-    showPurchase()
   }
 }
 
@@ -76,17 +65,5 @@ extension AppCoordinator: LoginCoordinatorDelegate {
     UserDefaults.standard.loggedInUsername = username
     removeChild(coordinator)
     showHome()
-  }
-}
-
-extension AppCoordinator: PurchaseCoordinatorDelegate {
-  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
-    print("Purchase OK")
-    removeChild(coordinator)
-  }
-
-  func purchaseCoordinatorDidCancel(_ coordinator: PurchaseCoordinator) {
-    print("Purchase Cancelled")
-    removeChild(coordinator)
   }
 }
