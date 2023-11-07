@@ -44,49 +44,55 @@ final class HomeCoordinator: ParentCoordinator {
   }
 
   func showStartUpAlertsIfNeeded() {
-    if !UserDefaults.standard.onboardingShown {
-      showOnboarding()
+    Task {
+      if !UserDefaults.standard.onboardingShown {
+        await showOnboarding()
+      }
+      if UserDefaults.standard.consent == nil {
+        await showConsentAlert()
+      }
+      if !UserDefaults.standard.emailVerified {
+        await showEmailVerificationAlert()
+      }
+      // handle deeplinks
+      // and other things here
     }
-    else if UserDefaults.standard.consent == nil {
-      showConsentAlert()
-    }
-    else if !UserDefaults.standard.emailVerified {
-      showEmailVerificationAlert()
-    }
-    // handle deeplinks
-    // and other things here
   }
 
-  func showOnboarding() {
-    let viewController = OnboardingViewController()
-    viewController.delegate = self
-    viewController.deinitHandler = { [weak self] in
-      self?.showStartUpAlertsIfNeeded()
+  @MainActor func showOnboarding() async {
+    await withCheckedContinuation { continuation in
+      let viewController = OnboardingViewController()
+      viewController.delegate = self
+      viewController.deinitHandler = { continuation.resume() }
+      rootViewController.present(viewController, animated: true)
+      UserDefaults.standard.onboardingShown = true
     }
-    rootViewController.present(viewController, animated: true)
-    UserDefaults.standard.onboardingShown = true
   }
 
-  func showConsentAlert() {
-    let alert = UIAlertController(title: "CMP Consent", message: "Do you want to accept?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
-      UserDefaults.standard.consent = "reject"
-      self.showStartUpAlertsIfNeeded()
-    }))
-    alert.addAction(UIAlertAction(title: "Accept", style: .default, handler: { _ in
-      UserDefaults.standard.consent = "accept"
-      self.showStartUpAlertsIfNeeded()
-    }))
-    rootViewController.present(alert, animated: true)
+  @MainActor func showConsentAlert() async {
+    await withCheckedContinuation { continuation in
+      let alert = UIAlertController(title: "CMP Consent", message: "Do you want to accept?", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
+        UserDefaults.standard.consent = "reject"
+        continuation.resume()
+      }))
+      alert.addAction(UIAlertAction(title: "Accept", style: .default, handler: { _ in
+        UserDefaults.standard.consent = "accept"
+        continuation.resume()
+      }))
+      rootViewController.present(alert, animated: true)
+    }
   }
 
-  func showEmailVerificationAlert() {
-    let alert = UIAlertController(title: "Verify email", message: nil, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Verify", style: .default, handler: { _ in
-      UserDefaults.standard.emailVerified = true
-      self.showStartUpAlertsIfNeeded()
-    }))
-    rootViewController.present(alert, animated: true)
+  @MainActor func showEmailVerificationAlert() async {
+    await withCheckedContinuation { continuation in
+      let alert = UIAlertController(title: "Verify email", message: nil, preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Verify", style: .default, handler: { _ in
+        UserDefaults.standard.emailVerified = true
+        continuation.resume()
+      }))
+      rootViewController.present(alert, animated: true)
+    }
   }
 
 }
@@ -101,7 +107,7 @@ extension HomeCoordinator: HomeViewControllerDelegate {
   }
 
   func homeViewControllerDidTapOnboarding(_ viewController: HomeViewController) {
-    showOnboarding()
+    Task { await showOnboarding() }
   }
 }
 
