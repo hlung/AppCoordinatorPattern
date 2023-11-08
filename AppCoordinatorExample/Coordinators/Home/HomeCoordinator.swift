@@ -58,8 +58,9 @@ final class HomeCoordinator: ParentCoordinator {
       if !UserDefaults.standard.emailVerified {
         await showEmailVerificationAlert()
       }
-      // handle deeplinks
-      // and other things here
+      // - handle deeplinks
+      // - show in app messaging
+      // - etc.
     }
   }
 
