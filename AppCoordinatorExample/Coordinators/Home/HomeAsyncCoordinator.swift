@@ -43,11 +43,11 @@ final class HomeAsyncCoordinator: AsyncCoordinator, ParentCoordinator {
     // - show in app messaging
     // - etc.
 
-    return try await withCheckedThrowingContinuation { self.continuation = $0 }
-  }
+    let output: Void = try await withCheckedThrowingContinuation { self.continuation = $0 }
 
-  func stop() {
     rootViewController.setViewControllers([], animated: false)
+
+    return output
   }
 
   func showPurchase() {

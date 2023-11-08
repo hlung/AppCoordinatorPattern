@@ -19,10 +19,11 @@ import UIKit
  - A view controller should never dismiss itself. It requests its delegate (coordinator) to dismiss, which will call coordinator.stop().
  */
 
-final class AppCoordinator: ParentCoordinator {
+final class AppCoordinator: ParentCoordinator, ParentAsyncCoordinator {
 
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
+  var childAsyncCoordinators: [any AsyncCoordinator] = []
 
   init(navigationController: UINavigationController) {
     self.rootViewController = navigationController
@@ -54,10 +55,12 @@ final class AppCoordinator: ParentCoordinator {
   func showHomeAsync() {
     Task { @MainActor in
       let coordinator = HomeAsyncCoordinator(navigationController: rootViewController)
+
       addChild(coordinator)
       try await coordinator.start()
-      coordinator.stop()
       removeChild(coordinator)
+
+//      try await coordinator.start(inParent: self)
 
       clearUserDefaults()
       showLogin()

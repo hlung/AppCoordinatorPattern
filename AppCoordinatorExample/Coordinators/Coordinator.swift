@@ -4,7 +4,6 @@ protocol Coordinator: AnyObject where ViewController: UIViewController {
   associatedtype ViewController
   var rootViewController: ViewController { get }
   func start()
-  func stop()
 }
 
 
