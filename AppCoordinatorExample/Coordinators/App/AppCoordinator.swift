@@ -37,6 +37,10 @@ final class AppCoordinator: ParentCoordinator {
     }
   }
 
+  func stop() {
+    // This coordinator never stops, so do nothing here.
+  }
+
   // MARK: - Navigation
 
   func showHome() {
@@ -61,6 +65,7 @@ extension AppCoordinator: HomeCoordinatorDelegate {
     UserDefaults.standard.onboardingShown = false
     UserDefaults.standard.consent = nil
     UserDefaults.standard.emailVerified = false
+    coordinator.stop()
     removeChild(coordinator)
     showLogin()
   }
@@ -70,6 +75,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
     print("Login result: \(username)")
     UserDefaults.standard.loggedInUsername = username
+    coordinator.stop()
     removeChild(coordinator)
     showHome()
   }

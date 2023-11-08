@@ -47,6 +47,9 @@ class PurchaseSVODViewController: UIViewController {
   }()
 
   deinit {
+    // User may dismiss by just swiping down the modal, which won't trigger any button selector.
+    // So we need to catch it here, so that the delegate (coordinator) is aware of the dismiss and
+    // can remove the child properly.
     delegate?.purchaseSVODViewControllerDidDismiss(self)
   }
 

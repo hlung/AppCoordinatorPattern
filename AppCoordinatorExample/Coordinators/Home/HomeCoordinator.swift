@@ -36,6 +36,10 @@ final class HomeCoordinator: ParentCoordinator {
     showStartUpAlertsIfNeeded()
   }
 
+  func stop() {
+    rootViewController.setViewControllers([], animated: false)
+  }
+
   func showPurchase() {
     let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
     addChild(coordinator)

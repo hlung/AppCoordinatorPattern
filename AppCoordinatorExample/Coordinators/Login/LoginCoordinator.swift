@@ -33,6 +33,10 @@ final class LoginCoordinator: Coordinator {
     rootViewController.setViewControllers([viewController], animated: false)
   }
 
+  func stop() {
+    rootViewController.setViewControllers([], animated: false)
+  }
+
 }
 
 extension LoginCoordinator: LoginLandingViewControllerDelegate {
