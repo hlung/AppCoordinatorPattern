@@ -30,7 +30,8 @@ final class AppCoordinator: ParentCoordinator {
 
   func start() {
     if UserDefaults.standard.isLoggedIn {
-      showHome()
+//      showHome()
+      showHomeAsync()
     }
     else {
       showLogin()
@@ -50,6 +51,19 @@ final class AppCoordinator: ParentCoordinator {
     coordinator.start()
   }
 
+  func showHomeAsync() {
+    Task { @MainActor in
+      let coordinator = HomeAsyncCoordinator(navigationController: rootViewController)
+      addChild(coordinator)
+      try await coordinator.start()
+      coordinator.stop()
+      removeChild(coordinator)
+
+      clearUserDefaults()
+      showLogin()
+    }
+  }
+
   func showLogin() {
     let coordinator = LoginCoordinator(navigationController: rootViewController)
     addChild(coordinator)
@@ -57,14 +71,18 @@ final class AppCoordinator: ParentCoordinator {
     coordinator.start()
   }
 
-}
-
-extension AppCoordinator: HomeCoordinatorDelegate {
-  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
+  func clearUserDefaults() {
     UserDefaults.standard.loggedInUsername = nil
     UserDefaults.standard.onboardingShown = false
     UserDefaults.standard.consent = nil
     UserDefaults.standard.emailVerified = false
+  }
+
+}
+
+extension AppCoordinator: HomeCoordinatorDelegate {
+  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
+    clearUserDefaults()
     coordinator.stop()
     removeChild(coordinator)
     showLogin()
