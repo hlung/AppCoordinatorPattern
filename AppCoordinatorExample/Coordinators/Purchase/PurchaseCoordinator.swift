@@ -19,7 +19,7 @@ final class PurchaseCoordinator: Coordinator {
   let productType: ProductType
 
   init(navigationController: UINavigationController, productType: ProductType) {
-    print("\(type(of: self)) \(#function)")
+    print("[\(type(of: self))] \(#function)")
     self.productType = productType
     self.rootViewController = navigationController
   }
@@ -29,7 +29,7 @@ final class PurchaseCoordinator: Coordinator {
   }
 
   deinit {
-    print("\(type(of: self)) \(#function)")
+    print("[\(type(of: self))] \(#function)")
   }
 
   func start() {

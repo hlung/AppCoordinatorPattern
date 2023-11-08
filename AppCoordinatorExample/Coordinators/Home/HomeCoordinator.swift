@@ -12,7 +12,7 @@ final class HomeCoordinator: ParentCoordinator {
   var childCoordinators: [any Coordinator] = []
 
   init(navigationController: UINavigationController) {
-    print("\(type(of: self)) \(#function)")
+    print("[\(type(of: self))] \(#function)")
     self.rootViewController = navigationController
   }
 
@@ -21,7 +21,7 @@ final class HomeCoordinator: ParentCoordinator {
   }
 
   deinit {
-    print("\(type(of: self)) \(#function)")
+    print("[\(type(of: self))] \(#function)")
   }
 
   func start() {

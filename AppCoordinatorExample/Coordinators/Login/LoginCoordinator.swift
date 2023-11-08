@@ -11,7 +11,7 @@ final class LoginCoordinator: Coordinator {
   let rootViewController: UINavigationController
 
   init(navigationController: UINavigationController) {
-    print("\(type(of: self)) \(#function)")
+    print("[\(type(of: self))] \(#function)")
     self.rootViewController = navigationController
   }
 
@@ -20,7 +20,7 @@ final class LoginCoordinator: Coordinator {
   }
 
   deinit {
-    print("\(type(of: self)) \(#function)")
+    print("[\(type(of: self))] \(#function)")
   }
 
   func start() {
