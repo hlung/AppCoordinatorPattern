@@ -55,9 +55,6 @@ final class HomeCoordinator: ParentCoordinator {
       if UserDefaults.standard.consent == nil {
         await showConsentAlert()
       }
-      if !UserDefaults.standard.emailVerified {
-        await showEmailVerificationAlert()
-      }
       // - handle deeplinks
       // - show in app messaging
       // - etc.
@@ -83,17 +80,6 @@ final class HomeCoordinator: ParentCoordinator {
       }))
       alert.addAction(UIAlertAction(title: "Accept", style: .default, handler: { _ in
         UserDefaults.standard.consent = "accept"
-        continuation.resume()
-      }))
-      rootViewController.present(alert, animated: true)
-    }
-  }
-
-  @MainActor func showEmailVerificationAlert() async {
-    await withCheckedContinuation { continuation in
-      let alert = UIAlertController(title: "Verify email", message: nil, preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Verify", style: .default, handler: { _ in
-        UserDefaults.standard.emailVerified = true
         continuation.resume()
       }))
       rootViewController.present(alert, animated: true)

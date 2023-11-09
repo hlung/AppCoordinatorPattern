@@ -79,7 +79,6 @@ final class AppCoordinator: ParentCoordinator, ParentAsyncCoordinator {
     UserDefaults.standard.loggedInUsername = nil
     UserDefaults.standard.onboardingShown = false
     UserDefaults.standard.consent = nil
-    UserDefaults.standard.emailVerified = false
   }
 
 }
