@@ -4,7 +4,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  private(set) var coordinator: AppCoordinator!
+  private(set) var coordinator: AnyObject!
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -15,8 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window.rootViewController = navigationController
     window.makeKeyAndVisible()
 
-    self.coordinator = AppCoordinator(navigationController: navigationController)
+//    let coordinator = AppCoordinator(navigationController: navigationController)
+    let coordinator = AppAsyncCoordinator(navigationController: navigationController)
     coordinator.start()
+
+    self.coordinator = coordinator
 
     return true
   }
