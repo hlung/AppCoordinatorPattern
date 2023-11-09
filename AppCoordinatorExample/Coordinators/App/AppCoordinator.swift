@@ -60,6 +60,7 @@ final class AppCoordinator: ParentCoordinator, ParentAsyncCoordinator {
       try await coordinator.start()
       removeChild(coordinator)
 
+      // or
 //      try await coordinator.start(inParent: self)
 
       clearUserDefaults()

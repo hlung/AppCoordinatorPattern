@@ -111,13 +111,12 @@ extension HomeAsyncCoordinator: HomeViewControllerDelegate {
 
 extension HomeAsyncCoordinator: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
-    print("Purchase OK")
+    print("purchaseCoordinatorDidPurchase")
     coordinator.stop()
   }
 
   func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {
-    print("Purchase stop")
-//    removeChild(coordinator)
+    print("purchaseCoordinatorDidStop")
   }
 }
 
