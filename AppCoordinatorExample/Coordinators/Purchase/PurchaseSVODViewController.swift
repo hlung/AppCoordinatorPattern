@@ -2,8 +2,8 @@ import UIKit
 
 protocol PurchaseSVODViewControllerDelegate: AnyObject {
   func purchaseSVODViewControllerDidPurchase(_ viewController: PurchaseSVODViewController)
-  func purchaseSVODViewControllerDidRequestDismiss(_ viewController: PurchaseSVODViewController)
-  func purchaseSVODViewControllerDidDismiss(_ viewController: PurchaseSVODViewController)
+  func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController)
+  func purchaseSVODViewControllerDidDeinit(_ viewController: PurchaseSVODViewController)
 }
 
 class PurchaseSVODViewController: UIViewController {
@@ -50,7 +50,7 @@ class PurchaseSVODViewController: UIViewController {
     // User may dismiss by just swiping down the modal, which won't trigger any button selector.
     // So we need to catch it here, so that the delegate (coordinator) is aware of the dismiss and
     // can remove the child properly.
-    delegate?.purchaseSVODViewControllerDidDismiss(self)
+    delegate?.purchaseSVODViewControllerDidDeinit(self)
   }
 
   override func viewDidLoad() {
@@ -79,7 +79,7 @@ class PurchaseSVODViewController: UIViewController {
   }
 
   @objc func cancelButtonDidTap() {
-    self.delegate?.purchaseSVODViewControllerDidRequestDismiss(self)
+    self.delegate?.purchaseSVODViewControllerDidCancel(self)
   }
 
   // MARK: - Alert Controllers

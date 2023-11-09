@@ -11,6 +11,7 @@
 		013CD6D42AFB8D8B00B444AB /* HomeAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */; };
 		013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */; };
 		013CD6D82AFCB04500B444AB /* AppAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D72AFCB04500B444AB /* AppAsyncCoordinator.swift */; };
+		013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
 		013D26AA271C4C240067B44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013D26A9271C4C240067B44E /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6D72AFCB04500B444AB /* AppAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAsyncCoordinator.swift; sourceTree = "<group>"; };
+		013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013D26A0271C4C220067B44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013D26A4271C4C220067B44E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */,
+				013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */,
 				01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */,
 			);
 			path = Purchase;
@@ -356,6 +359,7 @@
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */,
 				013CD6D22AFB8CB300B444AB /* AsyncCoordinator.swift in Sources */,
+				013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
 				01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,

@@ -1,7 +1,7 @@
 import UIKit
 
-final class HomeAsyncCoordinator: AsyncCoordinator, ParentCoordinator {
-  var childCoordinators: [any Coordinator] = []
+final class HomeAsyncCoordinator: ParentAsyncCoordinator {
+  var childAsyncCoordinators: [any AsyncCoordinator] = []
   let rootViewController: UINavigationController
   private var continuation: CheckedContinuation<Void, Error>?
 
@@ -16,9 +16,6 @@ final class HomeAsyncCoordinator: AsyncCoordinator, ParentCoordinator {
 
   deinit {
     print("[\(type(of: self))] \(#function)")
-  }
-
-  func start() {
   }
 
   @MainActor func start() async throws -> Void {
@@ -48,10 +45,17 @@ final class HomeAsyncCoordinator: AsyncCoordinator, ParentCoordinator {
   }
 
   func showPurchase() {
-    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
-    addChild(coordinator)
-    coordinator.delegate = self
-    coordinator.start()
+    Task { @MainActor in
+      let coordinator = PurchaseAsyncCoordinator(navigationController: rootViewController, productType: .svod)
+      let output = try await start(coordinator)
+      switch output {
+      case .didPurchaseSVOD, .didPurchaseTVOD, .didRestorePurchase:
+        // refresh privileges
+        break
+      case .cancelled:
+        break
+      }
+    }
   }
 
   @MainActor func showOnboarding() async {
@@ -92,17 +96,6 @@ extension HomeAsyncCoordinator: HomeViewControllerDelegate {
 
   func homeViewControllerDidTapOnboarding(_ viewController: HomeViewController) {
     Task { await showOnboarding() }
-  }
-}
-
-extension HomeAsyncCoordinator: PurchaseCoordinatorDelegate {
-  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
-    print("purchaseCoordinatorDidPurchase")
-    coordinator.stop()
-  }
-
-  func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {
-    print("purchaseCoordinatorDidStop")
   }
 }
 

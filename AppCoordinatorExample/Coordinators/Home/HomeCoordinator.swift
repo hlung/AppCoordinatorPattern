@@ -105,7 +105,7 @@ extension HomeCoordinator: HomeViewControllerDelegate {
 extension HomeCoordinator: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
-    coordinator.stop()
+    removeChild(coordinator)
   }
 
   func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {

@@ -1,22 +1,29 @@
 import UIKit
 
-protocol PurchaseCoordinatorDelegate: AnyObject {
-  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator)
-  func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator)
+protocol PurchaseAsyncCoordinatorDelegate: AnyObject {
+  func purchaseAsyncCoorinatorDidPurchase(_ coordinator: PurchaseAsyncCoordinator)
 }
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
-final class PurchaseCoordinator: Coordinator {
+final class PurchaseAsyncCoordinator: AsyncCoordinator {
 
   enum ProductType {
     case svod
     case tvod
   }
 
+  enum Output {
+    case didPurchaseSVOD // didPurchasePlan
+    case didPurchaseTVOD // didPurchaseProduct
+    case didRestorePurchase
+    case cancelled
+  }
+
   weak var delegate: PurchaseCoordinatorDelegate?
 
   let rootViewController: UINavigationController
   let productType: ProductType
+  private var continuation: CheckedContinuation<Output, Never>?
 
   init(navigationController: UINavigationController, productType: ProductType) {
     print("[\(type(of: self))] \(#function)")
@@ -32,7 +39,7 @@ final class PurchaseCoordinator: Coordinator {
     print("[\(type(of: self))] \(#function)")
   }
 
-  func start() {
+  @MainActor func start() async -> Output {
     switch productType {
     case .svod:
       let vc = PurchaseSVODViewController()
@@ -41,22 +48,29 @@ final class PurchaseCoordinator: Coordinator {
     case .tvod:
       break // to be implemented
     }
+
+    let output = await withCheckedContinuation { self.continuation = $0 }
+    return output
   }
 
 }
 
-extension PurchaseCoordinator: PurchaseSVODViewControllerDelegate {
+extension PurchaseAsyncCoordinator: PurchaseSVODViewControllerDelegate {
+  // Buy button
   func purchaseSVODViewControllerDidPurchase(_ viewController: PurchaseSVODViewController) {
     rootViewController.popToRootViewController(animated: true)
-    delegate?.purchaseCoordinatorDidPurchase(self)
+    continuation?.resume(returning: .didPurchaseSVOD)
   }
 
+  // Cancel button
   func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController) {
     rootViewController.popToRootViewController(animated: true)
-    delegate?.purchaseCoordinatorDidStop(self)
+    continuation?.resume(returning: .cancelled)
   }
 
+  // Back button
   func purchaseSVODViewControllerDidDeinit(_ viewController: PurchaseSVODViewController) {
-    delegate?.purchaseCoordinatorDidStop(self)
+    // navigationController is already at root, no need to pop again
+    continuation?.resume(returning: .cancelled)
   }
 }
