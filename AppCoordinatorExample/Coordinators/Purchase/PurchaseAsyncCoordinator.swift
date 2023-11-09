@@ -42,17 +42,31 @@ final class PurchaseAsyncCoordinator: AsyncCoordinator {
   @MainActor func start() async -> Output {
     switch productType {
     case .svod:
-      let vc = PurchaseSVODViewController()
-      vc.delegate = self
-      self.rootViewController.pushViewController(vc, animated: true)
-    case .tvod:
-      break // to be implemented
-    }
+      // Task does not retain vc
+      let output = await withCheckedContinuation {
+        let vc = PurchaseSVODViewController()
+        vc.delegate = self
+        self.rootViewController.pushViewController(vc, animated: true)
+        self.continuation = $0
+      }
+      return output
 
-    let output = await withCheckedContinuation { self.continuation = $0 }
-    return output
+      // Task retains vc
+//      let vc = PurchaseSVODViewController()
+//      vc.delegate = self
+//      self.rootViewController.pushViewController(vc, animated: true)
+//      let output = await withCheckedContinuation { self.continuation = $0 }
+//      return output
+
+    case .tvod:
+      // to be implemented
+      return .didPurchaseTVOD
+    }
   }
 
+//  func start() -> Output {
+//    return .cancelled
+//  }
 }
 
 extension PurchaseAsyncCoordinator: PurchaseSVODViewControllerDelegate {
