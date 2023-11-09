@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		013CD6D22AFB8CB300B444AB /* AsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D12AFB8CB300B444AB /* AsyncCoordinator.swift */; };
 		013CD6D42AFB8D8B00B444AB /* HomeAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */; };
+		013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
 		013D26AA271C4C240067B44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013D26A9271C4C240067B44E /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		013CD6D12AFB8CB300B444AB /* AsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAsyncCoordinator.swift; sourceTree = "<group>"; };
+		013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013D26A0271C4C220067B44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013D26A4271C4C220067B44E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				013D26E3271D1E820067B44E /* LoginCoordinator.swift */,
+				013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */,
 				013D26E5271E613B0067B44E /* LoginLandingViewController.swift */,
 				013D26DB271C4D3E0067B44E /* LoginViewController.swift */,
 			);
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */,
+				013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */,
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
 				01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */,
