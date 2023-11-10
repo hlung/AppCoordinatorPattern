@@ -2,10 +2,11 @@ import UIKit
 
 protocol Coordinator: AnyObject where ViewController: UIViewController {
   associatedtype ViewController
-  var rootViewController: ViewController { get }
-  func start()
-}
+  associatedtype Output
 
+  var rootViewController: ViewController { get }
+  func start() async throws -> Output
+}
 
 protocol ParentCoordinator: Coordinator {
   var childCoordinators: [any Coordinator] { get set }
