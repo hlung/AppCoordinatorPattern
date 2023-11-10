@@ -31,4 +31,10 @@ extension UserDefaults {
     get { bool(forKey: Key.emailVerified) }
     set { set(newValue, forKey: Key.emailVerified) }
   }
+
+  func clearUserDefaults() {
+    loggedInUsername = nil
+    onboardingShown = false
+    consent = nil
+  }
 }

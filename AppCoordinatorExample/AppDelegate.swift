@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window.makeKeyAndVisible()
 
 //    let coordinator = AppCoordinator(navigationController: navigationController)
-    let coordinator = AppAsyncCoordinator(navigationController: navigationController)
+//    let coordinator = AppAsyncCoordinator(navigationController: navigationController)
+    let coordinator = AppNavigator(navigationController: navigationController)
     coordinator.start()
 
     self.coordinator = coordinator
