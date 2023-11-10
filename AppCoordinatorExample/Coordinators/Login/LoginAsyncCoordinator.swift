@@ -20,10 +20,6 @@ final class LoginAsyncCoordinator: AsyncCoordinator {
   }
 
   @MainActor func start() async throws -> String {
-    let appearance = UINavigationBarAppearance()
-    appearance.backgroundColor = .systemGray3
-    rootViewController.navigationBar.scrollEdgeAppearance = appearance
-
     let viewController = LoginLandingViewController()
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)

@@ -25,10 +25,6 @@ final class HomeCoordinator: ParentCoordinator {
   }
 
   func start() {
-    let appearance = UINavigationBarAppearance()
-    appearance.backgroundColor = .systemGray3
-    rootViewController.navigationBar.scrollEdgeAppearance = appearance
-
     let viewController = HomeViewController()
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)

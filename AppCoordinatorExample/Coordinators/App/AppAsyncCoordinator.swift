@@ -27,18 +27,12 @@ final class AppAsyncCoordinator: ParentAsyncCoordinator {
   func showHome() async throws {
     let coordinator = HomeAsyncCoordinator(navigationController: rootViewController)
     try await start(coordinator)
-    clearUserDefaults()
+    UserDefaults.standard.clear()
   }
 
   func showLogin() async throws {
     let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
     UserDefaults.standard.loggedInUsername = try await start(coordinator)
-  }
-
-  func clearUserDefaults() {
-    UserDefaults.standard.loggedInUsername = nil
-    UserDefaults.standard.onboardingShown = false
-    UserDefaults.standard.consent = nil
   }
 
 }
