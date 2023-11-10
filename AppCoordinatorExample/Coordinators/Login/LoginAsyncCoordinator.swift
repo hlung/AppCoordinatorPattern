@@ -1,7 +1,7 @@
 import UIKit
 
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
-final class LoginAsyncCoordinator: AsyncCoordinator {
+final class LoginAsyncCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
   private var continuation: CheckedContinuation<String, Error>?

@@ -29,21 +29,6 @@ final class HomeCoordinator: ParentCoordinator {
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)
 
-    showStartUpAlertsIfNeeded()
-  }
-
-  func stop() {
-    rootViewController.setViewControllers([], animated: false)
-  }
-
-  func showPurchase() {
-    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
-    addChild(coordinator)
-    coordinator.delegate = self
-    coordinator.start()
-  }
-
-  func showStartUpAlertsIfNeeded() {
     Task {
       if !UserDefaults.standard.onboardingShown {
         await showOnboarding()
@@ -55,6 +40,13 @@ final class HomeCoordinator: ParentCoordinator {
       // - show in app messaging
       // - etc.
     }
+  }
+
+  func showPurchase() {
+    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
+    addChild(coordinator)
+    coordinator.delegate = self
+    coordinator.start()
   }
 
   @MainActor func showOnboarding() async {

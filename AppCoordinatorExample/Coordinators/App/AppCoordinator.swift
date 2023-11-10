@@ -28,10 +28,20 @@ final class AppCoordinator: ParentCoordinator {
   }
 
   func showLogin() {
-    let coordinator = LoginCoordinator(navigationController: rootViewController)
-    addChild(coordinator)
-    coordinator.delegate = self
-    coordinator.start()
+//    let coordinator = LoginCoordinator(navigationController: rootViewController)
+//    addChild(coordinator)
+//    coordinator.delegate = self
+//    coordinator.start()
+
+    Task { @MainActor in
+      let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
+      addChild(coordinator)
+      let username = try await coordinator.start()
+      print("Login result: \(username)")
+      UserDefaults.standard.loggedInUsername = username
+      removeChild(coordinator)
+      showHome()
+    }
   }
 }
 
@@ -43,11 +53,11 @@ extension AppCoordinator: HomeCoordinatorDelegate {
   }
 }
 
-extension AppCoordinator: LoginCoordinatorDelegate {
-  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
-    print("Login result: \(username)")
-    UserDefaults.standard.loggedInUsername = username
-    removeChild(coordinator)
-    showHome()
-  }
-}
+//extension AppCoordinator: LoginCoordinatorDelegate {
+//  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
+//    print("Login result: \(username)")
+//    UserDefaults.standard.loggedInUsername = username
+//    removeChild(coordinator)
+//    showHome()
+//  }
+//}

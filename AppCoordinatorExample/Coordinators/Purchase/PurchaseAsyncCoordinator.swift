@@ -5,7 +5,7 @@ protocol PurchaseAsyncCoordinatorDelegate: AnyObject {
 }
 
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
-final class PurchaseAsyncCoordinator: AsyncCoordinator {
+final class PurchaseAsyncCoordinator: Coordinator {
 
   enum ProductType {
     case svod
