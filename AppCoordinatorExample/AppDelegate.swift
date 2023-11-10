@@ -12,6 +12,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let window = UIWindow(frame: UIScreen.main.bounds)
     self.window = window
     let navigationController = UINavigationController()
+
+    let appearance = UINavigationBarAppearance()
+    appearance.backgroundColor = .systemGray3
+    navigationController.navigationBar.scrollEdgeAppearance = appearance
+
     window.rootViewController = navigationController
     window.makeKeyAndVisible()
 

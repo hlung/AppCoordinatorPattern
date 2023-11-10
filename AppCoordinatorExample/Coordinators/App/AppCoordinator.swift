@@ -33,17 +33,11 @@ final class AppCoordinator: ParentCoordinator {
     coordinator.delegate = self
     coordinator.start()
   }
-
-  func clearUserDefaults() {
-    UserDefaults.standard.loggedInUsername = nil
-    UserDefaults.standard.onboardingShown = false
-    UserDefaults.standard.consent = nil
-  }
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
-    clearUserDefaults()
+    UserDefaults.standard.clear()
     removeChild(coordinator)
     showLogin()
   }

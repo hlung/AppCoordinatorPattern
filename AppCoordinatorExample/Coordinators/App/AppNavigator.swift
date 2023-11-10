@@ -42,10 +42,6 @@ final class AppNavigator {
   }
 
   func showLogin() {
-    let appearance = UINavigationBarAppearance()
-    appearance.backgroundColor = .systemGray3
-    rootViewController.navigationBar.scrollEdgeAppearance = appearance
-
     let viewController = LoginLandingViewController()
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)

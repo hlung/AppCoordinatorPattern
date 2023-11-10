@@ -31,10 +31,6 @@ final class HomeNavigator {
 
   func start() {
     Task { @MainActor in
-      let appearance = UINavigationBarAppearance()
-      appearance.backgroundColor = .systemGray3
-      rootViewController.navigationBar.scrollEdgeAppearance = appearance
-
       await navigate(to: .home)
 
       if !UserDefaults.standard.onboardingShown {
