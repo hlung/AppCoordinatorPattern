@@ -20,7 +20,7 @@ class AppCoordinatorExampleTests: XCTestCase {
 
   func testLogIn() {
     let nav = UINavigationController()
-    let sut = AppCoordinator(
+    let sut = AppCoordinatorRedux(
       navigationController: nav,
       dependencies: MockDependency.loggedOut
     )

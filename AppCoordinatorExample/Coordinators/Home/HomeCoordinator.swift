@@ -8,7 +8,7 @@ protocol HomeCoordinatorDelegate: AnyObject {
 final class HomeCoordinator: ParentCoordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
-  weak var appCoordinator: AppCoordinator?
+  weak var appCoordinator: AppCoordinatorRedux?
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
 
