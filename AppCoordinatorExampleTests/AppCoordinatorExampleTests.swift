@@ -29,6 +29,10 @@ class AppCoordinatorExampleTests: XCTestCase {
     XCTAssertTrue(sut.rootViewController.viewControllers.first?.isKind(of: LoginLandingViewController.self) == true)
 
     sut.send(.login("John"))
+    // If we were to use LoginCoordinatorDelegate, we'll have to mock loginCoordinator too.
+    // And that loginCoordinator has to be the same instance as the one privately created at AppCoordinator start(),
+    // which is hard to obtain.
+//    sut.loginCoordinator(???, didLogInWith: "John")
     XCTAssertEqual(sut.state.loggedInUsername, "John")
     XCTAssertTrue(sut.rootViewController.viewControllers.first?.isKind(of: HomeViewController.self) == true)
   }
