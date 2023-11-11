@@ -21,6 +21,7 @@ final class HomeAsyncCoordinator: ParentAsyncCoordinator {
   @MainActor func start() async throws -> Void {
     let viewController = HomeViewController()
     viewController.delegate = self
+    viewController.username = UserDefaults.standard.loggedInUsername ?? "-"
     rootViewController.setViewControllers([viewController], animated: false)
 
     if !UserDefaults.standard.onboardingShown {

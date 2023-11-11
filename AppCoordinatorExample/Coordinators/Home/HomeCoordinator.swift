@@ -11,10 +11,12 @@ final class HomeCoordinator: ParentCoordinator {
   weak var appCoordinator: AppCoordinatorRedux?
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
+  var username: String
 
-  init(navigationController: UINavigationController) {
+  init(navigationController: UINavigationController, username: String) {
     print("[\(type(of: self))] \(#function)")
     self.rootViewController = navigationController
+    self.username = username
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -28,7 +30,7 @@ final class HomeCoordinator: ParentCoordinator {
   func start() {
     let viewController = HomeViewController()
     viewController.delegate = self
-    viewController.loggedInUsername = 
+    viewController.username = username
     rootViewController.setViewControllers([viewController], animated: false)
 
     showStartUpAlertsIfNeeded()

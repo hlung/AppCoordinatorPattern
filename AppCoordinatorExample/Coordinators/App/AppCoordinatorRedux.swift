@@ -28,7 +28,7 @@ final class AppCoordinatorRedux: CoordinatorRedux {
 
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
-  var dependencies: Dependencies
+  private var dependencies: Dependencies
 
   init(navigationController: UINavigationController, dependencies: Dependencies) {
     self.dependencies = dependencies
@@ -38,8 +38,8 @@ final class AppCoordinatorRedux: CoordinatorRedux {
 
   // Updates rootViewController from a clean slate using current state.
   func start() {
-    if let _ = state.loggedInUsername {
-      let coordinator = HomeCoordinator(navigationController: rootViewController)
+    if let username = state.loggedInUsername {
+      let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
       childCoordinators.append(coordinator)
       coordinator.appCoordinator = self
       coordinator.start()

@@ -21,7 +21,8 @@ final class AppCoordinator: ParentCoordinator {
   // MARK: - Navigation
 
   func showHome() {
-    let coordinator = HomeCoordinator(navigationController: rootViewController)
+    let username = UserDefaults.standard.loggedInUsername ?? "-"
+    let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
     addChild(coordinator)
     coordinator.delegate = self
     coordinator.start()
