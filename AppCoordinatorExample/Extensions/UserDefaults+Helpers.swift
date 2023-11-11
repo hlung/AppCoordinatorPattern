@@ -40,3 +40,9 @@ extension UserDefaults {
   }
 
 }
+
+protocol UsernameProvider {
+  var loggedInUsername: String? { get set }
+  func clear()
+}
+extension UserDefaults: UsernameProvider {}

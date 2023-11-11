@@ -8,6 +8,7 @@ protocol LoginCoordinatorDelegate: AnyObject {
 final class LoginCoordinator: Coordinator {
 
   weak var delegate: LoginCoordinatorDelegate?
+  weak var appCoordinator: AppCoordinator?
   let rootViewController: UINavigationController
 
   init(navigationController: UINavigationController) {
@@ -46,6 +47,7 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
 extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewController(_ viewController: LoginViewController, didLogInWith username: String) {
     delegate?.loginCoordinator(self, didLogInWith: username)
+    appCoordinator?.send(.login(username))
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {
