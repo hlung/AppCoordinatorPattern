@@ -30,7 +30,7 @@ final class AppCoordinatorRedux: CoordinatorRedux {
     self.state = State(loggedInUsername: dependencies.loggedInUsername)
   }
 
-  // Setting up rootViewController from a clean slate
+  // Updates rootViewController from a clean slate using current state.
   func start() {
     if let _ = state.loggedInUsername {
       let coordinator = HomeCoordinator(navigationController: rootViewController)
@@ -46,7 +46,8 @@ final class AppCoordinatorRedux: CoordinatorRedux {
     }
   }
 
-  // The only place where state can be mutated, do any cleanups as needed.
+  // Apply changes to state and perform side effects (dependency update, make API calls, etc.) as needed.
+  // *** This should be the ONLY place where state is mutated. ***
   func send(_ action: Action) {
     switch action {
     case .login(let string):
