@@ -4,9 +4,14 @@ final class AppCoordinatorRedux: CoordinatorRedux {
 
   typealias Dependencies = UsernameProvider
 
-  // Leave as internal to allow testing
+  // Leave as internal to allow testing.
+  // All possible states of the coordinator.
+  // Can be any type, not just struct or enum.
   struct State: Equatable {
     var loggedInUsername: String?
+    // var showFakeSplashScreen: Bool
+    // var appLaunchError: Error?
+    // var showForcedUpdateAlert: Bool
   }
 
   enum Action {
