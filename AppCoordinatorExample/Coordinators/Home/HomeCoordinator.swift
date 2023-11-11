@@ -28,6 +28,7 @@ final class HomeCoordinator: ParentCoordinator {
   func start() {
     let viewController = HomeViewController()
     viewController.delegate = self
+    viewController.loggedInUsername = 
     rootViewController.setViewControllers([viewController], animated: false)
 
     showStartUpAlertsIfNeeded()

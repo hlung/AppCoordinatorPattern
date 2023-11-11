@@ -9,6 +9,7 @@ protocol HomeViewControllerDelegate: AnyObject {
 class HomeViewController: UIViewController {
 
   weak var delegate: HomeViewControllerDelegate?
+  var loggedInUsername: String?
 
   lazy var stackView: UIStackView = {
     let stackView = UIStackView()
@@ -21,7 +22,7 @@ class HomeViewController: UIViewController {
 
   lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = "Welcome! \(UserDefaults.standard.loggedInUsername ?? "-")"
+    label.text = "Welcome! \(loggedInUsername ?? "-")"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()

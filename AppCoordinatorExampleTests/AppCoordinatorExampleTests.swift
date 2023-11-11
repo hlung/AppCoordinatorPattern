@@ -25,11 +25,11 @@ class AppCoordinatorExampleTests: XCTestCase {
       dependencies: MockDependency.loggedOut
     )
     sut.start()
-    XCTAssertEqual(sut.state, .init(loggedInUsername: nil))
+    XCTAssertEqual(sut.state.loggedInUsername, nil)
     XCTAssertTrue(sut.rootViewController.viewControllers.first?.isKind(of: LoginLandingViewController.self) == true)
 
     sut.send(.login("John"))
-    XCTAssertEqual(sut.state, .init(loggedInUsername: "John"))
+    XCTAssertEqual(sut.state.loggedInUsername, "John")
     XCTAssertTrue(sut.rootViewController.viewControllers.first?.isKind(of: HomeViewController.self) == true)
   }
 
