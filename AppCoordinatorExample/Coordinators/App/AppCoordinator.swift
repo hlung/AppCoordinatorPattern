@@ -4,7 +4,8 @@ final class AppCoordinator {
 
   typealias Dependencies = UsernameProvider
 
-  private struct State {
+  // Leave as internal to allow testing
+  struct State: Equatable {
     var loggedInUsername: String?
   }
 
@@ -13,7 +14,7 @@ final class AppCoordinator {
     case logout
   }
 
-  private var state: State {
+  private(set) var state: State {
     didSet {
       start()
     }

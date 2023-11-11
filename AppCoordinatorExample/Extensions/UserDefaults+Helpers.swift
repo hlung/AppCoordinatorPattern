@@ -43,6 +43,6 @@ extension UserDefaults {
 
 protocol UsernameProvider {
   var loggedInUsername: String? { get set }
-  func clear()
+  mutating func clear()
 }
 extension UserDefaults: UsernameProvider {}

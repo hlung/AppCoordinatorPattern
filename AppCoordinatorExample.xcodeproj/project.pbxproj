@@ -54,6 +54,7 @@
 		013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6D72AFCB04500B444AB /* AppAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAsyncCoordinator.swift; sourceTree = "<group>"; };
+		013CD6DF2AFFAA7200B444AB /* AppCoordinatorExample.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppCoordinatorExample.xctestplan; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013D26A0271C4C220067B44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013D26A4271C4C220067B44E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				013D269F271C4C220067B44E /* AppCoordinatorExample */,
+				013CD6DF2AFFAA7200B444AB /* AppCoordinatorExample.xctestplan */,
 				013D26B6271C4C250067B44E /* AppCoordinatorExampleTests */,
 				013D26C1271C4C250067B44E /* AppCoordinatorExampleUITests */,
 				013D269E271C4C220067B44E /* Products */,
