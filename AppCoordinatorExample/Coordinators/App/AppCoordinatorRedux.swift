@@ -16,6 +16,7 @@ final class AppCoordinatorRedux: CoordinatorRedux {
 
   private(set) var state: State {
     didSet {
+      guard state != oldValue else { return }
       start()
     }
   }
