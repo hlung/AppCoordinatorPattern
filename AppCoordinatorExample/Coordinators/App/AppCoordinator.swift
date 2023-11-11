@@ -1,62 +1,53 @@
 import UIKit
 
-final class AppCoordinator {
-
-  typealias Dependencies = UsernameProvider
-
-  // Leave as internal to allow testing
-  struct State: Equatable {
-    var loggedInUsername: String?
-  }
-
-  enum Action {
-    case login(String)
-    case logout
-  }
-
-  private(set) var state: State {
-    didSet {
-      start()
-    }
-  }
+final class AppCoordinator: ParentCoordinator {
 
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
-  var dependencies: Dependencies
 
-  init(navigationController: UINavigationController, dependencies: Dependencies) {
-    self.dependencies = dependencies
+  init(navigationController: UINavigationController) {
     self.rootViewController = navigationController
-    self.state = State(loggedInUsername: dependencies.loggedInUsername)
   }
 
   func start() {
-    if let _ = state.loggedInUsername {
-      let coordinator = HomeCoordinator(navigationController: rootViewController)
-      childCoordinators.append(coordinator)
-      coordinator.appCoordinator = self
-      coordinator.start()
+    if UserDefaults.standard.isLoggedIn {
+      showHome()
     }
     else {
-      let coordinator = LoginCoordinator(navigationController: rootViewController)
-      childCoordinators.append(coordinator)
-      coordinator.appCoordinator = self
-      coordinator.start()
+      showLogin()
     }
   }
 
-  // The only place where state can be mutated
-  func send(_ action: Action) {
-    switch action {
-    case .login(let string):
-      childCoordinators.removeAll()
-      dependencies.loggedInUsername = string
-      state.loggedInUsername = string
-    case .logout:
-      childCoordinators.removeAll()
-      dependencies.clear()
-      state.loggedInUsername = nil
-    }
+  // MARK: - Navigation
+
+  func showHome() {
+    let coordinator = HomeCoordinator(navigationController: rootViewController)
+    addChild(coordinator)
+    coordinator.delegate = self
+    coordinator.start()
   }
 
+  func showLogin() {
+    let coordinator = LoginCoordinator(navigationController: rootViewController)
+    addChild(coordinator)
+    coordinator.delegate = self
+    coordinator.start()
+  }
+}
+
+extension AppCoordinator: HomeCoordinatorDelegate {
+  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
+    UserDefaults.standard.clear()
+    removeChild(coordinator)
+    showLogin()
+  }
+}
+
+extension AppCoordinator: LoginCoordinatorDelegate {
+  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
+    print("Login result: \(username)")
+    UserDefaults.standard.loggedInUsername = username
+    removeChild(coordinator)
+    showHome()
+  }
 }
