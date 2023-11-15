@@ -10,6 +10,8 @@ final class PurchaseAsyncCoordinator: AsyncCoordinator {
   enum ProductType {
     case svod
     case tvod
+    // case tvodsvod
+    // case restorePurchase
   }
 
   enum Output {

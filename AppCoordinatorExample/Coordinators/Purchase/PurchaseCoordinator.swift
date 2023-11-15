@@ -11,6 +11,8 @@ final class PurchaseCoordinator: Coordinator {
   enum ProductType {
     case svod
     case tvod
+    // case tvodsvod
+    // case restorePurchase
   }
 
   weak var delegate: PurchaseCoordinatorDelegate?

@@ -40,7 +40,7 @@ class PurchaseSVODViewController: UIViewController {
     let button = UIButton(type: .custom)
     button.setTitle("Cancel", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .systemRed
+    button.backgroundColor = .systemGray
     button.setTitleColor(.black, for: .highlighted)
     button.widthAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
     return button
