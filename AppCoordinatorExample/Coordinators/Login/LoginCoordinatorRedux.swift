@@ -3,8 +3,7 @@ import UIKit
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
 final class LoginCoordinatorRedux {
 
-  weak var delegate: LoginCoordinatorDelegate?
-  weak var appCoordinator: (any ActionSender<AppCoordinatorRedux.Action>)?
+  weak var actionSender: (any ActionSender<AppCoordinatorReduxNested.Action>)?
   let rootViewController: UINavigationController
 
   init(navigationController: UINavigationController) {
@@ -42,7 +41,7 @@ extension LoginCoordinatorRedux: LoginLandingViewControllerDelegate {
 
 extension LoginCoordinatorRedux: LoginViewControllerDelegate {
   func loginViewController(_ viewController: LoginViewController, didLogInWith username: String) {
-    appCoordinator?.send(.login(username))
+    actionSender?.send(.login(username))
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {

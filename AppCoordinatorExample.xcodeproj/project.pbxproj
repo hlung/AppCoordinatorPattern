@@ -16,6 +16,7 @@
 		013CD6E32AFFAE3D00B444AB /* CoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */; };
 		013CD6E72B04902F00B444AB /* LoginCoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E62B04902F00B444AB /* LoginCoordinatorRedux.swift */; };
 		013CD6EA2B049DD300B444AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E92B049DD300B444AB /* User.swift */; };
+		013CD6EC2B04BF5200B444AB /* AppCoordinatorReduxNested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
 		013D26AA271C4C240067B44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013D26A9271C4C240067B44E /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorRedux.swift; sourceTree = "<group>"; };
 		013CD6E62B04902F00B444AB /* LoginCoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatorRedux.swift; sourceTree = "<group>"; };
 		013CD6E92B049DD300B444AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorReduxNested.swift; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013D26A0271C4C220067B44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013D26A4271C4C220067B44E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
 				013CD6D72AFCB04500B444AB /* AppAsyncCoordinator.swift */,
 				013CD6E02AFFACDA00B444AB /* AppCoordinatorRedux.swift */,
+				013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
 				013CD6D82AFCB04500B444AB /* AppAsyncCoordinator.swift in Sources */,
 				017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */,
+				013CD6EC2B04BF5200B444AB /* AppCoordinatorReduxNested.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
