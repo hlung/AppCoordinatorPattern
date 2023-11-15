@@ -9,16 +9,18 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
 
   struct State: Equatable {
     var username: String
-    var showConsent: Bool
-    var showOnboarding: Bool
-    var showPurchase: Bool
+//    var modal: Modal?
+//
+//    enum Modal {
+//      case onboarding
+//      case consent
+//    }
   }
 
   enum Action {
-    case showConsent
-    case showOnboarding
+    case showStartUpAlertsIfNeeded
     case showPurchase
-    case didPurchase
+    case didFinishPurchase
   }
 
   private(set) var state: State {
@@ -33,18 +35,24 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
 
   let rootViewController: UINavigationController
   var childCoordinators: [AnyObject] = []
-//  var username: String
 
   init(navigationController: UINavigationController, username: String) {
     print("[\(type(of: self))] \(#function)")
     self.rootViewController = navigationController
     self.state = State(
-      username: username,
-      showConsent: UserDefaults.standard.consent == nil,
-      showOnboarding: !UserDefaults.standard.onboardingShown,
-      showPurchase: false
+      username: username
+//      modal: Self.modal()
     )
   }
+
+//  static func modal() -> State.Modal {
+//    if !UserDefaults.standard.onboardingShown {
+//      return .onboarding
+//    }
+//    if UserDefaults.standard.consent == nil {
+//      return .consent
+//    }
+//  }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -56,26 +64,42 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
 
   func start() {
     translateStateToUI()
-//    showStartUpAlertsIfNeeded()
   }
 
   func stop() {
     rootViewController.setViewControllers([], animated: false)
   }
 
-  func translateStateToUI() {
+  lazy var homeViewController: HomeViewController = {
     let viewController = HomeViewController()
     viewController.delegate = self
-    viewController.username = state.username
     rootViewController.setViewControllers([viewController], animated: false)
+    return viewController
+  }()
 
-    if state.showOnboarding {
-      Task { await showOnboarding() }
-    }
-    else if state.showConsent {
-      Task { await showConsentAlert() }
-    }
+  func translateStateToUI() {
+    homeViewController.username = state.username
 
+//    if state.showOnboarding {
+//      Task { await showOnboarding() }
+//    }
+//    if state.showConsent {
+//      Task { await showConsentAlert() }
+//    }
+//    if state.showPurchase {
+//      showPurchase()
+//    }
+  }
+
+  func send(_ action: Action) {
+    switch action {
+    case .showStartUpAlertsIfNeeded:
+      showStartUpAlertsIfNeeded()
+    case .showPurchase:
+      break
+    case .didFinishPurchase:
+      break
+    }
   }
 
   func showPurchase() {
