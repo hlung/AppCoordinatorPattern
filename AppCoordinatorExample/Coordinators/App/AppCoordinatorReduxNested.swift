@@ -85,7 +85,8 @@ final class AppCoordinatorReduxNested: CoordinatorRedux, ActionSender {
     case .loggedOut:
       let coordinator = LoginCoordinator(navigationController: rootViewController)
       childCoordinators.append(coordinator)
-      coordinator.delegate = self
+//      coordinator.delegate = self
+      coordinator.actionSender = self
       coordinator.start()
     }
   }
@@ -119,12 +120,12 @@ final class AppCoordinatorReduxNested: CoordinatorRedux, ActionSender {
 
 }
 
-extension AppCoordinatorReduxNested: LoginCoordinatorDelegate {
-  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
-    childCoordinators.removeAll { $0 === coordinator }
-    send(.login(username))
-  }
-}
+//extension AppCoordinatorReduxNested: LoginCoordinatorDelegate {
+//  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
+//    childCoordinators.removeAll { $0 === coordinator }
+//    send(.login(username))
+//  }
+//}
 
 extension AppCoordinatorReduxNested: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
