@@ -9,6 +9,7 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
 
   struct State: Equatable {
     var username: String
+
 //    var modal: Modal?
 //
 //    enum Modal {
@@ -18,15 +19,14 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
   }
 
   enum Action {
-    case showStartUpAlertsIfNeeded
     case showPurchase
-    case didFinishPurchase
+    case didPurchase
   }
 
   private(set) var state: State {
     didSet {
       guard state != oldValue else { return }
-      print("[\(type(of: self))] \(#function)", oldValue, "->", state)
+      print("[\(type(of: self))]", #function, oldValue, "->", state)
       translateStateToUI()
     }
   }
@@ -41,18 +41,9 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
     self.rootViewController = navigationController
     self.state = State(
       username: username
-//      modal: Self.modal()
     )
+    print("[\(type(of: self))] initial state", state)
   }
-
-//  static func modal() -> State.Modal {
-//    if !UserDefaults.standard.onboardingShown {
-//      return .onboarding
-//    }
-//    if UserDefaults.standard.consent == nil {
-//      return .consent
-//    }
-//  }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -64,6 +55,7 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
 
   func start() {
     translateStateToUI()
+    showStartUpAlertsIfNeeded()
   }
 
   func stop() {
@@ -79,25 +71,16 @@ final class HomeCoordinatorRedux: CoordinatorRedux {
 
   func translateStateToUI() {
     homeViewController.username = state.username
-
-//    if state.showOnboarding {
-//      Task { await showOnboarding() }
-//    }
-//    if state.showConsent {
-//      Task { await showConsentAlert() }
-//    }
-//    if state.showPurchase {
-//      showPurchase()
-//    }
   }
 
   func send(_ action: Action) {
+    print("[\(type(of: self))]", #function, action)
     switch action {
-    case .showStartUpAlertsIfNeeded:
-      showStartUpAlertsIfNeeded()
     case .showPurchase:
+      showPurchase()
       break
-    case .didFinishPurchase:
+    case .didPurchase:
+      // update some state
       break
     }
   }
@@ -156,7 +139,7 @@ extension HomeCoordinatorRedux: HomeViewControllerDelegate {
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {
-    showPurchase()
+    send(.showPurchase)
   }
 
   func homeViewControllerDidTapOnboarding(_ viewController: HomeViewController) {
@@ -167,6 +150,7 @@ extension HomeCoordinatorRedux: HomeViewControllerDelegate {
 extension HomeCoordinatorRedux: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
+    send(.didPurchase)
     removeChild(coordinator)
   }
 

@@ -34,7 +34,7 @@ final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
   private(set) var state: State {
     didSet {
       guard state != oldValue else { return }
-      print("[\(type(of: self))] \(#function)", oldValue, "->", state)
+      print("[\(type(of: self))]", #function, oldValue, "->", state)
       translateStateToUI()
     }
   }
@@ -47,6 +47,7 @@ final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
     self.dependencies = dependencies
     self.rootViewController = navigationController
     self.state = .fakeSplash(loadingData: false)
+    print("[\(type(of: self))] initial state", state)
   }
 
   func start() {
@@ -94,6 +95,7 @@ final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
   // - This should be the only place state is updated.
   // - This can be made a pure function, but not doing so to keep it simple for now.
   func send(_ action: Action) {
+    print("[\(type(of: self))]", #function, action)
     switch action {
     case .loadData:
       state = .fakeSplash(loadingData: true)
