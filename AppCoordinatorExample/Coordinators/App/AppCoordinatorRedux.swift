@@ -7,6 +7,9 @@ final class AppCoordinatorRedux: CoordinatorRedux {
   // All possible states of the coordinator.
   // Can be any type, not just struct or enum.
   // - Leave as internal to allow testing.
+  // - This is meant to be just a "rough" overview of view state.
+  //   This is not meant to capture exact all navigation/modal stack. UIKit doesn't provide nice way to detect
+  //   when vc are popped/dismissed, so ultimate view source of truth is still in UIKit itself.
   enum State: Equatable {
     case fakeSplash(loadingData: Bool)
     case loggedOut
@@ -15,7 +18,10 @@ final class AppCoordinatorRedux: CoordinatorRedux {
     // case forcedUpdate
   }
 
-  // All possible actions that can mutate state
+  // All possible actions that can mutate state.
+  // - I like it because all logic to update state will be in one place (in send() func).
+  // Alternatives:
+  // - use functions + protocols: we can give child coordinators partial access to actions via a protocol, eliminating need for delegate. But state update won't be in one place (in send() func) anymore, and we can't capture action as objects which may be handy for deeplinking, state restoration, etc..
   enum Action {
     case loadData
     case login(String)
@@ -25,7 +31,8 @@ final class AppCoordinatorRedux: CoordinatorRedux {
   private(set) var state: State {
     didSet {
       guard state != oldValue else { return }
-      start()
+      print("[\(type(of: self))] \(#function)", oldValue, "->", state)
+      translateStateToUI()
     }
   }
 
@@ -39,26 +46,32 @@ final class AppCoordinatorRedux: CoordinatorRedux {
     self.state = .fakeSplash(loadingData: false)
   }
 
-  // Translates state to UI
   func start() {
+    translateStateToUI()
+    send(.loadData)
+  }
+
+  // Translates state to UI
+  // - Avoid sending actions or mutating states.
+  func translateStateToUI() {
     switch state {
     case .fakeSplash(loadingData: let loadingData):
-      if !loadingData {
-
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .systemTeal
-        let frame = CGRect(x: 150, y: 300, width: 100, height: 50)
-        let label = UILabel(frame: frame)
-        label.text = "Fake Splash"
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.frame = frame.offsetBy(dx: 0, dy: 50)
+      let viewController = UIViewController()
+      viewController.view.backgroundColor = .systemTeal
+      let frame = CGRect(x: 150, y: 300, width: 100, height: 50)
+      let label = UILabel(frame: frame)
+      label.text = "Fake Splash"
+      let indicator = UIActivityIndicatorView(style: .large)
+      indicator.frame = frame.offsetBy(dx: 0, dy: 50)
+      if loadingData {
         indicator.startAnimating()
-        viewController.view.addSubview(label)
-        viewController.view.addSubview(indicator)
-        rootViewController.setViewControllers([viewController], animated: false)
-
-        self.send(.loadData)
       }
+      else {
+        indicator.stopAnimating()
+      }
+      viewController.view.addSubview(label)
+      viewController.view.addSubview(indicator)
+      rootViewController.setViewControllers([viewController], animated: false)
 
     case .loggedIn(username: let username):
       let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
@@ -80,6 +93,8 @@ final class AppCoordinatorRedux: CoordinatorRedux {
   func send(_ action: Action) {
     switch action {
     case .loadData:
+      state = .fakeSplash(loadingData: true)
+
       DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
         if let username = self.dependencies.loggedInUsername {
           self.send(.login(username))
@@ -105,6 +120,10 @@ final class AppCoordinatorRedux: CoordinatorRedux {
 // Send actions
 extension AppCoordinatorRedux: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
+    // Actually, childCoordinators removal should be in send(), but I don't know how to grab LoginCoordinator from there.
+    // So I just put it here. 
+    // We can also save LoginCoordinator as instance variable if there's only 1 at any time,
+    // but to demonstrate nested coordinator case, I do it this way.
     childCoordinators.removeAll { $0 === coordinator }
     send(.login(username))
   }
