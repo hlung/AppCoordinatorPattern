@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinatorRedux: CoordinatorRedux {
+final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
 
   typealias Dependencies = UsernameProvider
 
@@ -27,7 +27,7 @@ final class AppCoordinatorRedux: CoordinatorRedux {
   }
 
   let rootViewController: UINavigationController
-  var childCoordinators: [any Coordinator] = []
+  var childCoordinators: [AnyObject] = []
   private var dependencies: Dependencies
 
   init(navigationController: UINavigationController, dependencies: Dependencies) {
@@ -45,7 +45,7 @@ final class AppCoordinatorRedux: CoordinatorRedux {
       coordinator.start()
     }
     else {
-      let coordinator = LoginCoordinator(navigationController: rootViewController)
+      let coordinator = LoginCoordinatorRedux(navigationController: rootViewController)
       childCoordinators.append(coordinator)
       coordinator.appCoordinator = self
       coordinator.start()
