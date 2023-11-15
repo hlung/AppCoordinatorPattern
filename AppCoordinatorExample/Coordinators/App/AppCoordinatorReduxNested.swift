@@ -112,7 +112,6 @@ final class AppCoordinatorReduxNested: CoordinatorRedux, ActionSender {
       state = .loggedIn(username: username)
 
     case .logout:
-      dependencies.loggedInUsername = nil
       dependencies.clear()
       state = .loggedOut
     }
