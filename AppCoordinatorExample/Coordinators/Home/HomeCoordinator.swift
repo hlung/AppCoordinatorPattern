@@ -8,7 +8,7 @@ protocol HomeCoordinatorDelegate: AnyObject {
 final class HomeCoordinator: ParentCoordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
-  weak var appCoordinator: AppCoordinatorRedux?
+//  weak var appCoordinator: AppCoordinatorRedux?
   let rootViewController: UINavigationController
   var childCoordinators: [any Coordinator] = []
   var username: String
@@ -91,7 +91,7 @@ final class HomeCoordinator: ParentCoordinator {
 extension HomeCoordinator: HomeViewControllerDelegate {
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
     delegate?.homeCoordinatorDidLogOut(self)
-    appCoordinator?.send(.logout)
+//    appCoordinator?.send(.logout)
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {

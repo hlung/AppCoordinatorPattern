@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
+final class AppCoordinatorRedux: CoordinatorRedux {
 
   typealias Dependencies = UsernameProvider
 
@@ -41,30 +41,32 @@ final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
     if let username = state.loggedInUsername {
       let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
       childCoordinators.append(coordinator)
-      coordinator.appCoordinator = self
+      coordinator.delegate = self
       coordinator.start()
     }
     else {
-      let coordinator = LoginCoordinatorRedux(navigationController: rootViewController)
+      let coordinator = LoginCoordinator(navigationController: rootViewController)
       childCoordinators.append(coordinator)
-      coordinator.appCoordinator = self
+      coordinator.delegate = self
       coordinator.start()
     }
   }
 
-  // Apply changes to state and perform side effects (dependency update, make API calls, etc.) as needed.
-  // *** This should be the ONLY place where state is mutated. ***
-  func send(_ action: Action) {
-    switch action {
-    case .login(let string):
-      childCoordinators.removeAll()
-      dependencies.loggedInUsername = string
-      state.loggedInUsername = string
-    case .logout:
-      childCoordinators.removeAll()
-      dependencies.clear()
-      state.loggedInUsername = nil
-    }
-  }
+}
 
+extension AppCoordinatorRedux: LoginCoordinatorDelegate {
+  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
+    childCoordinators.removeAll { $0 === coordinator }
+    dependencies.loggedInUsername = username
+    state.loggedInUsername = username
+  }
+}
+
+extension AppCoordinatorRedux: HomeCoordinatorDelegate {
+  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
+    childCoordinators.removeAll { $0 === coordinator }
+    dependencies.loggedInUsername = nil
+    dependencies.clear()
+    state.loggedInUsername = nil
+  }
 }

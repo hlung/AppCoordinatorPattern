@@ -18,7 +18,7 @@ class AppCoordinatorExampleTests: XCTestCase {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
 
-  func testLogIn() {
+  func testLogIn() throws {
     let nav = UINavigationController()
     let sut = AppCoordinatorRedux(
       navigationController: nav,
@@ -26,15 +26,13 @@ class AppCoordinatorExampleTests: XCTestCase {
     )
     sut.start()
     XCTAssertEqual(sut.state.loggedInUsername, nil)
-    XCTAssertTrue(sut.rootViewController.viewControllers.first?.isKind(of: LoginLandingViewController.self) == true)
+    XCTAssertNotNil(sut.rootViewController.viewControllers.first as? LoginLandingViewController)
 
-    sut.send(.login("John"))
-    // If we were to use LoginCoordinatorDelegate, we'll have to mock loginCoordinator too.
-    // And that loginCoordinator has to be the same instance as the one privately created at AppCoordinator start(),
-    // which is hard to obtain.
-//    sut.loginCoordinator(???, didLogInWith: "John")
+    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginCoordinator)
+    sut.loginCoordinator(loginCoordinator, didLogInWith: "John")
+//    sut.send(.login("John"))
     XCTAssertEqual(sut.state.loggedInUsername, "John")
-    XCTAssertTrue(sut.rootViewController.viewControllers.first?.isKind(of: HomeViewController.self) == true)
+    XCTAssertNotNil(sut.rootViewController.viewControllers.first as? HomeViewController)
   }
 
 }
