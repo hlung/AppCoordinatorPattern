@@ -16,6 +16,7 @@
 		013CD6E32AFFAE3D00B444AB /* CoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */; };
 		013CD6EA2B049DD300B444AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E92B049DD300B444AB /* User.swift */; };
 		013CD6EC2B04BF5200B444AB /* AppCoordinatorReduxNested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */; };
+		013CD6EE2B04CC4E00B444AB /* HomeCoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6ED2B04CC4E00B444AB /* HomeCoordinatorRedux.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
 		013D26AA271C4C240067B44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013D26A9271C4C240067B44E /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorRedux.swift; sourceTree = "<group>"; };
 		013CD6E92B049DD300B444AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorReduxNested.swift; sourceTree = "<group>"; };
+		013CD6ED2B04CC4E00B444AB /* HomeCoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorRedux.swift; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013D26A0271C4C220067B44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		013D26A4271C4C220067B44E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */,
 				013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */,
+				013CD6ED2B04CC4E00B444AB /* HomeCoordinatorRedux.swift */,
 				013D26A4271C4C220067B44E /* HomeViewController.swift */,
 				01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */,
 			);
@@ -372,6 +375,7 @@
 				01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */,
 				013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */,
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
+				013CD6EE2B04CC4E00B444AB /* HomeCoordinatorRedux.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
 				01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,

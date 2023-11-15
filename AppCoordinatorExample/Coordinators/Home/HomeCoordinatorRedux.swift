@@ -1,22 +1,49 @@
 import UIKit
 
-protocol HomeCoordinatorDelegate: AnyObject {
-  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator)
+protocol HomeCoordinatorReduxDelegate: AnyObject {
+  func homeCoordinatorReduxDidLogOut(_ coordinator: HomeCoordinatorRedux)
 }
 
 /// An example of a coordinator that manages main content of the app.
-final class HomeCoordinator: ParentCoordinator {
+final class HomeCoordinatorRedux: CoordinatorRedux {
 
-  weak var delegate: HomeCoordinatorDelegate?
+  struct State: Equatable {
+    var username: String
+    var showConsent: Bool
+    var showOnboarding: Bool
+    var showPurchase: Bool
+  }
+
+  enum Action {
+    case showConsent
+    case showOnboarding
+    case showPurchase
+    case didPurchase
+  }
+
+  private(set) var state: State {
+    didSet {
+      guard state != oldValue else { return }
+      print("[\(type(of: self))] \(#function)", oldValue, "->", state)
+      translateStateToUI()
+    }
+  }
+
+  weak var delegate: HomeCoordinatorReduxDelegate?
 
   let rootViewController: UINavigationController
   var childCoordinators: [AnyObject] = []
-  var username: String
+//  var username: String
 
   init(navigationController: UINavigationController, username: String) {
     print("[\(type(of: self))] \(#function)")
     self.rootViewController = navigationController
-    self.username = username
+    self.state = State(
+      username: username,
+      showConsent: UserDefaults.standard.consent == nil,
+      showOnboarding: !UserDefaults.standard.onboardingShown,
+      showPurchase: false
+    )
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -28,16 +55,27 @@ final class HomeCoordinator: ParentCoordinator {
   }
 
   func start() {
-    let viewController = HomeViewController()
-    viewController.delegate = self
-    viewController.username = username
-    rootViewController.setViewControllers([viewController], animated: false)
-
-    showStartUpAlertsIfNeeded()
+    translateStateToUI()
+//    showStartUpAlertsIfNeeded()
   }
 
   func stop() {
     rootViewController.setViewControllers([], animated: false)
+  }
+
+  func translateStateToUI() {
+    let viewController = HomeViewController()
+    viewController.delegate = self
+    viewController.username = state.username
+    rootViewController.setViewControllers([viewController], animated: false)
+
+    if state.showOnboarding {
+      Task { await showOnboarding() }
+    }
+    else if state.showConsent {
+      Task { await showConsentAlert() }
+    }
+
   }
 
   func showPurchase() {
@@ -88,9 +126,9 @@ final class HomeCoordinator: ParentCoordinator {
 
 }
 
-extension HomeCoordinator: HomeViewControllerDelegate {
+extension HomeCoordinatorRedux: HomeViewControllerDelegate {
   func homeViewControllerDidLogOut(_ viewController: HomeViewController) {
-    delegate?.homeCoordinatorDidLogOut(self)
+    delegate?.homeCoordinatorReduxDidLogOut(self)
   }
 
   func homeViewControllerPurchase(_ viewController: HomeViewController) {
@@ -102,7 +140,7 @@ extension HomeCoordinator: HomeViewControllerDelegate {
   }
 }
 
-extension HomeCoordinator: PurchaseCoordinatorDelegate {
+extension HomeCoordinatorRedux: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
     removeChild(coordinator)
@@ -114,7 +152,7 @@ extension HomeCoordinator: PurchaseCoordinatorDelegate {
   }
 }
 
-extension HomeCoordinator: OnboardingViewControllerDelegate {
+extension HomeCoordinatorRedux: OnboardingViewControllerDelegate {
   func onboardingViewControllerDidFinish(_ viewController: OnboardingViewController) {
     viewController.dismiss(animated: true)
   }

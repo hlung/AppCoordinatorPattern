@@ -3,7 +3,7 @@ import UIKit
 final class AppCoordinator: ParentCoordinator {
 
   let rootViewController: UINavigationController
-  var childCoordinators: [any Coordinator] = []
+  var childCoordinators: [AnyObject] = []
 
   init(navigationController: UINavigationController) {
     self.rootViewController = navigationController

@@ -77,7 +77,7 @@ final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
       rootViewController.setViewControllers([viewController], animated: false)
 
     case .loggedIn(username: let username):
-      let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
+      let coordinator = HomeCoordinatorRedux(navigationController: rootViewController, username: username)
       childCoordinators.append(coordinator)
       coordinator.delegate = self
       coordinator.start()
@@ -133,6 +133,13 @@ extension AppCoordinatorRedux: LoginCoordinatorDelegate {
 
 extension AppCoordinatorRedux: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
+    childCoordinators.removeAll { $0 === coordinator }
+    send(.logout)
+  }
+}
+
+extension AppCoordinatorRedux: HomeCoordinatorReduxDelegate {
+  func homeCoordinatorReduxDidLogOut(_ coordinator: HomeCoordinatorRedux) {
     childCoordinators.removeAll { $0 === coordinator }
     send(.logout)
   }
