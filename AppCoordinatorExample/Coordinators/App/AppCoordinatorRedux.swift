@@ -7,7 +7,7 @@ final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
   // All possible states of the coordinator.
   // Pros
   // - create a common domain model language to help with communication
-  // - help with discovery and debugging
+  // - help with discovery, logging, debugging
   // Can be any type, not just struct or enum.
   // - Leave as internal to allow testing.
   // - This is meant to be just a "rough" overview of view state.
