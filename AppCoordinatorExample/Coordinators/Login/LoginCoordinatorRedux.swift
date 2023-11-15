@@ -4,9 +4,7 @@ import UIKit
 final class LoginCoordinatorRedux {
 
   weak var delegate: LoginCoordinatorDelegate?
-
   weak var appCoordinator: (any ActionSender<AppCoordinatorRedux.Action>)?
-
   let rootViewController: UINavigationController
 
   init(navigationController: UINavigationController) {
