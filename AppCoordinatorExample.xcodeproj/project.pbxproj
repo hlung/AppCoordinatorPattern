@@ -14,7 +14,6 @@
 		013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */; };
 		013CD6E12AFFACDA00B444AB /* AppCoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E02AFFACDA00B444AB /* AppCoordinatorRedux.swift */; };
 		013CD6E32AFFAE3D00B444AB /* CoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */; };
-		013CD6E72B04902F00B444AB /* LoginCoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E62B04902F00B444AB /* LoginCoordinatorRedux.swift */; };
 		013CD6EA2B049DD300B444AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E92B049DD300B444AB /* User.swift */; };
 		013CD6EC2B04BF5200B444AB /* AppCoordinatorReduxNested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
@@ -62,7 +61,6 @@
 		013CD6DF2AFFAA7200B444AB /* AppCoordinatorExample.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppCoordinatorExample.xctestplan; sourceTree = "<group>"; };
 		013CD6E02AFFACDA00B444AB /* AppCoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorRedux.swift; sourceTree = "<group>"; };
 		013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorRedux.swift; sourceTree = "<group>"; };
-		013CD6E62B04902F00B444AB /* LoginCoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatorRedux.swift; sourceTree = "<group>"; };
 		013CD6E92B049DD300B444AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorReduxNested.swift; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,7 +179,6 @@
 			children = (
 				013D26E3271D1E820067B44E /* LoginCoordinator.swift */,
 				013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */,
-				013CD6E62B04902F00B444AB /* LoginCoordinatorRedux.swift */,
 				013D26E5271E613B0067B44E /* LoginLandingViewController.swift */,
 				013D26DB271C4D3E0067B44E /* LoginViewController.swift */,
 			);
@@ -381,7 +378,6 @@
 				013CD6E12AFFACDA00B444AB /* AppCoordinatorRedux.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
 				013CD6D42AFB8D8B00B444AB /* HomeAsyncCoordinator.swift in Sources */,
-				013CD6E72B04902F00B444AB /* LoginCoordinatorRedux.swift in Sources */,
 				013CD6EA2B049DD300B444AB /* User.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,

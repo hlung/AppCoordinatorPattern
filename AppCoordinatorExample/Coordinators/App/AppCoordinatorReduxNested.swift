@@ -83,9 +83,9 @@ final class AppCoordinatorReduxNested: CoordinatorRedux, ActionSender {
       coordinator.start()
 
     case .loggedOut:
-      let coordinator = LoginCoordinatorRedux(navigationController: rootViewController)
+      let coordinator = LoginCoordinator(navigationController: rootViewController)
       childCoordinators.append(coordinator)
-      coordinator.actionSender = self
+      coordinator.delegate = self
       coordinator.start()
     }
   }
@@ -108,7 +108,6 @@ final class AppCoordinatorReduxNested: CoordinatorRedux, ActionSender {
       }
 
     case .login(let username):
-      //childCoordinators.removeAll { $0 === coordinator }
       dependencies.loggedInUsername = username
       state = .loggedIn(username: username)
 
@@ -121,17 +120,12 @@ final class AppCoordinatorReduxNested: CoordinatorRedux, ActionSender {
 
 }
 
-// Send actions
-//extension AppCoordinatorRedux: LoginCoordinatorDelegate {
-//  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
-//    // Actually, childCoordinators removal should be in send(), but I don't know how to grab LoginCoordinator from there.
-//    // So I just put it here.
-//    // We can also save LoginCoordinator as instance variable if there's only 1 at any time,
-//    // but to demonstrate nested coordinator case, I do it this way.
-//    childCoordinators.removeAll { $0 === coordinator }
-//    send(.login(username))
-//  }
-//}
+extension AppCoordinatorReduxNested: LoginCoordinatorDelegate {
+  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
+    childCoordinators.removeAll { $0 === coordinator }
+    send(.login(username))
+  }
+}
 
 extension AppCoordinatorReduxNested: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
