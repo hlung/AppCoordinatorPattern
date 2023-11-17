@@ -13,25 +13,28 @@ final class AppCoordinator {
     self.dependencies = dependencies
   }
 
-  func start() {
-    if dependencies.loggedInUsername != nil {
-      showHome()
-    }
-    else {
-      showLogin()
+  func start() -> Task<Void, Never> {
+    Task { @MainActor in
+      if let username = dependencies.loggedInUsername {
+        showHome(username)
+      }
+      else {
+        await showLoginAsync()
+      }
     }
   }
 
   // MARK: - Navigation
 
-  func showHome() {
-    let username = dependencies.loggedInUsername ?? "-"
+  @MainActor
+  func showHome(_ username: String) {
     let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
     childCoordinators.append(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
 
+  @MainActor
   func showLogin() {
     let coordinator = LoginCoordinator(navigationController: rootViewController)
     childCoordinators.append(coordinator)
@@ -39,13 +42,14 @@ final class AppCoordinator {
     coordinator.start()
   }
 
-  func showLoginAsync() {
-    Task { @MainActor in
-      let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
-      let username = await coordinator.start()
-      dependencies.loggedInUsername = username
-      showHome()
-    }
+  @MainActor
+  func showLoginAsync() async {
+    let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
+    childCoordinators.append(coordinator)
+    let username = await coordinator.start()
+    childCoordinators.removeAll { $0 === coordinator }
+    dependencies.loggedInUsername = username
+    showHome(username)
   }
 }
 
@@ -53,7 +57,7 @@ extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
     dependencies.clear()
     childCoordinators.removeAll { $0 === coordinator }
-    showLogin()
+    Task { await showLoginAsync() }
   }
 }
 
@@ -62,6 +66,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
     print("Login result: \(username)")
     dependencies.loggedInUsername = username
     childCoordinators.removeAll { $0 === coordinator }
-    showHome()
+    Task { await showHome(username) }
+//    showHome(username)
   }
 }

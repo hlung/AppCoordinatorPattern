@@ -27,8 +27,30 @@ class AppCoordinatorExampleTests: XCTestCase {
 
     sut.start()
     let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginCoordinator)
-
     sut.loginCoordinator(loginCoordinator, didLogInWith: "John")
+    XCTAssertNotNil(sut.childCoordinators.last as? HomeCoordinator)
+  }
+
+  @MainActor
+  func testLogInAsync() async throws {
+    let nav = UINavigationController()
+    let sut = AppCoordinator(
+      navigationController: nav,
+      dependencies: MockDependency.loggedOut
+    )
+
+    let task = Task {
+      sut.start()
+    }
+    await task.value
+
+    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginAsyncCoordinator)
+
+    let task2 = Task {
+      loginCoordinator.continuation?.resume(with: .success("John"))
+    }
+    await task2.value
+
     XCTAssertNotNil(sut.childCoordinators.last as? HomeCoordinator)
   }
 

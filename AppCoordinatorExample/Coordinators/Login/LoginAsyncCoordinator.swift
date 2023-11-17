@@ -4,7 +4,7 @@ import UIKit
 final class LoginAsyncCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
-  private var continuation: CheckedContinuation<String, Never>?
+  var continuation: CheckedContinuation<String, Never>?
 
   init(navigationController: UINavigationController) {
     print("[\(type(of: self))] \(#function)")
@@ -24,7 +24,9 @@ final class LoginAsyncCoordinator: Coordinator {
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)
 
-    let output = await withCheckedContinuation { self.continuation = $0 }
+    let output = await withCheckedContinuation {
+      self.continuation = $0
+    }
 
     rootViewController.setViewControllers([], animated: false)
 

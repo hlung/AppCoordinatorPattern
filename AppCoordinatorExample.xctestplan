@@ -17,6 +17,9 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "AppCoordinatorExampleTests\/testLogIn()"
+      ],
       "target" : {
         "containerPath" : "container:AppCoordinatorExample.xcodeproj",
         "identifier" : "013D26B2271C4C250067B44E",
