@@ -38,11 +38,6 @@ extension UserDefaults {
     consent = nil
     emailVerified = false
   }
-
 }
 
-protocol UsernameProvider {
-  var loggedInUsername: String? { get set }
-  mutating func clear()
-}
 extension UserDefaults: UsernameProvider {}

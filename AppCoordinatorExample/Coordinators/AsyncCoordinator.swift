@@ -1,7 +1,7 @@
 import UIKit
 
-protocol AsyncCoordinator: AnyObject where ViewController: UIViewController {
-  associatedtype ViewController
+protocol AsyncCoordinator: AnyObject {
+  associatedtype ViewController: UIViewController
   associatedtype Output
 
   var rootViewController: ViewController { get }

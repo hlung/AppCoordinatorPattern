@@ -22,6 +22,10 @@ final class AppAsyncCoordinator: ParentAsyncCoordinator {
     }
   }
 
+  func start(string: String) -> Void {
+
+  }
+
   // MARK: - Navigation
 
   func showHome() async throws {

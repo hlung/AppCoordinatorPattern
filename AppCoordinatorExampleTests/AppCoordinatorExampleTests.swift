@@ -24,22 +24,32 @@ class AppCoordinatorExampleTests: XCTestCase {
       navigationController: nav,
       dependencies: MockDependency.loggedOut
     )
-    sut.start()
-    XCTAssertEqual(sut.state.loggedInUsername, nil)
-    XCTAssertNotNil(sut.rootViewController.viewControllers.first as? LoginLandingViewController)
+    XCTAssertEqual(sut.state, .fakeSplash(loadingData: false))
+    XCTAssertTrue(sut.childCoordinators.isEmpty)
 
-    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginCoordinator)
-    sut.loginCoordinator(loginCoordinator, didLogInWith: "John")
-//    sut.send(.login("John"))
-    XCTAssertEqual(sut.state.loggedInUsername, "John")
-    XCTAssertNotNil(sut.rootViewController.viewControllers.first as? HomeViewController)
+    sut.start()
+    XCTAssertEqual(sut.state, .fakeSplash(loadingData: true))
+    XCTAssertTrue(sut.childCoordinators.isEmpty)
+
+//    dependency.loader.finish(.success())
+    XCTAssertEqual(sut.state, .loggedOut)
+    XCTAssertNotNil(sut.childCoordinators.last as? LoginCoordinator)
+
+//    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginCoordinator)
+//    sut.loginCoordinator(loginCoordinator, didLogInWith: "John")
+    sut.send(.login("John"))
+    XCTAssertEqual(sut.state, .loggedIn(username: "John"))
+    XCTAssertTrue(sut.childCoordinators.isEmpty)
+
+    XCTAssertNotNil(sut.childCoordinators.last as? HomeCoordinator)
   }
 
 }
 
-private struct MockDependency: UsernameProvider {
+private struct MockDependency: UsernameProvider, StringProvider {
   var loggedInUsername: String?
-  
+  var getString: (String) -> Void = { _ in }
+
   mutating func clear() {
     self.loggedInUsername = nil
   }
