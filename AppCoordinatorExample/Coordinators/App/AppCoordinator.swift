@@ -38,6 +38,15 @@ final class AppCoordinator {
     coordinator.delegate = self
     coordinator.start()
   }
+
+  func showLoginAsync() {
+    Task { @MainActor in
+      let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
+      let username = await coordinator.start()
+      dependencies.loggedInUsername = username
+      showHome()
+    }
+  }
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {

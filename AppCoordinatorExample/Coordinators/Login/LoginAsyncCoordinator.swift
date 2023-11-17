@@ -4,7 +4,7 @@ import UIKit
 final class LoginAsyncCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
-  private var continuation: CheckedContinuation<String, Error>?
+  private var continuation: CheckedContinuation<String, Never>?
 
   init(navigationController: UINavigationController) {
     print("[\(type(of: self))] \(#function)")
@@ -19,12 +19,12 @@ final class LoginAsyncCoordinator: Coordinator {
     print("[\(type(of: self))] \(#function)")
   }
 
-  @MainActor func start() async throws -> String {
+  @MainActor func start() async -> String {
     let viewController = LoginLandingViewController()
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)
 
-    let output = try await withCheckedThrowingContinuation { self.continuation = $0 }
+    let output = await withCheckedContinuation { self.continuation = $0 }
 
     rootViewController.setViewControllers([], animated: false)
 
