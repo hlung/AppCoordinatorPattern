@@ -20,27 +20,15 @@ class AppCoordinatorExampleTests: XCTestCase {
 
   func testLogIn() throws {
     let nav = UINavigationController()
-    let sut = AppCoordinatorRedux(
+    let sut = AppCoordinator(
       navigationController: nav,
       dependencies: MockDependency.loggedOut
     )
-    XCTAssertEqual(sut.state, .fakeSplash(loadingData: false))
-    XCTAssertTrue(sut.childCoordinators.isEmpty)
 
     sut.start()
-    XCTAssertEqual(sut.state, .fakeSplash(loadingData: true))
-    XCTAssertTrue(sut.childCoordinators.isEmpty)
+    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginCoordinator)
 
-//    dependency.loader.finish(.success())
-    XCTAssertEqual(sut.state, .loggedOut)
-    XCTAssertNotNil(sut.childCoordinators.last as? LoginCoordinator)
-
-//    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginCoordinator)
-//    sut.loginCoordinator(loginCoordinator, didLogInWith: "John")
-    sut.send(.login("John"))
-    XCTAssertEqual(sut.state, .loggedIn(username: "John"))
-    XCTAssertTrue(sut.childCoordinators.isEmpty)
-
+    sut.loginCoordinator(loginCoordinator, didLogInWith: "John")
     XCTAssertNotNil(sut.childCoordinators.last as? HomeCoordinator)
   }
 

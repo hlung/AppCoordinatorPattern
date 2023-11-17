@@ -109,17 +109,17 @@ extension HomeCoordinator: HomeViewControllerDelegate {
   }
 }
 
-extension HomeCoordinator: PurchaseCoordinatorDelegate {
-  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
-    print("Purchase OK")
-    childCoordinators.removeAll { $0 === coordinator }
-  }
-
-  func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {
-    print("Purchase Cancelled")
-    childCoordinators.removeAll { $0 === coordinator }
-  }
-}
+//extension HomeCoordinator: PurchaseCoordinatorDelegate {
+//  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
+//    print("Purchase OK")
+//    childCoordinators.removeAll { $0 === coordinator }
+//  }
+//
+//  func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {
+//    print("Purchase Cancelled")
+//    childCoordinators.removeAll { $0 === coordinator }
+//  }
+//}
 
 extension HomeCoordinator: OnboardingViewControllerDelegate {
   func onboardingViewControllerDidFinish(_ viewController: OnboardingViewController) {
