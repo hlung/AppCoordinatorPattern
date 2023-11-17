@@ -5,7 +5,7 @@ protocol HomeCoordinatorDelegate: AnyObject {
 }
 
 /// An example of a coordinator that manages main content of the app.
-final class HomeCoordinator: ParentCoordinator {
+final class HomeCoordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
 
@@ -42,7 +42,7 @@ final class HomeCoordinator: ParentCoordinator {
 
   func showPurchase() {
     let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
-    addChild(coordinator)
+    childCoordinators.append(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
@@ -105,12 +105,12 @@ extension HomeCoordinator: HomeViewControllerDelegate {
 extension HomeCoordinator: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
-    removeChild(coordinator)
+    childCoordinators.append(coordinator)
   }
 
   func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {
     print("Purchase stop")
-    removeChild(coordinator)
+    childCoordinators.removeAll { $0 === coordinator }
   }
 }
 

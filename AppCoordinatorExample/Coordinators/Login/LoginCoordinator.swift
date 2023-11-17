@@ -8,7 +8,6 @@ protocol LoginCoordinatorDelegate: AnyObject {
 final class LoginCoordinator: Coordinator {
 
   weak var delegate: LoginCoordinatorDelegate?
-  weak var actionSender: (any ActionSender<AppCoordinatorReduxNested.Action>)?
 
   let rootViewController: UINavigationController
 
@@ -48,7 +47,6 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
 extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewController(_ viewController: LoginViewController, didLogInWith username: String) {
     delegate?.loginCoordinator(self, didLogInWith: username)
-    actionSender?.send(.login(username))
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {

@@ -7,16 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		013CD6D22AFB8CB300B444AB /* AsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D12AFB8CB300B444AB /* AsyncCoordinator.swift */; };
-		013CD6D42AFB8D8B00B444AB /* HomeAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */; };
+		013CD6D22AFB8CB300B444AB /* ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D12AFB8CB300B444AB /* ParentCoordinator.swift */; };
 		013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */; };
-		013CD6D82AFCB04500B444AB /* AppAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D72AFCB04500B444AB /* AppAsyncCoordinator.swift */; };
 		013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */; };
-		013CD6E12AFFACDA00B444AB /* AppCoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E02AFFACDA00B444AB /* AppCoordinatorRedux.swift */; };
-		013CD6E32AFFAE3D00B444AB /* CoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */; };
-		013CD6EA2B049DD300B444AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6E92B049DD300B444AB /* User.swift */; };
-		013CD6EC2B04BF5200B444AB /* AppCoordinatorReduxNested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */; };
-		013CD6EE2B04CC4E00B444AB /* HomeCoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6ED2B04CC4E00B444AB /* HomeCoordinatorRedux.swift */; };
 		013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6EF2B051C5000B444AB /* Dependencies.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
@@ -55,17 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		013CD6D12AFB8CB300B444AB /* AsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncCoordinator.swift; sourceTree = "<group>"; };
-		013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAsyncCoordinator.swift; sourceTree = "<group>"; };
+		013CD6D12AFB8CB300B444AB /* ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCoordinator.swift; sourceTree = "<group>"; };
 		013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAsyncCoordinator.swift; sourceTree = "<group>"; };
-		013CD6D72AFCB04500B444AB /* AppAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6DF2AFFAA7200B444AB /* AppCoordinatorExample.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppCoordinatorExample.xctestplan; sourceTree = "<group>"; };
-		013CD6E02AFFACDA00B444AB /* AppCoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorRedux.swift; sourceTree = "<group>"; };
-		013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorRedux.swift; sourceTree = "<group>"; };
-		013CD6E92B049DD300B444AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorReduxNested.swift; sourceTree = "<group>"; };
-		013CD6ED2B04CC4E00B444AB /* HomeCoordinatorRedux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorRedux.swift; sourceTree = "<group>"; };
 		013CD6EF2B051C5000B444AB /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		013D269D271C4C220067B44E /* AppCoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013D26A0271C4C220067B44E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,14 +103,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		013CD6E82B049DC900B444AB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				013CD6E92B049DD300B444AB /* User.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		013CD6F12B051C9400B444AB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				013D26A0271C4C220067B44E /* AppDelegate.swift */,
-				013CD6E82B049DC900B444AB /* Models */,
 				013CD6F12B051C9400B444AB /* Protocols */,
 				01A7A3CC2AF0B1D100B632CC /* Extensions */,
 				013D26E2271C4F150067B44E /* Coordinators */,
@@ -212,8 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				01A7A3CA2AEFA98500B632CC /* Coordinator.swift */,
-				013CD6D12AFB8CB300B444AB /* AsyncCoordinator.swift */,
-				013CD6E22AFFAE3D00B444AB /* CoordinatorRedux.swift */,
+				013CD6D12AFB8CB300B444AB /* ParentCoordinator.swift */,
 				01A7A3C92AEFA8D200B632CC /* App */,
 				017D82532725B5BD00CA3FBF /* Home */,
 				013D26D0271C4C3D0067B44E /* Login */,
@@ -226,8 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */,
-				013CD6D32AFB8D8B00B444AB /* HomeAsyncCoordinator.swift */,
-				013CD6ED2B04CC4E00B444AB /* HomeCoordinatorRedux.swift */,
 				013D26A4271C4C220067B44E /* HomeViewController.swift */,
 				01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */,
 			);
@@ -238,9 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
-				013CD6D72AFCB04500B444AB /* AppAsyncCoordinator.swift */,
-				013CD6E02AFFACDA00B444AB /* AppCoordinatorRedux.swift */,
-				013CD6EB2B04BF5200B444AB /* AppCoordinatorReduxNested.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -386,27 +357,20 @@
 				01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */,
 				013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */,
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
-				013CD6EE2B04CC4E00B444AB /* HomeCoordinatorRedux.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
 				01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
-				013CD6E12AFFACDA00B444AB /* AppCoordinatorRedux.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
-				013CD6D42AFB8D8B00B444AB /* HomeAsyncCoordinator.swift in Sources */,
-				013CD6EA2B049DD300B444AB /* User.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
 				013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */,
-				013CD6D22AFB8CB300B444AB /* AsyncCoordinator.swift in Sources */,
-				013CD6E32AFFAE3D00B444AB /* CoordinatorRedux.swift in Sources */,
+				013CD6D22AFB8CB300B444AB /* ParentCoordinator.swift in Sources */,
 				013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
 				01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
-				013CD6D82AFCB04500B444AB /* AppAsyncCoordinator.swift in Sources */,
 				017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */,
-				013CD6EC2B04BF5200B444AB /* AppCoordinatorReduxNested.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

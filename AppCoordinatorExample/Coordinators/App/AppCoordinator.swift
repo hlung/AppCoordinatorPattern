@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinator: ParentCoordinator {
+final class AppCoordinator {
 
   let rootViewController: UINavigationController
   var childCoordinators: [AnyObject] = []
@@ -23,14 +23,14 @@ final class AppCoordinator: ParentCoordinator {
   func showHome() {
     let username = UserDefaults.standard.loggedInUsername ?? "-"
     let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
-    addChild(coordinator)
+    childCoordinators.append(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
 
   func showLogin() {
     let coordinator = LoginCoordinator(navigationController: rootViewController)
-    addChild(coordinator)
+    childCoordinators.append(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
@@ -39,7 +39,7 @@ final class AppCoordinator: ParentCoordinator {
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
     UserDefaults.standard.clear()
-    removeChild(coordinator)
+    childCoordinators.removeAll { $0 === coordinator }
     showLogin()
   }
 }
@@ -48,7 +48,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
     print("Login result: \(username)")
     UserDefaults.standard.loggedInUsername = username
-    removeChild(coordinator)
+    childCoordinators.removeAll { $0 === coordinator }
     showHome()
   }
 }
