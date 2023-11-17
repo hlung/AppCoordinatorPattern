@@ -33,22 +33,7 @@ final class HomeCoordinator {
     viewController.username = username
     rootViewController.setViewControllers([viewController], animated: false)
 
-    showStartUpAlertsIfNeeded()
-  }
-
-  func stop() {
-    rootViewController.setViewControllers([], animated: false)
-  }
-
-  func showPurchase() {
-    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
-    childCoordinators.append(coordinator)
-    coordinator.delegate = self
-    coordinator.start()
-  }
-
-  func showStartUpAlertsIfNeeded() {
-    Task {
+    Task { @MainActor in
       if !UserDefaults.standard.onboardingShown {
         await showOnboarding()
       }
@@ -58,6 +43,28 @@ final class HomeCoordinator {
       // - handle deeplinks
       // - show in app messaging
       // - etc.
+    }
+  }
+
+  func stop() {
+    rootViewController.setViewControllers([], animated: false)
+  }
+
+  func showPurchase() {
+//    let coordinator = PurchaseCoordinator(navigationController: rootViewController, productType: .svod)
+//    childCoordinators.append(coordinator)
+//    coordinator.delegate = self
+//    coordinator.start()
+
+    Task { @MainActor in
+      let coordinator = PurchaseAsyncCoordinator(navigationController: rootViewController, productType: .svod)
+      let result = await coordinator.start()
+      switch result {
+      case .didPurchaseSVOD, .didPurchaseTVOD, .didRestorePurchase:
+        print("Purchase OK")
+      case .cancelled:
+        print("Purchase Cancelled")
+      }
     }
   }
 
@@ -105,11 +112,11 @@ extension HomeCoordinator: HomeViewControllerDelegate {
 extension HomeCoordinator: PurchaseCoordinatorDelegate {
   func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
     print("Purchase OK")
-    childCoordinators.append(coordinator)
+    childCoordinators.removeAll { $0 === coordinator }
   }
 
   func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {
-    print("Purchase stop")
+    print("Purchase Cancelled")
     childCoordinators.removeAll { $0 === coordinator }
   }
 }

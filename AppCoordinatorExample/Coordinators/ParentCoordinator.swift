@@ -1,5 +1,6 @@
 import UIKit
 
+// Not used right now, but to provide a future vision
 protocol ParentCoordinator: AnyObject {
   var childCoordinators: [any Coordinator] { get set }
 }
