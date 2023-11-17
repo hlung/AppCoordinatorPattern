@@ -54,6 +54,7 @@ final class PurchaseAsyncCoordinator: AsyncCoordinator {
       return output
 
       // Task retains vc
+      // May create a bug if you rely on vc deinit to return output
 //      let vc = PurchaseSVODViewController()
 //      vc.delegate = self
 //      self.rootViewController.pushViewController(vc, animated: true)
