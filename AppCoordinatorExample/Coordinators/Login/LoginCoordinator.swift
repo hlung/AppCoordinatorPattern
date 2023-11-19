@@ -5,9 +5,9 @@ protocol LoginCoordinatorDelegate: AnyObject {
 }
 
 /// An example of a coordinator that manages a UINavigationController and returns a login result.
-final class LoginCoordinator: Coordinator {
+final class LoginCoordinator: Coordinator, ChildCoordinator {
 
-  weak var delegate: LoginCoordinatorDelegate?
+  weak var resultDelegate: LoginCoordinatorDelegate?
   weak var lifecycleDelegate: CoordinatorLifecycleDelegate?
 
   let rootViewController: UINavigationController
@@ -31,8 +31,10 @@ final class LoginCoordinator: Coordinator {
     rootViewController.setViewControllers([viewController], animated: false)
   }
 
+  // for handling stop request from outside
   func stop() {
     rootViewController.setViewControllers([], animated: false)
+    lifecycleDelegate?.coordinatorDidFinish(self)
   }
 
 }
@@ -47,7 +49,8 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
 
 extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewController(_ viewController: LoginViewController, didLogInWith username: String) {
-    delegate?.loginCoordinator(self, didLogInWith: username)
+    resultDelegate?.loginCoordinator(self, didLogInWith: username)
+    lifecycleDelegate?.coordinatorDidFinish(self)
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {

@@ -39,7 +39,7 @@ final class AppCoordinator {
   func showLogin() {
     let coordinator = LoginCoordinator(navigationController: rootViewController)
     childCoordinators.append(coordinator)
-    coordinator.delegate = self
+    coordinator.resultDelegate = self
     coordinator.lifecycleDelegate = self
     coordinator.start()
   }
@@ -59,7 +59,8 @@ extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
     dependencies.clear()
     childCoordinators.removeAll { $0 === coordinator }
-    Task { await showLoginAsync() }
+    showLogin()
+//    Task { await showLoginAsync() }
   }
 }
 
