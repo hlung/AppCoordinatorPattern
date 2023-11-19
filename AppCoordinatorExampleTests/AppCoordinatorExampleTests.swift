@@ -41,8 +41,9 @@ class AppCoordinatorExampleTests: XCTestCase {
 
     let task = Task {
       sut.start()
+//      try await Task.sleep(nanoseconds: 1_000_000_000)
     }
-    await task.value
+    try await task.value
 
     let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginAsyncCoordinator)
 

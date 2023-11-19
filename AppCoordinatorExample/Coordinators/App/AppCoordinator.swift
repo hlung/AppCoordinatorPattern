@@ -14,9 +14,9 @@ final class AppCoordinator {
   }
 
   func start() -> Task<Void, Never> {
-    Task { @MainActor in
+    Task {
       if let username = dependencies.loggedInUsername {
-        showHome(username)
+        await showHome(username)
       }
       else {
         await showLoginAsync()

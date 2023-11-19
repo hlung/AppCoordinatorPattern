@@ -20,10 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window.rootViewController = navigationController
     window.makeKeyAndVisible()
 
-    let coordinator = AppCoordinator(navigationController: navigationController, dependencies: UserDefaults.standard)
-    coordinator.start()
-
-    self.coordinator = coordinator
+    let isTesting = ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
+    if !isTesting {
+      let coordinator = AppCoordinator(navigationController: navigationController, dependencies: UserDefaults.standard)
+      coordinator.start()
+      self.coordinator = coordinator
+    }
 
     return true
   }
