@@ -13,7 +13,7 @@ final class AppCoordinator {
     self.dependencies = dependencies
   }
 
-  func start() -> Task<Void, Never> {
+  func start() /*-> Task<Void, Never>*/ {
     Task {
       if let username = dependencies.loggedInUsername {
         await showHome(username)
