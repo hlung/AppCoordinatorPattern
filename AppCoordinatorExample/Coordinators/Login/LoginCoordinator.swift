@@ -8,6 +8,7 @@ protocol LoginCoordinatorDelegate: AnyObject {
 final class LoginCoordinator: Coordinator {
 
   weak var delegate: LoginCoordinatorDelegate?
+  weak var lifecycleDelegate: CoordinatorLifecycleDelegate?
 
   let rootViewController: UINavigationController
 

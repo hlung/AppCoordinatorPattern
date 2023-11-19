@@ -16,7 +16,7 @@ final class AppCoordinator {
   func start() /*-> Task<Void, Never>*/ {
     Task {
       if let username = dependencies.loggedInUsername {
-        await showHome(username)
+        showHome(username)
       }
       else {
         await showLoginAsync()
@@ -26,7 +26,6 @@ final class AppCoordinator {
 
   // MARK: - Navigation
 
-  @MainActor
   func showHome(_ username: String) {
     let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
     childCoordinators.append(coordinator)
@@ -66,7 +65,14 @@ extension AppCoordinator: LoginCoordinatorDelegate {
     print("Login result: \(username)")
     dependencies.loggedInUsername = username
     childCoordinators.removeAll { $0 === coordinator }
-    Task { await showHome(username) }
+    showHome(username)
 //    showHome(username)
+  }
+}
+
+extension AppCoordinator: CoordinatorLifecycleDelegate {
+//  func coordinatorDidFinish<C>(_ coordinator: C, with output: C.Output) where C : Coordinator {
+  func coordinatorDidFinish(_ coordinator: any Coordinator) {
+    childCoordinators.removeAll { $0 === coordinator }
   }
 }
