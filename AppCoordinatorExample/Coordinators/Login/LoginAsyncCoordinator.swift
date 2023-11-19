@@ -5,6 +5,7 @@ class LoginAsyncCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
   var continuation: CheckedContinuation<String, Never>?
+//  var continuationDidSetBlock: (() -> Void)?
 
   init(navigationController: UINavigationController) {
     print("[\(type(of: self))] \(#function)")
@@ -26,6 +27,7 @@ class LoginAsyncCoordinator: Coordinator {
 
     let output = await withCheckedContinuation {
       self.continuation = $0
+//      self.continuationDidSetBlock?()
     }
 
     rootViewController.setViewControllers([], animated: false)

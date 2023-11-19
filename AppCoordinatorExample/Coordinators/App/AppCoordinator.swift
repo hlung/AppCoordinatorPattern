@@ -13,15 +13,18 @@ final class AppCoordinator {
     self.dependencies = dependencies
   }
 
-  func start() /*-> Task<Void, Never>*/ {
-    Task {
-      if let username = dependencies.loggedInUsername {
-        showHome(username)
-      }
-      else {
-        await showLoginAsync()
-      }
+  func start() {
+    if let username = dependencies.loggedInUsername {
+      showHome(username)
     }
+    else {
+      showLogin()
+//      Task { await showLoginAsync() }
+    }
+  }
+
+  func getOutput() async throws -> String {
+    return ""
   }
 
   // MARK: - Navigation
@@ -33,11 +36,11 @@ final class AppCoordinator {
     coordinator.start()
   }
 
-  @MainActor
   func showLogin() {
     let coordinator = LoginCoordinator(navigationController: rootViewController)
     childCoordinators.append(coordinator)
     coordinator.delegate = self
+    coordinator.lifecycleDelegate = self
     coordinator.start()
   }
 
@@ -64,14 +67,11 @@ extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
     print("Login result: \(username)")
     dependencies.loggedInUsername = username
-    childCoordinators.removeAll { $0 === coordinator }
     showHome(username)
-//    showHome(username)
   }
 }
 
 extension AppCoordinator: CoordinatorLifecycleDelegate {
-//  func coordinatorDidFinish<C>(_ coordinator: C, with output: C.Output) where C : Coordinator {
   func coordinatorDidFinish(_ coordinator: any Coordinator) {
     childCoordinators.removeAll { $0 === coordinator }
   }

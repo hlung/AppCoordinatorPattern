@@ -43,6 +43,9 @@ class AppCoordinatorExampleTests: XCTestCase {
 //    await sut.start().value
     let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginAsyncCoordinator)
 
+    async let output = sut.getOutput()
+
+    try await output
     // Even if we have loginCoordinator, its continuation may still be nil...
 
 //    loginCoordinator.continuation?.resume(with: .success("John"))

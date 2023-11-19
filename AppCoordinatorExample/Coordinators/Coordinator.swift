@@ -10,5 +10,4 @@ protocol Coordinator: AnyObject {
 
 protocol CoordinatorLifecycleDelegate: AnyObject {
   func coordinatorDidFinish(_ coordinator: any Coordinator)
-//  func coordinatorDidFinish<C>(_ coordinator: C, with output: C.Output) where C : Coordinator
 }
