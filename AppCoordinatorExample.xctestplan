@@ -15,7 +15,7 @@
       "identifier" : "013D269C271C4C220067B44E",
       "name" : "AppCoordinatorExample"
     },
-    "testRepetitionMode" : "fixedIterations"
+    "testRepetitionMode" : "untilFailure"
   },
   "testTargets" : [
     {

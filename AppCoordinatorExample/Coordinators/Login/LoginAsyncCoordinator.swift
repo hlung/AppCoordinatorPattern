@@ -4,8 +4,8 @@ import UIKit
 class LoginAsyncCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
-  var continuation: CheckedContinuation<String, Never>?
-//  var continuationDidSetBlock: (() -> Void)?
+  private var continuation: CheckedContinuation<String, Never>?
+  var animatedPush: Bool = true
 
   init(navigationController: UINavigationController) {
     print("[\(type(of: self))] \(#function)")
@@ -41,7 +41,7 @@ extension LoginAsyncCoordinator: LoginLandingViewControllerDelegate {
   func loginLandingViewControllerDidSelectLogin(_ viewController: LoginLandingViewController) {
     let viewController = LoginViewController()
     viewController.delegate = self
-    rootViewController.pushViewController(viewController, animated: true)
+    rootViewController.pushViewController(viewController, animated: animatedPush)
   }
 }
 
@@ -51,6 +51,6 @@ extension LoginAsyncCoordinator: LoginViewControllerDelegate {
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {
-    rootViewController.popToRootViewController(animated: true)
+    rootViewController.popToRootViewController(animated: animatedPush)
   }
 }
