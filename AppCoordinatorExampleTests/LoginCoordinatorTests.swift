@@ -32,11 +32,11 @@ class LoginCoordinatorTests: XCTestCase {
     // disable animation so nav.viewControllers is updated right away
     sut.animatedPush = false
 
+    // Need to create 2 separate tasks. Otherwise it will just stop after first await.
     Task {
       let username = await sut.start()
       XCTAssertEqual(username, "John")
     }
-//    async let username = await sut.start()
 
     Task {
       try await Task.sleep(nanoseconds: UInt64(100))
@@ -46,9 +46,6 @@ class LoginCoordinatorTests: XCTestCase {
 
       sut.loginViewController(loginViewController, didLogInWith: "John")
     }
-    
-//    let u = await username
-//    XCTAssertEqual(u, "John")
   }
 
 }

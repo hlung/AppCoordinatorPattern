@@ -44,9 +44,8 @@ class AppCoordinatorExampleTests: XCTestCase {
 
 }
 
-private struct MockDependency: UsernameProvider, StringProvider {
+private struct MockDependency: UsernameProvider {
   var loggedInUsername: String?
-  var getString: (String) -> Void = { _ in }
 
   mutating func clear() {
     self.loggedInUsername = nil
