@@ -11,6 +11,7 @@ final class LoginCoordinator: Coordinator, ChildCoordinator {
   weak var lifecycleDelegate: CoordinatorLifecycleDelegate?
 
   let rootViewController: UINavigationController
+  var animatedPush: Bool = true
 
   init(navigationController: UINavigationController) {
     print("[\(type(of: self))] \(#function)")
@@ -31,6 +32,15 @@ final class LoginCoordinator: Coordinator, ChildCoordinator {
     rootViewController.setViewControllers([viewController], animated: false)
   }
 
+  private var completion: ((String) -> Void)?
+
+  func start(completion: @escaping (String) -> Void) {
+    let viewController = LoginLandingViewController()
+    viewController.delegate = self
+    rootViewController.setViewControllers([viewController], animated: false)
+    self.completion = completion
+  }
+
   // for handling stop request from outside
   func stop() {
     rootViewController.setViewControllers([], animated: false)
@@ -43,7 +53,7 @@ extension LoginCoordinator: LoginLandingViewControllerDelegate {
   func loginLandingViewControllerDidSelectLogin(_ viewController: LoginLandingViewController) {
     let viewController = LoginViewController()
     viewController.delegate = self
-    rootViewController.pushViewController(viewController, animated: true)
+    rootViewController.pushViewController(viewController, animated: animatedPush)
   }
 }
 
@@ -51,9 +61,10 @@ extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewController(_ viewController: LoginViewController, didLogInWith username: String) {
     resultDelegate?.loginCoordinator(self, didLogInWith: username)
     lifecycleDelegate?.coordinatorDidFinish(self)
+    completion?(username)
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {
-    rootViewController.popToRootViewController(animated: true)
+    rootViewController.popToRootViewController(animated: animatedPush)
   }
 }
