@@ -40,14 +40,12 @@ class AppCoordinatorExampleTests: XCTestCase {
     )
 
     sut.start()
-//    await sut.start().value
+
+    // Fail, loginCoordinator is not created yet
     let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginAsyncCoordinator)
 
-    async let output = sut.getOutput()
-
-    try await output
     // Even if we have loginCoordinator, its continuation may still be nil...
-
+    // So we still can't trigger login to verify that HomeCoordinator exists.
 //    loginCoordinator.continuation?.resume(with: .success("John"))
 //    XCTAssertNotNil(sut.childCoordinators.last as? HomeCoordinator)
   }
