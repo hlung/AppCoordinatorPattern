@@ -1,6 +1,6 @@
 import Foundation
 
-protocol ChildCoordinator: AnyObject {
+protocol ChildCoordinator: Coordinator {
   associatedtype ResultDelegate
 
   var resultDelegate: ResultDelegate? { get }
