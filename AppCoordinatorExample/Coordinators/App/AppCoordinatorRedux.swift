@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinatorRedux: CoordinatorRedux, ActionSender {
+final class AppCoordinatorRedux: CoordinatorRedux {
 
   typealias Dependencies = UsernameProvider
 
