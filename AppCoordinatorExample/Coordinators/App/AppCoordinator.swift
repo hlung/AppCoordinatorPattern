@@ -44,15 +44,15 @@ final class AppCoordinator {
     coordinator.start()
   }
 
-  @MainActor
-  func showLoginAsync() async {
-    let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
-    childCoordinators.append(coordinator)
-    let username = await coordinator.start()
-    childCoordinators.removeAll { $0 === coordinator }
-    dependencies.loggedInUsername = username
-    showHome(username)
-  }
+//  @MainActor
+//  func showLoginAsync() async {
+//    let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
+//    childCoordinators.append(coordinator)
+//    let username = await coordinator.start()
+//    childCoordinators.removeAll { $0 === coordinator }
+//    dependencies.loggedInUsername = username
+//    showHome(username)
+//  }
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {
