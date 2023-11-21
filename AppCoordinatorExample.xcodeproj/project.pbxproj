@@ -117,9 +117,20 @@
 			isa = PBXGroup;
 			children = (
 				013CD6EF2B051C5000B444AB /* Dependencies.swift */,
-				013CD6FA2B0C842C00B444AB /* Environment.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		013CD6FC2B0C886300B444AB /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				013CD6F82B0C7BE700B444AB /* CoordinatorRedux.swift */,
+				013CD6F42B0C7B4D00B444AB /* AppCoordinatorRedux.swift */,
+				013CD6D12AFB8CB300B444AB /* ParentCoordinator.swift */,
+				013CD6FA2B0C842C00B444AB /* Environment.swift */,
+				01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 		013D2694271C4C220067B44E = {
@@ -150,6 +161,7 @@
 				013CD6F12B051C9400B444AB /* Protocols */,
 				01A7A3CC2AF0B1D100B632CC /* Extensions */,
 				013D26E2271C4F150067B44E /* Coordinators */,
+				013CD6FC2B0C886300B444AB /* Unused */,
 				013D26A9271C4C240067B44E /* Assets.xcassets */,
 				013D26AB271C4C240067B44E /* LaunchScreen.storyboard */,
 				013D26AE271C4C240067B44E /* Info.plist */,
@@ -202,8 +214,6 @@
 			children = (
 				01A7A3CA2AEFA98500B632CC /* Coordinator.swift */,
 				013CD6F62B0C7BD600B444AB /* ChildCoordinator.swift */,
-				013CD6D12AFB8CB300B444AB /* ParentCoordinator.swift */,
-				013CD6F82B0C7BE700B444AB /* CoordinatorRedux.swift */,
 				01A7A3C92AEFA8D200B632CC /* App */,
 				017D82532725B5BD00CA3FBF /* Home */,
 				013D26D0271C4C3D0067B44E /* Login */,
@@ -226,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
-				013CD6F42B0C7B4D00B444AB /* AppCoordinatorRedux.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -235,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */,
-				01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
