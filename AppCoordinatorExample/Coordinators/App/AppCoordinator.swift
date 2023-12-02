@@ -2,7 +2,15 @@ import UIKit
 
 final class AppCoordinator {
 
-  typealias Dependencies = UsernameProvider
+  class Dependencies {
+    let sessionProvider: SessionProvider
+    let appLaunchDataProvider: AppLaunchDataProvider
+
+    init(sessionProvider: SessionProvider, appLaunchDataProvider: AppLaunchDataProvider) {
+      self.sessionProvider = sessionProvider
+      self.appLaunchDataProvider = appLaunchDataProvider
+    }
+  }
 
   let rootViewController: UINavigationController
   var childCoordinators: [AnyObject] = []
@@ -14,12 +22,11 @@ final class AppCoordinator {
   }
 
   func start() {
-    if let username = dependencies.loggedInUsername {
+    if let username = dependencies.sessionProvider.session?.user.username {
       showHome(username)
     }
     else {
       showLogin()
-//      Task { await showLoginAsync() }
     }
   }
 
@@ -44,30 +51,20 @@ final class AppCoordinator {
     coordinator.start()
   }
 
-//  @MainActor
-//  func showLoginAsync() async {
-//    let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
-//    childCoordinators.append(coordinator)
-//    let username = await coordinator.start()
-//    childCoordinators.removeAll { $0 === coordinator }
-//    dependencies.loggedInUsername = username
-//    showHome(username)
-//  }
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {
   func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
-    dependencies.clear()
+    dependencies.sessionProvider.session = nil
     childCoordinators.removeAll { $0 === coordinator }
     showLogin()
-//    Task { await showLoginAsync() }
   }
 }
 
 extension AppCoordinator: LoginCoordinatorDelegate {
   func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
-    print("Login result: \(username)")
-    dependencies.loggedInUsername = username
+    print("Login username: \(username)")
+    dependencies.sessionProvider.session = Session(user: User(username: username))
     showHome(username)
   }
 }

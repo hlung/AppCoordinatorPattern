@@ -32,14 +32,14 @@ final class LoginCoordinator: Coordinator, ChildCoordinator {
     rootViewController.setViewControllers([viewController], animated: false)
   }
 
-  private var completion: ((String) -> Void)?
-
-  func start(completion: @escaping (String) -> Void) {
-    let viewController = LoginLandingViewController()
-    viewController.delegate = self
-    rootViewController.setViewControllers([viewController], animated: false)
-    self.completion = completion
-  }
+//  private var completion: ((String) -> Void)?
+//
+//  func start(completion: @escaping (String) -> Void) {
+//    let viewController = LoginLandingViewController()
+//    viewController.delegate = self
+//    rootViewController.setViewControllers([viewController], animated: false)
+//    self.completion = completion
+//  }
 
   // for handling stop request from outside
   func stop() {
@@ -61,7 +61,7 @@ extension LoginCoordinator: LoginViewControllerDelegate {
   func loginViewController(_ viewController: LoginViewController, didLogInWith username: String) {
     resultDelegate?.loginCoordinator(self, didLogInWith: username)
     lifecycleDelegate?.coordinatorDidFinish(self)
-    completion?(username)
+//    completion?(session)
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {

@@ -39,5 +39,3 @@ extension UserDefaults {
     emailVerified = false
   }
 }
-
-extension UserDefaults: UsernameProvider {}

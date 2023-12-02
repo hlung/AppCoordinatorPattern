@@ -22,7 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let isTesting = ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
     if !isTesting {
-      let coordinator = AppCoordinator(navigationController: navigationController, dependencies: UserDefaults.standard)
+      let sessionProvider = SessionController()
+      sessionProvider.loadSavedData()
+
+      let coordinator = AppCoordinator(
+        navigationController: navigationController,
+        dependencies: .init(
+          sessionProvider: sessionProvider,
+          appLaunchDataProvider: APIClient()
+        )
+      )
       coordinator.start()
       self.coordinator = coordinator
     }
@@ -31,4 +40,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
 }
-

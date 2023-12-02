@@ -7,15 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		013CD6D22AFB8CB300B444AB /* ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D12AFB8CB300B444AB /* ParentCoordinator.swift */; };
 		013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */; };
 		013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */; };
 		013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6EF2B051C5000B444AB /* Dependencies.swift */; };
 		013CD6F32B0B488500B444AB /* LoginCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6F22B0B488500B444AB /* LoginCoordinatorTests.swift */; };
-		013CD6F52B0C7B4D00B444AB /* AppCoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6F42B0C7B4D00B444AB /* AppCoordinatorRedux.swift */; };
 		013CD6F72B0C7BD600B444AB /* ChildCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6F62B0C7BD600B444AB /* ChildCoordinator.swift */; };
-		013CD6F92B0C7BE700B444AB /* CoordinatorRedux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6F82B0C7BE700B444AB /* CoordinatorRedux.swift */; };
-		013CD6FB2B0C842C00B444AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6FA2B0C842C00B444AB /* Environment.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
 		013D26AA271C4C240067B44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013D26A9271C4C240067B44E /* Assets.xcassets */; };
@@ -29,8 +25,10 @@
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
 		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
+		01A5FFCF2B1AEBD200ECF621 /* SessionControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFCE2B1AEBD200ECF621 /* SessionControllers.swift */; };
+		01A5FFD42B1AEC1600ECF621 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD32B1AEC1600ECF621 /* Models.swift */; };
+		01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
-		01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */; };
 		01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */; };
 		01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +80,9 @@
 		013D26E5271E613B0067B44E /* LoginLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLandingViewController.swift; sourceTree = "<group>"; };
 		017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		01A5FFCE2B1AEBD200ECF621 /* SessionControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionControllers.swift; sourceTree = "<group>"; };
+		01A5FFD32B1AEC1600ECF621 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSVODViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				013D26A0271C4C220067B44E /* AppDelegate.swift */,
-				013CD6F12B051C9400B444AB /* Protocols */,
+				01A5FFCA2B1AEB3100ECF621 /* Core */,
+				01A5FFCB2B1AEB3900ECF621 /* Features */,
 				01A7A3CC2AF0B1D100B632CC /* Extensions */,
 				013D26E2271C4F150067B44E /* Coordinators */,
 				013CD6FC2B0C886300B444AB /* Unused */,
@@ -230,6 +232,40 @@
 				01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		01A5FFC92B1AEB2200ECF621 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				01A5FFCE2B1AEBD200ECF621 /* SessionControllers.swift */,
+				01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		01A5FFCA2B1AEB3100ECF621 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				01A5FFD02B1AEBE900ECF621 /* Models */,
+				01A5FFC92B1AEB2200ECF621 /* Controllers */,
+				013CD6F12B051C9400B444AB /* Protocols */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		01A5FFCB2B1AEB3900ECF621 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		01A5FFD02B1AEBE900ECF621 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				01A5FFD32B1AEC1600ECF621 /* Models.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		01A7A3C92AEFA8D200B632CC /* App */ = {
@@ -383,19 +419,17 @@
 				013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */,
 				013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */,
 				01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */,
+				01A5FFCF2B1AEBD200ECF621 /* SessionControllers.swift in Sources */,
 				013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */,
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
-				013CD6F52B0C7B4D00B444AB /* AppCoordinatorRedux.swift in Sources */,
+				01A5FFD42B1AEC1600ECF621 /* Models.swift in Sources */,
+				01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
-				013CD6FB2B0C842C00B444AB /* Environment.swift in Sources */,
 				013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */,
 				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */,
-				013CD6F92B0C7BE700B444AB /* CoordinatorRedux.swift in Sources */,
-				013CD6D22AFB8CB300B444AB /* ParentCoordinator.swift in Sources */,
 				013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
-				01A7A3CE2AF0B1E100B632CC /* UIViewController+Child.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
 				017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */,
 			);
