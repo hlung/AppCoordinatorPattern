@@ -20,7 +20,6 @@
 		013D26C3271C4C250067B44E /* AppCoordinatorExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26C2271C4C250067B44E /* AppCoordinatorExampleUITests.swift */; };
 		013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D1271C4C5F0067B44E /* AppCoordinator.swift */; };
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
-		013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E3271D1E820067B44E /* LoginCoordinator.swift */; };
 		013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E5271E613B0067B44E /* LoginLandingViewController.swift */; };
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
 		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
@@ -127,6 +126,7 @@
 		013CD6FC2B0C886300B444AB /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				013D26E3271D1E820067B44E /* LoginCoordinator.swift */,
 				013CD6F82B0C7BE700B444AB /* CoordinatorRedux.swift */,
 				013CD6F42B0C7B4D00B444AB /* AppCoordinatorRedux.swift */,
 				013CD6D12AFB8CB300B444AB /* ParentCoordinator.swift */,
@@ -194,7 +194,6 @@
 		013D26D0271C4C3D0067B44E /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				013D26E3271D1E820067B44E /* LoginCoordinator.swift */,
 				013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */,
 				013D26E5271E613B0067B44E /* LoginLandingViewController.swift */,
 				013D26DB271C4D3E0067B44E /* LoginViewController.swift */,
@@ -410,7 +409,6 @@
 				01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */,
 				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
 				013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */,
-				013D26E4271D1E820067B44E /* LoginCoordinator.swift in Sources */,
 				01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */,
 				013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,

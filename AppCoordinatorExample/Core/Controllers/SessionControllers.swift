@@ -13,7 +13,7 @@ class SessionController: SessionProvider {
     }
   }
 
-  func loadSavedData() {
+  func loadSavedSession() {
     if let username = UserDefaults.standard.loggedInUsername {
       self.session = Session(user: User(username: username))
     }

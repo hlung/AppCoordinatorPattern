@@ -5,7 +5,7 @@ protocol HomeCoordinatorDelegate: AnyObject {
 }
 
 /// An example of a coordinator that manages main content of the app.
-final class HomeCoordinator {
+final class HomeCoordinator: Coordinator {
 
   weak var delegate: HomeCoordinatorDelegate?
 

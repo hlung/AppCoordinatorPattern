@@ -22,8 +22,10 @@ final class AppCoordinator {
   }
 
   func start() {
-    if let username = dependencies.sessionProvider.session?.user.username {
-      showHome(username)
+    dependencies.sessionProvider.loadSavedSession()
+
+    if let session = dependencies.sessionProvider.session {
+      showHome(session)
     }
     else {
       showLogin()
@@ -32,19 +34,21 @@ final class AppCoordinator {
 
   // MARK: - Navigation
 
-  func showHome(_ username: String) {
-    let coordinator = HomeCoordinator(navigationController: rootViewController, username: username)
+  func showHome(_ session: Session) {
+    let coordinator = HomeCoordinator(navigationController: rootViewController, username: session.user.username)
     childCoordinators.append(coordinator)
     coordinator.delegate = self
     coordinator.start()
   }
 
   func showLogin() {
-    let coordinator = LoginCoordinator(navigationController: rootViewController)
-    childCoordinators.append(coordinator)
-    coordinator.resultDelegate = self
-    coordinator.lifecycleDelegate = self
-    coordinator.start()
+    Task { @MainActor in
+      let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
+      let username = await coordinator.start()
+      let session = Session(user: User(username: username))
+      dependencies.sessionProvider.session = session
+      showHome(session)
+    }
   }
 
 }
@@ -54,19 +58,5 @@ extension AppCoordinator: HomeCoordinatorDelegate {
     dependencies.sessionProvider.session = nil
     childCoordinators.removeAll { $0 === coordinator }
     showLogin()
-  }
-}
-
-extension AppCoordinator: LoginCoordinatorDelegate {
-  func loginCoordinator(_ coordinator: LoginCoordinator, didLogInWith username: String) {
-    print("Login username: \(username)")
-    dependencies.sessionProvider.session = Session(user: User(username: username))
-    showHome(username)
-  }
-}
-
-extension AppCoordinator: CoordinatorLifecycleDelegate {
-  func coordinatorDidFinish(_ coordinator: any Coordinator) {
-    childCoordinators.removeAll { $0 === coordinator }
   }
 }

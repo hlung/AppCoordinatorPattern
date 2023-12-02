@@ -2,6 +2,7 @@ import Foundation
 
 protocol SessionProvider: AnyObject {
   var session: Session? { get set }
+  func loadSavedSession()
 }
 
 protocol AppLaunchDataProvider: AnyObject {
