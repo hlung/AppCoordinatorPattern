@@ -22,11 +22,11 @@
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
 		013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E5271E613B0067B44E /* LoginLandingViewController.swift */; };
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
-		017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */; };
 		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		01A5FFCF2B1AEBD200ECF621 /* SessionControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFCE2B1AEBD200ECF621 /* SessionControllers.swift */; };
 		01A5FFD42B1AEC1600ECF621 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD32B1AEC1600ECF621 /* Models.swift */; };
 		01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */; };
+		01A5FFD82B1B7C3400ECF621 /* HomeAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 		01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */; };
 		01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */; };
@@ -82,6 +82,7 @@
 		01A5FFCE2B1AEBD200ECF621 /* SessionControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionControllers.swift; sourceTree = "<group>"; };
 		01A5FFD32B1AEC1600ECF621 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAsyncCoordinator.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSVODViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 		013CD6FC2B0C886300B444AB /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */,
 				013D26E3271D1E820067B44E /* LoginCoordinator.swift */,
 				013CD6F82B0C7BE700B444AB /* CoordinatorRedux.swift */,
 				013CD6F42B0C7B4D00B444AB /* AppCoordinatorRedux.swift */,
@@ -214,7 +216,7 @@
 		017D82532725B5BD00CA3FBF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				017D82542725BE7A00CA3FBF /* HomeCoordinator.swift */,
+				01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */,
 				013D26A4271C4C220067B44E /* HomeViewController.swift */,
 				01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */,
 			);
@@ -396,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01A5FFD82B1B7C3400ECF621 /* HomeAsyncCoordinator.swift in Sources */,
 				01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */,
 				013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */,
 				013CD6F72B0C7BD600B444AB /* ChildCoordinator.swift in Sources */,
@@ -413,7 +416,6 @@
 				013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
 				013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */,
-				017D82552725BE7A00CA3FBF /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

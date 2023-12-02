@@ -14,7 +14,6 @@ final class AppCoordinator {
 
   let rootViewController: UINavigationController
   let dependencies: Dependencies
-  private var childCoordinators: [AnyObject] = []
 
   init(navigationController: UINavigationController, dependencies: Dependencies) {
     self.rootViewController = navigationController
@@ -34,14 +33,16 @@ final class AppCoordinator {
 
   // MARK: - Navigation
 
-  func showHome(_ session: Session) {
-    let coordinator = HomeCoordinator(navigationController: rootViewController, username: session.user.username)
-    childCoordinators.append(coordinator)
-    coordinator.delegate = self
-    coordinator.start()
+  private func showHome(_ session: Session) {
+    Task { @MainActor in
+      let coordinator = HomeAsyncCoordinator(navigationController: rootViewController, username: session.user.username)
+      await coordinator.start()
+      dependencies.sessionProvider.session = nil
+      showLogin()
+    }
   }
 
-  func showLogin() {
+  private func showLogin() {
     Task { @MainActor in
       let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
       let username = await coordinator.start()
@@ -51,12 +52,4 @@ final class AppCoordinator {
     }
   }
 
-}
-
-extension AppCoordinator: HomeCoordinatorDelegate {
-  func homeCoordinatorDidLogOut(_ coordinator: HomeCoordinator) {
-    dependencies.sessionProvider.session = nil
-    childCoordinators.removeAll { $0 === coordinator }
-    showLogin()
-  }
 }
