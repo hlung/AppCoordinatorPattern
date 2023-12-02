@@ -117,6 +117,8 @@
 		013CD6F12B051C9400B444AB /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				01A7A3CA2AEFA98500B632CC /* Coordinator.swift */,
+				013CD6F62B0C7BD600B444AB /* ChildCoordinator.swift */,
 				013CD6EF2B051C5000B444AB /* Dependencies.swift */,
 			);
 			path = Protocols;
@@ -159,10 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				013D26A0271C4C220067B44E /* AppDelegate.swift */,
+				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
 				01A5FFCA2B1AEB3100ECF621 /* Core */,
 				01A5FFCB2B1AEB3900ECF621 /* Features */,
-				01A7A3CC2AF0B1D100B632CC /* Extensions */,
-				013D26E2271C4F150067B44E /* Coordinators */,
 				013CD6FC2B0C886300B444AB /* Unused */,
 				013D26A9271C4C240067B44E /* Assets.xcassets */,
 				013D26AB271C4C240067B44E /* LaunchScreen.storyboard */,
@@ -211,19 +212,6 @@
 			path = Purchase;
 			sourceTree = "<group>";
 		};
-		013D26E2271C4F150067B44E /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				01A7A3CA2AEFA98500B632CC /* Coordinator.swift */,
-				013CD6F62B0C7BD600B444AB /* ChildCoordinator.swift */,
-				01A7A3C92AEFA8D200B632CC /* App */,
-				017D82532725B5BD00CA3FBF /* Home */,
-				013D26D0271C4C3D0067B44E /* Login */,
-				013D26D6271C4CBF0067B44E /* Purchase */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
 		017D82532725B5BD00CA3FBF /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +237,7 @@
 				01A5FFD02B1AEBE900ECF621 /* Models */,
 				01A5FFC92B1AEB2200ECF621 /* Controllers */,
 				013CD6F12B051C9400B444AB /* Protocols */,
+				01A7A3CC2AF0B1D100B632CC /* Extensions */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -256,6 +245,9 @@
 		01A5FFCB2B1AEB3900ECF621 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				017D82532725B5BD00CA3FBF /* Home */,
+				013D26D0271C4C3D0067B44E /* Login */,
+				013D26D6271C4CBF0067B44E /* Purchase */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -266,14 +258,6 @@
 				01A5FFD32B1AEC1600ECF621 /* Models.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		01A7A3C92AEFA8D200B632CC /* App */ = {
-			isa = PBXGroup;
-			children = (
-				013D26D1271C4C5F0067B44E /* AppCoordinator.swift */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		01A7A3CC2AF0B1D100B632CC /* Extensions */ = {
