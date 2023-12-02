@@ -13,8 +13,8 @@ final class AppCoordinator {
   }
 
   let rootViewController: UINavigationController
-  var childCoordinators: [AnyObject] = []
-  var dependencies: Dependencies
+  let dependencies: Dependencies
+  private var childCoordinators: [AnyObject] = []
 
   init(navigationController: UINavigationController, dependencies: Dependencies) {
     self.rootViewController = navigationController
@@ -28,10 +28,6 @@ final class AppCoordinator {
     else {
       showLogin()
     }
-  }
-
-  func getOutput() async throws -> String {
-    return ""
   }
 
   // MARK: - Navigation
