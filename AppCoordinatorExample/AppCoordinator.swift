@@ -2,14 +2,9 @@ import UIKit
 
 final class AppCoordinator {
 
-  class Dependencies {
+  struct Dependencies {
     let sessionProvider: SessionProvider
     let appLaunchDataProvider: AppLaunchDataProvider
-
-    init(sessionProvider: SessionProvider, appLaunchDataProvider: AppLaunchDataProvider) {
-      self.sessionProvider = sessionProvider
-      self.appLaunchDataProvider = appLaunchDataProvider
-    }
   }
 
   let rootViewController: UINavigationController
@@ -27,11 +22,19 @@ final class AppCoordinator {
       dependencies.sessionProvider.loadSavedSession()
       let _ = try await dependencies.appLaunchDataProvider.getAppLaunchData()
 
-      if let session = dependencies.sessionProvider.session {
-        showHome(session)
-      }
-      else {
-        showLogin()
+      // Using `while true` loop here may look scary, but I think it shows a clear intent
+      // that there's a loop here between logged in and logged out state.
+      // If we put showHomePage at the end of showLoginPage, it works but it kinda violates SRP
+      // by doing 2 things in one func.
+      while true {
+        if let session = dependencies.sessionProvider.session {
+          await showHomePage(session)
+          dependencies.sessionProvider.session = nil
+        }
+        else {
+          let session = await showLoginPage()
+          dependencies.sessionProvider.session = session
+        }
       }
     }
   }
@@ -43,23 +46,15 @@ final class AppCoordinator {
     rootViewController.viewControllers = [viewController]
   }
 
-  private func showHome(_ session: Session) {
-    Task { @MainActor in
-      let coordinator = HomeAsyncCoordinator(navigationController: rootViewController, username: session.user.username)
-      await coordinator.start()
-      dependencies.sessionProvider.session = nil
-      showLogin()
-    }
+  private func showHomePage(_ session: Session) async {
+    let coordinator = HomeAsyncCoordinator(navigationController: rootViewController, session: session)
+    await coordinator.start()
   }
 
-  private func showLogin() {
-    Task { @MainActor in
-      let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
-      let username = await coordinator.start()
-      let session = Session(user: User(username: username))
-      dependencies.sessionProvider.session = session
-      showHome(session)
-    }
+  private func showLoginPage() async -> Session {
+    let coordinator = LoginAsyncCoordinator(navigationController: rootViewController)
+    let username = await coordinator.start()
+    return Session(user: User(username: username))
   }
 
 }

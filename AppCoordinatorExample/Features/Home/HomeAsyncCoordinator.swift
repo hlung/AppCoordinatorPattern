@@ -6,10 +6,10 @@ final class HomeAsyncCoordinator: Coordinator {
   private var continuation: CheckedContinuation<Void, Never>?
   var username: String
 
-  init(navigationController: UINavigationController, username: String) {
+  init(navigationController: UINavigationController, session: Session) {
     print("[\(type(of: self))] \(#function)")
     self.rootViewController = navigationController
-    self.username = username
+    self.username = session.user.username
   }
 
   required init?(coder aDecoder: NSCoder) {
