@@ -72,6 +72,7 @@ final class HomeCoordinator: Coordinator {
     await withCheckedContinuation { continuation in
       let viewController = OnboardingViewController()
       viewController.delegate = self
+      // deinitHandler is kinda a quick hack
       viewController.deinitHandler = { continuation.resume() }
       rootViewController.present(viewController, animated: true)
       UserDefaults.standard.onboardingShown = true
@@ -108,18 +109,6 @@ extension HomeCoordinator: HomeViewControllerDelegate {
     Task { await showOnboarding() }
   }
 }
-
-//extension HomeCoordinator: PurchaseCoordinatorDelegate {
-//  func purchaseCoordinatorDidPurchase(_ coordinator: PurchaseCoordinator) {
-//    print("Purchase OK")
-//    childCoordinators.removeAll { $0 === coordinator }
-//  }
-//
-//  func purchaseCoordinatorDidStop(_ coordinator: PurchaseCoordinator) {
-//    print("Purchase Cancelled")
-//    childCoordinators.removeAll { $0 === coordinator }
-//  }
-//}
 
 extension HomeCoordinator: OnboardingViewControllerDelegate {
   func onboardingViewControllerDidFinish(_ viewController: OnboardingViewController) {
