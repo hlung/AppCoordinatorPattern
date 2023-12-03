@@ -14,8 +14,7 @@
       "containerPath" : "container:AppCoordinatorExample.xcodeproj",
       "identifier" : "013D269C271C4C220067B44E",
       "name" : "AppCoordinatorExample"
-    },
-    "testRepetitionMode" : "untilFailure"
+    }
   },
   "testTargets" : [
     {

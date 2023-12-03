@@ -25,11 +25,7 @@ class LoginAsyncCoordinator: Coordinator {
     viewController.delegate = self
     rootViewController.setViewControllers([viewController], animated: false)
 
-    let output = await withCheckedContinuation {
-      self.continuation = $0
-//      self.continuationDidSetBlock?()
-    }
-
+    let output = await withCheckedContinuation { self.continuation = $0 }
     rootViewController.setViewControllers([], animated: false)
 
     return output

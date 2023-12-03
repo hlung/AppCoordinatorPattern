@@ -10,12 +10,10 @@
 		013CD6D62AFC90F200B444AB /* LoginAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D52AFC90F200B444AB /* LoginAsyncCoordinator.swift */; };
 		013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */; };
 		013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6EF2B051C5000B444AB /* Dependencies.swift */; };
-		013CD6F32B0B488500B444AB /* LoginCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013CD6F22B0B488500B444AB /* LoginCoordinatorTests.swift */; };
 		013D26A1271C4C220067B44E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A0271C4C220067B44E /* AppDelegate.swift */; };
 		013D26A5271C4C220067B44E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26A4271C4C220067B44E /* HomeViewController.swift */; };
 		013D26AA271C4C240067B44E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013D26A9271C4C240067B44E /* Assets.xcassets */; };
 		013D26AD271C4C240067B44E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 013D26AB271C4C240067B44E /* LaunchScreen.storyboard */; };
-		013D26B8271C4C250067B44E /* AppCoordinatorExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26B7271C4C250067B44E /* AppCoordinatorExampleTests.swift */; };
 		013D26C3271C4C250067B44E /* AppCoordinatorExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26C2271C4C250067B44E /* AppCoordinatorExampleUITests.swift */; };
 		013D26D2271C4C5F0067B44E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D1271C4C5F0067B44E /* AppCoordinator.swift */; };
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
@@ -26,6 +24,7 @@
 		01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */; };
 		01A5FFD82B1B7C3400ECF621 /* HomeAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */; };
 		01A5FFDA2B1CB24C00ECF621 /* FakeSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */; };
+		01A5FFDE2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFDD2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 		01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */; };
 		01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */; };
@@ -83,6 +82,7 @@
 		01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAsyncCoordinator.swift; sourceTree = "<group>"; };
 		01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSplashViewController.swift; sourceTree = "<group>"; };
+		01A5FFDD2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAsyncCoordinatorTests.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSVODViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				013D26B7271C4C250067B44E /* AppCoordinatorExampleTests.swift */,
-				013CD6F22B0B488500B444AB /* LoginCoordinatorTests.swift */,
+				01A5FFDD2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift */,
+				01A5FFDF2B1CCB8B00ECF621 /* Unused */,
 				013D26B9271C4C250067B44E /* Info.plist */,
 			);
 			path = AppCoordinatorExampleTests;
@@ -260,6 +261,14 @@
 				01A5FFD32B1AEC1600ECF621 /* Models.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		01A5FFDF2B1CCB8B00ECF621 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				013CD6F22B0B488500B444AB /* LoginCoordinatorTests.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 		01A7A3CC2AF0B1D100B632CC /* Extensions */ = {
@@ -423,8 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				013CD6F32B0B488500B444AB /* LoginCoordinatorTests.swift in Sources */,
-				013D26B8271C4C250067B44E /* AppCoordinatorExampleTests.swift in Sources */,
+				01A5FFDE2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,7 +633,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SNU9N24VYW;
 				INFOPLIST_FILE = AppCoordinatorExampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -647,7 +655,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SNU9N24VYW;
 				INFOPLIST_FILE = AppCoordinatorExampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
