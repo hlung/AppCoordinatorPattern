@@ -25,6 +25,7 @@
 		01A5FFD42B1AEC1600ECF621 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD32B1AEC1600ECF621 /* Models.swift */; };
 		01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */; };
 		01A5FFD82B1B7C3400ECF621 /* HomeAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */; };
+		01A5FFDA2B1CB24C00ECF621 /* FakeSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 		01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */; };
 		01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */; };
@@ -81,6 +82,7 @@
 		01A5FFD32B1AEC1600ECF621 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAsyncCoordinator.swift; sourceTree = "<group>"; };
+		01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSplashViewController.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSVODViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		01A5FFCB2B1AEB3900ECF621 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */,
 				017D82532725B5BD00CA3FBF /* Home */,
 				013D26D0271C4C3D0067B44E /* Login */,
 				013D26D6271C4CBF0067B44E /* Purchase */,
@@ -408,6 +411,7 @@
 				01A5FFD42B1AEC1600ECF621 /* Models.swift in Sources */,
 				01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */,
 				013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */,
+				01A5FFDA2B1CB24C00ECF621 /* FakeSplashViewController.swift in Sources */,
 				01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */,
 				013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */,
 				013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */,
@@ -510,7 +514,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -565,7 +569,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

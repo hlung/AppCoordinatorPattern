@@ -80,10 +80,6 @@ class HomeViewController: UIViewController {
     onboardingButton.addTarget(self, action: #selector(onboardingButtonDidTap), for: .touchUpInside)
   }
 
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-  }
-
   @objc func onboardingButtonDidTap() {
     delegate?.homeViewControllerDidTapOnboarding(self)
   }

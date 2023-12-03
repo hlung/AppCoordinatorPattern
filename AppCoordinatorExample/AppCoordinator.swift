@@ -21,17 +21,27 @@ final class AppCoordinator {
   }
 
   func start() {
-    dependencies.sessionProvider.loadSavedSession()
+    Task { @MainActor in
+      showFakeSplash()
 
-    if let session = dependencies.sessionProvider.session {
-      showHome(session)
-    }
-    else {
-      showLogin()
+      dependencies.sessionProvider.loadSavedSession()
+      let _ = try await dependencies.appLaunchDataProvider.getAppLaunchData()
+
+      if let session = dependencies.sessionProvider.session {
+        showHome(session)
+      }
+      else {
+        showLogin()
+      }
     }
   }
 
   // MARK: - Navigation
+
+  private func showFakeSplash() {
+    let viewController = FakeSplashViewController()
+    rootViewController.viewControllers = [viewController]
+  }
 
   private func showHome(_ session: Session) {
     Task { @MainActor in
