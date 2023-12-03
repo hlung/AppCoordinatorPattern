@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
 
   lazy var titleLabel: UILabel = {
     let label = UILabel()
+    label.font = .preferredFont(forTextStyle: .headline)
     label.text = "Welcome! \(username ?? "-")"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -84,12 +85,17 @@ class HomeViewController: UIViewController {
     delegate?.homeViewControllerDidTapOnboarding(self)
   }
 
-  @objc func logoutButtonDidTap() {
-    delegate?.homeViewControllerDidLogOut(self)
-  }
-
   @objc func purchaseSVODButtonDidTap() {
     delegate?.homeViewControllerPurchase(self)
+  }
+
+  @objc func logoutButtonDidTap() {
+    let alert = UIAlertController(title: "Log Out", message: "Confirm?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+    alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
+      self.delegate?.homeViewControllerDidLogOut(self)
+    }))
+    present(alert, animated: true)
   }
 
 }

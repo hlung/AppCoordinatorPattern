@@ -9,6 +9,23 @@ class LoginViewController: UIViewController {
 
   weak var delegate: LoginViewControllerDelegate?
 
+  lazy var stackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .vertical
+    stackView.alignment = .center
+    stackView.spacing = 8
+    return stackView
+  }()
+
+  lazy var usernameLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Username:"
+    label.font = .preferredFont(forTextStyle: .headline)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+
   lazy var usernameTextField: UITextField = {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
@@ -43,23 +60,23 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
     title = "\(type(of: self))"
     view.backgroundColor = .white
-    view.addSubview(usernameTextField)
-    view.addSubview(finishButton)
-    view.addSubview(backButton)
+    view.addSubview(stackView)
+    stackView.addArrangedSubview(usernameLabel)
+    stackView.addArrangedSubview(usernameTextField)
+    stackView.addArrangedSubview(finishButton)
+    stackView.addArrangedSubview(backButton)
+    stackView.addArrangedSubview(UIView())
 
     NSLayoutConstraint.activate([
-      usernameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      usernameTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-      usernameTextField.widthAnchor.constraint(equalToConstant: 200),
-
-      finishButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      finishButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-      finishButton.widthAnchor.constraint(equalToConstant: 200),
-
-      backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
-      backButton.widthAnchor.constraint(equalToConstant: 200),
+      stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+      stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
+      stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
     ])
+
+    for view in stackView.arrangedSubviews {
+      view.widthAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
+    }
   }
 
   @objc func finishButtonDidTap() {
