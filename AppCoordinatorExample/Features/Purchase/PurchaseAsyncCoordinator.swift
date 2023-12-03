@@ -1,9 +1,5 @@
 import UIKit
 
-protocol PurchaseAsyncCoordinatorDelegate: AnyObject {
-  func purchaseAsyncCoorinatorDidPurchase(_ coordinator: PurchaseAsyncCoordinator)
-}
-
 /// An example of a coordinator that manages an operation involving a series of UIAlertController.
 final class PurchaseAsyncCoordinator: Coordinator {
 
@@ -20,8 +16,6 @@ final class PurchaseAsyncCoordinator: Coordinator {
     case didRestorePurchase
     case cancelled
   }
-
-  weak var delegate: PurchaseCoordinatorDelegate?
 
   let rootViewController: UINavigationController
   let productType: ProductType
@@ -44,7 +38,7 @@ final class PurchaseAsyncCoordinator: Coordinator {
   @MainActor func start() async -> Output {
     switch productType {
     case .svod:
-      // Task does not retain vc
+      // Task does not retain vc because vc is in withCheckedContinuation scope
       let output = await withCheckedContinuation {
         let vc = PurchaseSVODViewController()
         vc.delegate = self
@@ -67,9 +61,6 @@ final class PurchaseAsyncCoordinator: Coordinator {
     }
   }
 
-//  func start() -> Output {
-//    return .cancelled
-//  }
 }
 
 extension PurchaseAsyncCoordinator: PurchaseSVODViewControllerDelegate {

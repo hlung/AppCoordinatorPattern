@@ -22,7 +22,6 @@
 		013D26DC271C4D3E0067B44E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26DB271C4D3E0067B44E /* LoginViewController.swift */; };
 		013D26E6271E613B0067B44E /* LoginLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26E5271E613B0067B44E /* LoginLandingViewController.swift */; };
 		017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D82512725B52800CA3FBF /* UserDefaults+Helpers.swift */; };
-		01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26D7271C4CDC0067B44E /* PurchaseCoordinator.swift */; };
 		01A5FFCF2B1AEBD200ECF621 /* SessionControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFCE2B1AEBD200ECF621 /* SessionControllers.swift */; };
 		01A5FFD42B1AEC1600ECF621 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD32B1AEC1600ECF621 /* Models.swift */; };
 		01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD52B1B0B1A00ECF621 /* APIClient.swift */; };
@@ -410,7 +409,6 @@
 				017D82522725B52800CA3FBF /* UserDefaults+Helpers.swift in Sources */,
 				01A5FFD42B1AEC1600ECF621 /* Models.swift in Sources */,
 				01A5FFD62B1B0B1A00ECF621 /* APIClient.swift in Sources */,
-				01872F152733E196004A76A0 /* PurchaseCoordinator.swift in Sources */,
 				013CD6F02B051C5000B444AB /* Dependencies.swift in Sources */,
 				01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */,
 				013CD6DA2AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift in Sources */,
