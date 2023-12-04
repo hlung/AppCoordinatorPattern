@@ -22,12 +22,12 @@ class AppCoordinatorExampleTests: XCTestCase {
     )
 
     sut.start()
-    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? FakeSplashViewController)
+    XCTAssertNotNil(nav.viewControllers.last as? FakeSplashViewController)
 
     // Add delay to ensure sut.start() hits the first awaiting code
     try await Task.sleep(for: .milliseconds(10))
 
-    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? LoginLandingViewController)
+    XCTAssertNotNil(nav.viewControllers.last as? LoginLandingViewController)
   }
 
   func testAsyncLoggedInState() async throws {
@@ -45,12 +45,12 @@ class AppCoordinatorExampleTests: XCTestCase {
     )
 
     sut.start()
-    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? FakeSplashViewController)
+    XCTAssertNotNil(nav.viewControllers.last as? FakeSplashViewController)
 
     // Add delay to ensure sut.start() hits the first awaiting code
     try await Task.sleep(for: .milliseconds(10))
 
-    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? HomeViewController)
+    XCTAssertNotNil(nav.viewControllers.last as? HomeViewController)
   }
 
 }
