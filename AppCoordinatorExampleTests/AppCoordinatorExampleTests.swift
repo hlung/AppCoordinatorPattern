@@ -16,7 +16,7 @@ class AppCoordinatorExampleTests: XCTestCase {
     let sut = AppCoordinator(
       navigationController: nav,
       dependencies: .init(
-        sessionProvider: MockSessionProvider(),
+        sessionProvider: MockLoggedOutSessionProvider(),
         appLaunchDataProvider: MockAppLaunchDataProvider()
       )
     )
@@ -35,11 +35,7 @@ class AppCoordinatorExampleTests: XCTestCase {
     let sut = AppCoordinator(
       navigationController: nav,
       dependencies: .init(
-        sessionProvider: {
-          let provider = MockSessionProvider()
-          provider.session = Session(user: User(username: "John"))
-          return provider
-        }(),
+        sessionProvider: MockLoggedInSessionProvider(),
         appLaunchDataProvider: MockAppLaunchDataProvider()
       )
     )
@@ -55,9 +51,16 @@ class AppCoordinatorExampleTests: XCTestCase {
 
 }
 
-class MockSessionProvider: SessionProvider {
-  var session: Session? = nil
+class MockLoggedOutSessionProvider: SessionProvider {
+  var session: Session?
   func loadSavedSession() {
+  }
+}
+
+class MockLoggedInSessionProvider: SessionProvider {
+  var session: Session?
+  func loadSavedSession() {
+    self.session = Session(user: User(username: "John"))
   }
 }
 
