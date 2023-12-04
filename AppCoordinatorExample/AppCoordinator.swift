@@ -22,10 +22,10 @@ final class AppCoordinator {
     Task { @MainActor in
       let _ = try await dependencies.appLaunchDataProvider.getAppLaunchData()
 
-      // Using `while true` loop here may look scary, but I think it shows a clear intent
-      // that there's a loop here between logged in and logged out state.
-      // If we put showHomePage at the end of showLoginPage, it works but it kinda violates SRP
-      // by doing 2 things in one func.
+      // Using `while true` loop here may look scary, but there's actually an infinite loop
+      // between logged in and logged out state. So this hilights that exact behavior clearly.
+      // We could put showHomePage at the end of showLoginPage (and vice versa), but it kinda violates SRP
+      // by doing 2 things in one func. And it kinda hides that infinite loop. So I prefer this approach.
       while true {
         if let session = dependencies.sessionProvider.session {
           await showHomePage(session)
