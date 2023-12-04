@@ -26,6 +26,7 @@
 		01A5FFDA2B1CB24C00ECF621 /* FakeSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */; };
 		01A5FFDE2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFDD2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift */; };
 		01A5FFE02B1D7A5F00ECF621 /* AppCoordinatorExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26B7271C4C250067B44E /* AppCoordinatorExampleTests.swift */; };
+		01A5FFE32B1D894800ECF621 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFE22B1D894800ECF621 /* Mocks.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 		01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */; };
 		01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */; };
@@ -84,6 +85,7 @@
 		01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAsyncCoordinator.swift; sourceTree = "<group>"; };
 		01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSplashViewController.swift; sourceTree = "<group>"; };
 		01A5FFDD2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAsyncCoordinatorTests.swift; sourceTree = "<group>"; };
+		01A5FFE22B1D894800ECF621 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		01A7A3CA2AEFA98500B632CC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		01A7A3CD2AF0B1E100B632CC /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSVODViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				013D26B7271C4C250067B44E /* AppCoordinatorExampleTests.swift */,
 				01A5FFDD2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift */,
+				01A5FFE22B1D894800ECF621 /* Mocks.swift */,
 				01A5FFDF2B1CCB8B00ECF621 /* Unused */,
 				013D26B9271C4C250067B44E /* Info.plist */,
 			);
@@ -435,6 +438,7 @@
 			files = (
 				01A5FFE02B1D7A5F00ECF621 /* AppCoordinatorExampleTests.swift in Sources */,
 				01A5FFDE2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift in Sources */,
+				01A5FFE32B1D894800ECF621 /* Mocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

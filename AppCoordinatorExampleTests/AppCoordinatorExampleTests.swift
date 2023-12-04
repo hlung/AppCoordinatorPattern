@@ -12,7 +12,7 @@ import XCTest
 class AppCoordinatorExampleTests: XCTestCase {
 
   func testAsyncLoggedOutState() async throws {
-    let nav = UINavigationController()
+    let nav = MockNoAnimationNavigationController()
     let sut = AppCoordinator(
       navigationController: nav,
       dependencies: .init(
@@ -27,11 +27,20 @@ class AppCoordinatorExampleTests: XCTestCase {
     // Add delay to ensure sut.start() hits the first awaiting code
     try await Task.sleep(for: .milliseconds(100))
 
-    XCTAssertNotNil(nav.viewControllers.last as? LoginLandingViewController)
+    let loginLandingVC = try XCTUnwrap(nav.viewControllers.last as? LoginLandingViewController)
+    loginLandingVC.logInButtonDidTap()
+
+    let loginVC = try XCTUnwrap(nav.viewControllers.last as? LoginViewController)
+    loginVC.delegate?.loginViewController(loginVC, didLogInWith: "John")
+
+    try await Task.sleep(for: .milliseconds(100))
+
+    let homeVC = try XCTUnwrap(nav.viewControllers.last as? HomeViewController)
+    XCTAssertEqual(homeVC.username, "John")
   }
 
   func testAsyncLoggedInState() async throws {
-    let nav = UINavigationController()
+    let nav = MockNoAnimationNavigationController()
     let sut = AppCoordinator(
       navigationController: nav,
       dependencies: .init(
@@ -49,23 +58,4 @@ class AppCoordinatorExampleTests: XCTestCase {
     XCTAssertNotNil(nav.viewControllers.last as? HomeViewController)
   }
 
-}
-
-class MockLoggedOutSessionProvider: SessionProvider {
-  var session: Session?
-  func loadSavedSession() {
-  }
-}
-
-class MockLoggedInSessionProvider: SessionProvider {
-  var session: Session?
-  func loadSavedSession() {
-    self.session = Session(user: User(username: "John"))
-  }
-}
-
-class MockAppLaunchDataProvider: AppLaunchDataProvider {
-  func getAppLaunchData() async throws -> Data {
-    return Data()
-  }
 }
