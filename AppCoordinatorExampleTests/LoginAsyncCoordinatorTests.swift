@@ -25,7 +25,7 @@ class LoginAsyncCoordinatorTests: XCTestCase {
     Task {
       // Add delay to ensure this task runs after start() is done and awaiting, otherwise test will fail sometimes.
       // To see failure, try comment this out and run this test repeatedly for ~100 times.
-      try await Task.sleep(nanoseconds: UInt64(1e6))
+      try await Task.sleep(nanoseconds: UInt64(1e7))
 
       let loginLandingViewController = try XCTUnwrap(nav.viewControllers.last as? LoginLandingViewController)
       sut.loginLandingViewControllerDidSelectLogin(loginLandingViewController)

@@ -16,10 +16,10 @@ final class AppCoordinator {
   }
 
   func start() {
-    Task { @MainActor in
-      showFakeSplash()
+    showFakeSplash()
+    dependencies.sessionProvider.loadSavedSession()
 
-      dependencies.sessionProvider.loadSavedSession()
+    Task { @MainActor in
       let _ = try await dependencies.appLaunchDataProvider.getAppLaunchData()
 
       // Using `while true` loop here may look scary, but I think it shows a clear intent

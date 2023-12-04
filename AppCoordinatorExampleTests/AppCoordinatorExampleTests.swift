@@ -8,51 +8,59 @@
 import XCTest
 @testable import AppCoordinatorExample
 
+@MainActor
 class AppCoordinatorExampleTests: XCTestCase {
 
-  func testLogIn() throws {
+  func testAsyncLoggedOutState() async throws {
     let nav = UINavigationController()
     let sut = AppCoordinator(
       navigationController: nav,
-      dependencies: MockDependency.loggedOut
+      dependencies: .init(
+        sessionProvider: MockSessionProvider(),
+        appLaunchDataProvider: MockAppLaunchDataProvider()
+      )
     )
 
     sut.start()
-    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginCoordinator)
-    sut.loginCoordinator(loginCoordinator, didLogInWith: "John")
-    XCTAssertNotNil(sut.childCoordinators.last as? HomeCoordinator)
+    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? FakeSplashViewController)
+
+    try await Task.sleep(nanoseconds: UInt64(1e7))
+
+    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? LoginLandingViewController)
   }
 
-  @MainActor
-  func testLogInAsync() async throws {
+  func testAsyncLoggedInState() async throws {
     let nav = UINavigationController()
     let sut = AppCoordinator(
       navigationController: nav,
-      dependencies: MockDependency.loggedOut
+      dependencies: .init(
+        sessionProvider: {
+          let provider = MockSessionProvider()
+          provider.session = Session(user: User(username: "John"))
+          return provider
+        }(),
+        appLaunchDataProvider: MockAppLaunchDataProvider()
+      )
     )
 
     sut.start()
+    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? FakeSplashViewController)
 
-    // Fail, loginCoordinator is not created yet
-    let loginCoordinator = try XCTUnwrap(sut.childCoordinators.last as? LoginAsyncCoordinator)
+    try await Task.sleep(nanoseconds: UInt64(1e7))
 
-    // Even if we have loginCoordinator, its continuation may still be nil...
-    // So we still can't trigger login to verify that HomeCoordinator exists.
-//    loginCoordinator.continuation?.resume(with: .success("John"))
-//    XCTAssertNotNil(sut.childCoordinators.last as? HomeCoordinator)
+    XCTAssertNotNil(sut.rootViewController.viewControllers.last as? HomeViewController)
   }
 
 }
 
-private struct MockDependency: UsernameProvider {
-  var loggedInUsername: String?
-
-  mutating func clear() {
-    self.loggedInUsername = nil
+class MockSessionProvider: SessionProvider {
+  var session: Session? = nil
+  func loadSavedSession() {
   }
 }
 
-extension MockDependency {
-  static let loggedIn = MockDependency(loggedInUsername: "John")
-  static let loggedOut = MockDependency(loggedInUsername: nil)
+class MockAppLaunchDataProvider: AppLaunchDataProvider {
+  func getAppLaunchData() async throws -> Data {
+    return Data()
+  }
 }

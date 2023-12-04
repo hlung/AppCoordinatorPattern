@@ -25,6 +25,7 @@
 		01A5FFD82B1B7C3400ECF621 /* HomeAsyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD72B1B7C3400ECF621 /* HomeAsyncCoordinator.swift */; };
 		01A5FFDA2B1CB24C00ECF621 /* FakeSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFD92B1CB24C00ECF621 /* FakeSplashViewController.swift */; };
 		01A5FFDE2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5FFDD2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift */; };
+		01A5FFE02B1D7A5F00ECF621 /* AppCoordinatorExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D26B7271C4C250067B44E /* AppCoordinatorExampleTests.swift */; };
 		01A7A3CB2AEFA98500B632CC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3CA2AEFA98500B632CC /* Coordinator.swift */; };
 		01A7A3D62AF4A9F600B632CC /* PurchaseSVODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D52AF4A9F600B632CC /* PurchaseSVODViewController.swift */; };
 		01A7A3D82AF4E19C00B632CC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7A3D72AF4E19C00B632CC /* OnboardingViewController.swift */; };
@@ -432,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01A5FFE02B1D7A5F00ECF621 /* AppCoordinatorExampleTests.swift in Sources */,
 				01A5FFDE2B1CCB7100ECF621 /* LoginAsyncCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
