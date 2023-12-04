@@ -1,10 +1,3 @@
-//
-//  AppCoordinatorExampleTests.swift
-//  AppCoordinatorExampleTests
-//
-//  Created by Kolyutsakul, Thongchai on 17/10/21.
-//
-
 import XCTest
 @testable import AppCoordinatorExample
 

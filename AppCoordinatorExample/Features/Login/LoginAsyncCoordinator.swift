@@ -5,7 +5,6 @@ class LoginAsyncCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
   private var continuation: CheckedContinuation<String, Never>?
-  var animatedPush: Bool = true
 
   init(navigationController: UINavigationController) {
     print("[\(type(of: self))] \(#function)")
@@ -37,7 +36,7 @@ extension LoginAsyncCoordinator: LoginLandingViewControllerDelegate {
   func loginLandingViewControllerDidSelectLogin(_ viewController: LoginLandingViewController) {
     let viewController = LoginViewController()
     viewController.delegate = self
-    rootViewController.pushViewController(viewController, animated: animatedPush)
+    rootViewController.pushViewController(viewController, animated: true)
   }
 }
 
@@ -47,6 +46,6 @@ extension LoginAsyncCoordinator: LoginViewControllerDelegate {
   }
 
   func loginViewControllerDidCancel(_ viewController: LoginViewController) {
-    rootViewController.popToRootViewController(animated: animatedPush)
+    rootViewController.popToRootViewController(animated: true)
   }
 }

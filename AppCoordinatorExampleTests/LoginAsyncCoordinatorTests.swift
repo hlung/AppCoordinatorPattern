@@ -5,12 +5,10 @@ class LoginAsyncCoordinatorTests: XCTestCase {
 
   @MainActor
   func testAsyncCoordinator() async throws {
-    let nav = UINavigationController()
+    let nav = MockNoAnimationNavigationController()
     let sut = LoginAsyncCoordinator(
       navigationController: nav
     )
-    // disable animation so nav.viewControllers is updated right away
-    sut.animatedPush = false
 
     let exp = XCTestExpectation()
     exp.expectedFulfillmentCount = 2
