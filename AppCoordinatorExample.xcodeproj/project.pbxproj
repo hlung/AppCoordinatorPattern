@@ -55,7 +55,6 @@
 		013CD6D92AFCB3C300B444AB /* PurchaseAsyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAsyncCoordinator.swift; sourceTree = "<group>"; };
 		013CD6DF2AFFAA7200B444AB /* AppCoordinatorExample.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppCoordinatorExample.xctestplan; sourceTree = "<group>"; };
 		013CD6EF2B051C5000B444AB /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
-		013CD6F22B0B488500B444AB /* LoginCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatorTests.swift; sourceTree = "<group>"; };
 		013CD6F42B0C7B4D00B444AB /* AppCoordinatorRedux.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinatorRedux.swift; sourceTree = "<group>"; };
 		013CD6F62B0C7BD600B444AB /* ChildCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCoordinator.swift; sourceTree = "<group>"; };
 		013CD6F82B0C7BE700B444AB /* CoordinatorRedux.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorRedux.swift; sourceTree = "<group>"; };
@@ -270,7 +269,6 @@
 		01A5FFDF2B1CCB8B00ECF621 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
-				013CD6F22B0B488500B444AB /* LoginCoordinatorTests.swift */,
 			);
 			path = Unused;
 			sourceTree = "<group>";
