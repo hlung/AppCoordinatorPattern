@@ -24,6 +24,7 @@ class AppCoordinatorExampleTests: XCTestCase {
     sut.start()
     XCTAssertNotNil(sut.rootViewController.viewControllers.last as? FakeSplashViewController)
 
+    // Add delay to ensure sut.start() hits the first awaiting code
     try await Task.sleep(nanoseconds: UInt64(1e7))
 
     XCTAssertNotNil(sut.rootViewController.viewControllers.last as? LoginLandingViewController)
@@ -46,6 +47,7 @@ class AppCoordinatorExampleTests: XCTestCase {
     sut.start()
     XCTAssertNotNil(sut.rootViewController.viewControllers.last as? FakeSplashViewController)
 
+    // Add delay to ensure sut.start() hits the first awaiting code
     try await Task.sleep(nanoseconds: UInt64(1e7))
 
     XCTAssertNotNil(sut.rootViewController.viewControllers.last as? HomeViewController)

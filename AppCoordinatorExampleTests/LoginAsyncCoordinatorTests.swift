@@ -15,16 +15,18 @@ class LoginAsyncCoordinatorTests: XCTestCase {
     let exp = XCTestExpectation()
     exp.expectedFulfillmentCount = 2
 
-    // Need to create 2 separate tasks. Otherwise it will just stop after first await.
-    Task {
+    // Need to create 2 separate tasks. Otherwise it will just stop after `await sut.start()`.
+    // Beware that the order of Task 1 and 2 can be randommized. A delay is added in Task 2 to help with this.
+    // However, Task 1 may take longer than that delay in rare cases.
+    // So this test is still a bit flaky. But this good enough for a PoC for now.
+    Task { // Task 1
       let username = await sut.start()
       XCTAssertEqual(username, "John")
       exp.fulfill()
     }
 
-    Task {
-      // Add delay to ensure this task runs after start() is done and awaiting, otherwise test will fail sometimes.
-      // To see failure, try comment this out and run this test repeatedly for ~100 times.
+    Task { // Task 2
+      // Add delay to ensure sut.start() hits the first awaiting code
       try await Task.sleep(nanoseconds: UInt64(1e7))
 
       let loginLandingViewController = try XCTUnwrap(nav.viewControllers.last as? LoginLandingViewController)
