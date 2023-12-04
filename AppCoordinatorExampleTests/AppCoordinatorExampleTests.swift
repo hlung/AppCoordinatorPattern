@@ -26,6 +26,7 @@ class AppCoordinatorExampleTests: XCTestCase {
     let loginVC = try XCTUnwrap(nav.viewControllers.last as? LoginViewController)
     loginVC.delegate?.loginViewController(loginVC, didLogInWith: "John")
 
+    // The didLogInWith call above resumes a continuation, which runs asynchronously, so need to add another delay
     try await Task.sleep(for: .milliseconds(100))
 
     let homeVC = try XCTUnwrap(nav.viewControllers.last as? HomeViewController)

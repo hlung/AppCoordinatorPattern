@@ -28,4 +28,8 @@ class MockNoAnimationNavigationController: UINavigationController {
   override func popViewController(animated: Bool) -> UIViewController? {
     super.popViewController(animated: false)
   }
+
+  override func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+    super.setViewControllers(viewControllers, animated: false)
+  }
 }
