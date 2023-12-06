@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinator {
+final class AppCoordinator: Coordinator {
 
   struct Dependencies {
     let sessionProvider: SessionProvider

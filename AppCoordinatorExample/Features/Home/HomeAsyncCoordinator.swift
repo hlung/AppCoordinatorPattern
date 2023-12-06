@@ -1,5 +1,6 @@
 import UIKit
 
+/// An example of a coordinator that manages all navigations while logged in
 final class HomeAsyncCoordinator: Coordinator {
 
   let rootViewController: UINavigationController
