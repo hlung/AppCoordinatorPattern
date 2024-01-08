@@ -23,9 +23,10 @@ final class AppCoordinator: Coordinator {
       let _ = try await dependencies.appLaunchDataProvider.getAppLaunchData()
 
       // Using `while true` loop here may look scary, but there's actually an infinite loop
-      // between logged in and logged out state. So this hilights that exact behavior clearly.
-      // We could put showHomePage at the end of showLoginPage (and vice versa), but it kinda violates SRP
-      // by doing 2 things in one func. And it kinda hides that infinite loop. So I prefer this approach.
+      // between logged in and logged out state. So this highlights that fact clearly.
+      // We could put showHomePage at the end of showLoginPage (and vice versa), but it kinda
+      // violates SRP by doing 2 things in one func. And it kinda hides that infinite loop behavior.
+      // So I prefer this approach.
       while true {
         if let session = dependencies.sessionProvider.session {
           await showHomePage(session)
