@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 final class AppCoordinator: Coordinator {
 
   struct Dependencies {
@@ -19,7 +20,7 @@ final class AppCoordinator: Coordinator {
     showFakeSplash()
     dependencies.sessionProvider.loadSavedSession()
 
-    Task { @MainActor in
+    Task {
       let _ = try await dependencies.appLaunchDataProvider.getAppLaunchData()
 
       // Using `while true` loop here may look scary, but there's actually an infinite loop
