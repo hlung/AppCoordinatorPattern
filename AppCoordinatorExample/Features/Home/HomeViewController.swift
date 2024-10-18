@@ -8,6 +8,7 @@ protocol HomeViewControllerDelegate: AnyObject {
 
 class HomeViewController: UIViewController {
 
+  var purchaseCoordinator: PurchaseAsyncCoordinator?
   weak var delegate: HomeViewControllerDelegate?
   var username: String?
 

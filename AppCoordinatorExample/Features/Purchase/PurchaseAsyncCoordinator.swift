@@ -17,14 +17,16 @@ final class PurchaseAsyncCoordinator: Coordinator {
     case cancelled
   }
 
-  let rootViewController: UINavigationController
+  // This needs to be weak/unowned. Otherwise, if rootViewController retains this coordinator
+  // there will be a retain cycle.
+  unowned let rootViewController: UIViewController
   let productType: ProductType
   private var continuation: CheckedContinuation<Output, Never>?
 
-  init(navigationController: UINavigationController, productType: ProductType) {
+  init(rootViewController: UIViewController, productType: ProductType) {
     print("[\(type(of: self))] \(#function)")
     self.productType = productType
-    self.rootViewController = navigationController
+    self.rootViewController = rootViewController
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -42,7 +44,7 @@ final class PurchaseAsyncCoordinator: Coordinator {
       let output = await withCheckedContinuation {
         let vc = PurchaseSVODViewController()
         vc.delegate = self
-        self.rootViewController.pushViewController(vc, animated: true)
+        self.rootViewController.present(vc, animated: true)
         self.continuation = $0
       }
       return output
@@ -66,19 +68,22 @@ final class PurchaseAsyncCoordinator: Coordinator {
 extension PurchaseAsyncCoordinator: PurchaseSVODViewControllerDelegate {
   // Buy button
   func purchaseSVODViewControllerDidPurchase(_ viewController: PurchaseSVODViewController) {
-    rootViewController.popToRootViewController(animated: true)
+    viewController.dismiss(animated: true)
     continuation?.resume(returning: .didPurchaseSVOD)
+    continuation = nil
   }
 
   // Cancel button
   func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController) {
-    rootViewController.popToRootViewController(animated: true)
+    viewController.dismiss(animated: true)
     continuation?.resume(returning: .cancelled)
+    continuation = nil
   }
 
   // Back button
   func purchaseSVODViewControllerDidDeinit(_ viewController: PurchaseSVODViewController) {
     // navigationController is already at root, no need to pop again
     continuation?.resume(returning: .cancelled)
+    continuation = nil
   }
 }

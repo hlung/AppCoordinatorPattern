@@ -17,13 +17,13 @@ final class PurchaseCoordinator: Coordinator {
 
   weak var delegate: PurchaseCoordinatorDelegate?
 
-  let rootViewController: UINavigationController
+  let rootViewController: UIViewController
   let productType: ProductType
 
-  init(navigationController: UINavigationController, productType: ProductType) {
+  init(rootViewController: UIViewController, productType: ProductType) {
     print("[\(type(of: self))] \(#function)")
     self.productType = productType
-    self.rootViewController = navigationController
+    self.rootViewController = rootViewController
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -39,7 +39,7 @@ final class PurchaseCoordinator: Coordinator {
     case .svod:
       let vc = PurchaseSVODViewController()
       vc.delegate = self
-      self.rootViewController.pushViewController(vc, animated: true)
+      self.rootViewController.present(vc, animated: true)
     case .tvod:
       break // to be implemented
     }
@@ -49,12 +49,12 @@ final class PurchaseCoordinator: Coordinator {
 
 extension PurchaseCoordinator: PurchaseSVODViewControllerDelegate {
   func purchaseSVODViewControllerDidPurchase(_ viewController: PurchaseSVODViewController) {
-    rootViewController.popToRootViewController(animated: true)
+    viewController.dismiss(animated: true)
     delegate?.purchaseCoordinatorDidPurchase(self)
   }
 
   func purchaseSVODViewControllerDidCancel(_ viewController: PurchaseSVODViewController) {
-    rootViewController.popToRootViewController(animated: true)
+    viewController.dismiss(animated: true)
     delegate?.purchaseCoordinatorDidStop(self)
   }
 

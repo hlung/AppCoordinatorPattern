@@ -47,7 +47,9 @@ final class HomeAsyncCoordinator: Coordinator {
 
   func showPurchase() {
     Task { @MainActor in
-      let coordinator = PurchaseAsyncCoordinator(navigationController: rootViewController, productType: .svod)
+      let homeViewController = rootViewController.viewControllers.first as! HomeViewController
+      let coordinator = PurchaseAsyncCoordinator(rootViewController: homeViewController, productType: .svod)
+      homeViewController.purchaseCoordinator = coordinator
       let output = await coordinator.start()
       switch output {
       case .didPurchaseSVOD, .didPurchaseTVOD, .didRestorePurchase:
